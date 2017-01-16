@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/upload-race', 'HomeController@uploadRace');
 Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-race-complete');
+Route::get('/upload-athlete', 'HomeController@uploadAthlete');
+Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
