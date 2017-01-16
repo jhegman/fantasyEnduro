@@ -8,6 +8,6 @@ class Racer extends Model
 {
     public function getRacersRace()
     {
-        return $this->belongsToMany('App\Race');
+        return $this->belongsToMany('App\Race')->withTimestamps();
     }
 }

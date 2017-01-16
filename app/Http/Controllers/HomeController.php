@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Storage;
 use Excel;
+use App\Race;
+use App\Racer;
 
 class HomeController extends Controller
 {
@@ -63,11 +65,9 @@ class HomeController extends Controller
                 $completeName = $fileName;
                 $path = $request->file('race_upload')->storeAs('races', $fileName, 'local');
             }
-            Excel::load('storage/app/races/' . $completeName, function ($reader) {
+            $results = Excel::load('storage/app/races/' . $completeName, function ($reader) {
                 // Getting all results
-                $results = $reader->get();
-                dd($results);
-            });
+            })->get();
         }
         return view('upload-race-complete');
     }

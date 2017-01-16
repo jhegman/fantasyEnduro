@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldsToRacerRace extends Migration
+class CreateRaceRacerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class AddFieldsToRacerRace extends Migration
      */
     public function up()
     {
-        Schema::table('racer_race', function (Blueprint $table) {
+        Schema::create('race_racer', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->integer('racer_id');
+            $table->integer('race_id');
             $table->integer('overall_place');
             $table->string('stage_1_time')->nullable();
             $table->integer('stage_1_place')->nullable();
@@ -39,24 +43,6 @@ class AddFieldsToRacerRace extends Migration
      */
     public function down()
     {
-        Schema::table('racer_race', function (Blueprint $table) {
-            $table->dropColumn([
-                'overall_place',
-                'stage_1_time',
-                'stage_1_place',
-                'stage_2_time',
-                'stage_2_place',
-                'stage_3_time',
-                'stage_3_place',
-                'stage_4_time',
-                'stage_4_place',
-                'stage_5_time',
-                'stage_5_place',
-                'stage_6_time',
-                'stage_6_place',
-                'stage_7_time',
-                'stage_7_place',
-            ]);
-        });
+        Schema::dropIfExists('race_racer');
     }
 }
