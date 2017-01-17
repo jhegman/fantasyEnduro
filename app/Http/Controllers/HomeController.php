@@ -179,6 +179,9 @@ class HomeController extends Controller
                         if($data[3]!=" "){
                             $athlete->bike_team = $data[3];
                         }
+                        if($data[4]!=" "){
+                            $athlete->photo_url = $data[4];
+                        }
                         $athlete->save();
                     } else {
                         //Do nothing
