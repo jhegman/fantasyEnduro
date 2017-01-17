@@ -69,6 +69,7 @@ class HomeController extends Controller
                 // Getting all results
             })->get();
         }
+        dd($results);
         return view('upload-race-complete');
     }
 
