@@ -1,4 +1,31 @@
 @charset "UTF-8";
+/*!
+
+Authors: Jack Hegman & Peter Hegman
+Description: Fantasy Enduro World Series
+Version: 1.0.0
+Instructions: DON'T Edit app.css. Instead edit resources/assets/sass/app.scss.
+To complile app.scss first install gulp. npm install -g gulp, then navigate to 
+the fantasyEnduro directory and run the command gulp. Or run gulp watch to compile
+the file everytime it is saved
+
+*/
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# 0.0 Variables
+# 1.0 Imports
+# 2.0 Typography
+# 3.0 Set Linup
+# 4.0 Race Result Pages
+# 5.0 Athlete Pages
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# 0.0 Variables
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# 1.0 Imports
+--------------------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -7688,8 +7715,21 @@ button.close {
   }
 }
 
+/*--------------------------------------------------------------
+# 2.0 Typography
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# 3.0 Set Lineup
+--------------------------------------------------------------*/
 .dragArea {
   min-height: 500px;
 }
+
+/*--------------------------------------------------------------
+# 4.0 Race Result Pages
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# 5.0 Athlete Pages
+--------------------------------------------------------------*/
 
 /*# sourceMappingURL=app.css.map */
