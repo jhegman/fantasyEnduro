@@ -69,6 +69,7 @@ class HomeController extends Controller
                 // Getting all results
             })->get();
         }
+        dd($results);
         return view('upload-race-complete');
     }
 
@@ -112,10 +113,10 @@ class HomeController extends Controller
                 while (($data = fgetcsv($handle, 1000, ',')) !==FALSE)
                 {
                     $athlete = new Racer();
-                    $existingRacerCheck = Racer::where('name', 'LIKE', '%' . $athlete->name . '%')->first();
+                    $existingRacerCheck = Racer::where('name', 'LIKE', '%' . $data[1] . ' ' . $data[0] . '%')->first();
                     
                     if ($existingRacerCheck == null){
-                    $athlete->name = $data[0] . ' ' . $data[1];
+                    $athlete->name = $data[1] . ' ' . $data[0];
                     $athlete->gender = $data[2];
                     $athlete->save();
                     }
