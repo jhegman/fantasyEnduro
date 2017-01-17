@@ -7688,4 +7688,8 @@ button.close {
   }
 }
 
+.dragArea {
+  min-height: 500px;
+}
+
 /*# sourceMappingURL=app.css.map */

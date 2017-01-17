@@ -25,4 +25,7 @@ Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-r
 Route::get('/upload-athlete', 'HomeController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
 //Allow user to set lineup
-Route::get('/set-lineup', 'HomeController@getAvailableRacers');
+Route::get('/set-lineup', 'HomeController@setLineup');
+
+//ajax route for setting lineup
+Route::get('/get-users-lineup', 'HomeController@getUsersLineup');

@@ -8,6 +8,7 @@ use Storage;
 use Excel;
 use App\Race;
 use App\Racer;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -68,8 +69,60 @@ class HomeController extends Controller
             $results = Excel::load('storage/app/races/' . $completeName, function ($reader) {
                 // Getting all results
             })->get();
+
+            //Create New Race
+            $race = new Race;
+            $race->name = $request->race_name;
+            $race->location = $request->race_location;
+            $race->save();
+            //Loop through uploaded results
+            foreach ($results as $key => $result) {
+                $racerName = $result->name;
+                //Remove whitespace from front and back of string
+                $racerName = trim($racerName);
+                //Remove any weird charcters from front and back
+                $racerName = trim($racerName, "\xA0\xC2");
+                $existingRacerCheck = Racer::where('name', 'LIKE', '%' . $racerName . '%')->first();
+                //If Racer doesn't already exist in the database add them, else add results to race_racers table
+                if ($existingRacerCheck == null) {
+                    $racer = new Racer;
+                    $racer->name = $result->name;
+                    $racer->gender = $request->gender;
+                    $racer->save();
+                    $racer->getRacersRace()->attach($race->id, [
+                        'overall_place' =>  intval(trim($result->overall_place, '()')),
+                        'stage_1_time'  =>  $result->stage_1_time,
+                        'stage_1_place' =>  intval(trim($result->stage_1_place, '()')),
+                        'stage_2_time'  =>  $result->stage_2_time,
+                        'stage_2_place' =>  intval(trim($result->stage_2_place, '()')),
+                        'stage_3_time'  =>  $result->stage_3_time,
+                        'stage_3_place' =>  intval(trim($result->stage_3_place, '()')),
+                        'stage_4_time'  =>  $result->stage_4_time,
+                        'stage_4_place' =>  intval(trim($result->stage_4_place, '()')),
+                        'stage_5_time'  =>  $result->stage_5_time,
+                        'stage_5_place' =>  intval(trim($result->stage_5_place, '()')),
+                        'stage_6_time'  =>  $result->stage_6_time,
+                        'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
+                    ]);
+                } else {
+                    $existingRacerCheck->getRacersRace()->attach($race->id, [
+                        'overall_place' =>  intval(trim($result->overall_place, '()')),
+                        'stage_1_time'  =>  $result->stage_1_time,
+                        'stage_1_place' =>  intval(trim($result->stage_1_place, '()')),
+                        'stage_2_time'  =>  $result->stage_2_time,
+                        'stage_2_place' =>  intval(trim($result->stage_2_place, '()')),
+                        'stage_3_time'  =>  $result->stage_3_time,
+                        'stage_3_place' =>  intval(trim($result->stage_3_place, '()')),
+                        'stage_4_time'  =>  $result->stage_4_time,
+                        'stage_4_place' =>  intval(trim($result->stage_4_place, '()')),
+                        'stage_5_time'  =>  $result->stage_5_time,
+                        'stage_5_place' =>  intval(trim($result->stage_5_place, '()')),
+                        'stage_6_time'  =>  $result->stage_6_time,
+                        'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
+                    ]);
+                }
+            }
         }
-        dd($results);
         return view('upload-race-complete');
     }
 
@@ -111,11 +164,18 @@ class HomeController extends Controller
             if (($handle = fopen(storage_path('app/athletes/' . $completeName), 'r')) !== false) {
                 while (($data = fgetcsv($handle, 1000, ',')) !==false) {
                     $athlete = new Racer();
-                    $existingRacerCheck = Racer::where('name', 'LIKE', '%' . $data[1] . ' ' . $data[0] . '%')->first();
+                    $athleteName = $data[1] . ' ' . $data[0];
+                    //Remove whitespace from front and back of string
+                    $athleteName = trim($athleteName);
+                    //Remove any weird charcters from front and back
+                    $athleteName = trim($athleteName, "\xA0\xC2");
+                    //Remove U21 or Master from the gender
+                    $gender = str_replace(array(' U21', ' Master'), '', $data[2]);
+                    $existingRacerCheck = Racer::where('name', 'LIKE', '%' . $athleteName . '%')->first();
                     
                     if ($existingRacerCheck == null) {
-                        $athlete->name = $data[1] . ' ' . $data[0];
-                        $athlete->gender = $data[2];
+                        $athlete->name = $athleteName;
+                        $athlete->gender = $gender;
                         $athlete->save();
                     } else {
                         //Do nothing
@@ -130,11 +190,19 @@ class HomeController extends Controller
     }
 
     /**
-     * [getAvailableRacers returns racers available for your lineup]
+     * [getAvailableRacers returns page where user can set their lineup]
      * @return App\Racers
      */
-    public function getUsersCurrentLineup()
+    public function setLineup()
     {
         return view('set-lineup');
+    }
+
+    public function getUsersLineup()
+    {
+        $userID = Auth::id();
+        $racers = Racer::all();
+
+        return $racers;
     }
 }
