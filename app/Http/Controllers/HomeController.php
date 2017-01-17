@@ -176,6 +176,9 @@ class HomeController extends Controller
                     if ($existingRacerCheck == null) {
                         $athlete->name = $athleteName;
                         $athlete->gender = $gender;
+                        if($data[3]!=" "){
+                            $athlete->bike_team = $data[3];
+                        }
                         $athlete->save();
                     } else {
                         //Do nothing
