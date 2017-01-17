@@ -18,7 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+//Upload and process race
 Route::get('/upload-race', 'HomeController@uploadRace');
 Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-race-complete');
+//Upload and process atheltes
 Route::get('/upload-athlete', 'HomeController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
+//Allow user to set lineup
+Route::get('/set-lineup', 'HomeController@getAvailableRacers');
