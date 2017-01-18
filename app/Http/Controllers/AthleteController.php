@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Race;
 use App\Racer;
+use DB;
 
 class AthleteController extends Controller
 {
@@ -17,7 +18,6 @@ class AthleteController extends Controller
 	//Make Athletes Clickable
 	public function show($id){
 		$athlete = Racer::findOrFail($id);
-
-		return view('show',compact('athlete'));
+		return view('show',compact('athlete', 'stageWins'));
 	}
 }

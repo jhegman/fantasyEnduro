@@ -207,7 +207,27 @@ class HomeController extends Controller
     public function getUsersLineup()
     {
         $userID = Auth::id();
+        $returnArray = array();
         $racers = Racer::all();
+        foreach ($racers as $key => $racer) {
+            $stageWins = 0;
+            for ($i=1; $i < 8 ; $i++) { 
+                $stageData = Racer::find($id)
+                ->getRacersRace()
+                ->where('racer_id', $id)
+                ->where('stage_' . $i . '_place', 1)
+                ->get();
+                $stageWins += count($stageData);
+            }
+            $overall = Racer::find($racer->id)
+                ->getRacersRace()
+                ->where('overall_place', 1)
+                ->get();
+            $overallWins = count($overall);
+            $returnArray[]['racer'] = $racer;
+            $returnArray[]['stageWins'] = $stageWins;
+            $returnArray[]['overallWins'] = $overallWins;
+        }
 
         return $racers;
     }

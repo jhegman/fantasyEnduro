@@ -7725,6 +7725,26 @@ button.close {
   min-height: 500px;
 }
 
+.dragArea .racer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.dragArea .head-shot {
+  background-position: 50% 50%;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dragArea .racer-name {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /*--------------------------------------------------------------
 # 4.0 Race Result Pages
 --------------------------------------------------------------*/
