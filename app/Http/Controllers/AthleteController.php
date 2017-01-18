@@ -11,7 +11,6 @@ class AthleteController extends Controller
     //Display Table of Athlete
     public function index(){
     	$athletes = Racer::all();
-    	
    		return view('athletes',compact('athletes'));
     }
 
