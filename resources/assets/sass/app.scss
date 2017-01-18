@@ -47,7 +47,28 @@ the file everytime it is saved
 --------------------------------------------------------------*/
 
 .dragArea {
-	min-height: 500px;
+	height: 500px;
+	overflow: auto;
+
+	.racer {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+	.head-shot {
+		background-position: 50% 50%;
+		border-radius: 50%;
+		height: 50px;
+		width: 50px;
+		background-size: cover;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.racer-name {
+		display: inline-block;
+		vertical-align: middle;
+	}
 }
 
 /*--------------------------------------------------------------

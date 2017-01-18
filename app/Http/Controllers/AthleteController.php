@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Race;
 use App\Racer;
+use DB;
 
 class AthleteController extends Controller
 {
@@ -21,14 +22,15 @@ class AthleteController extends Controller
 		$athleteData = Racer::find($id)->getRacersRace()->where('overall_place', 1)->get();
 		$racesWon = count($athleteData);
 
-		$count = 0;
- 		for($i=0;$i<7;$i++){
- 		$stageData = Racer::find($id)->getRacersRace()->where('stage_'. ($i+1) .'_place', 1)->get();
- 		if(count($stageData) > 0){
- 			$count++;
- 		}
- 		}
- 		$stageWins = $count;
+
+		$stageWins = 0;
+		for ($i=1; $i < 8 ; $i++) { 
+			$stageData = Racer::find($id)
+			->getRacersRace()
+			->where('stage_' . $i . '_place', 1)
+			->get();
+			$stageWins += count($stageData);
+
 		}
 		
 		return view('show',compact('athlete','racesWon','stageWins'));

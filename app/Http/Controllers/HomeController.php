@@ -208,7 +208,6 @@ class HomeController extends Controller
     {
         $userID = Auth::id();
         $racers = Racer::all();
-
         return $racers;
     }
 }
