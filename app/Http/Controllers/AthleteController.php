@@ -22,13 +22,14 @@ class AthleteController extends Controller
 		$racesWon = count($athleteData);
 
 		$count = 0;
-		for($i=0;$i<7;$i++){
-		$stageData = Racer::find($id)->getRacersRace()->where('stage_'. ($i+1) .'_place', 1)->get();
-		if(count($stageData) > 0){
-			$count++;
+ 		for($i=0;$i<7;$i++){
+ 		$stageData = Racer::find($id)->getRacersRace()->where('stage_'. ($i+1) .'_place', 1)->get();
+ 		if(count($stageData) > 0){
+ 			$count++;
+ 		}
+ 		}
+ 		$stageWins = $count;
 		}
-		}
-		$stageWins = $count;
 		
 		return view('show',compact('athlete','racesWon','stageWins'));
 	}
