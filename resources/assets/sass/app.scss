@@ -47,7 +47,8 @@ the file everytime it is saved
 --------------------------------------------------------------*/
 
 .dragArea {
-	min-height: 500px;
+	height: 500px;
+	overflow: auto;
 
 	.racer {
 		padding-top: 15px;

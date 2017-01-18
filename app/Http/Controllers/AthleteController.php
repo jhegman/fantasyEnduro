@@ -18,6 +18,19 @@ class AthleteController extends Controller
 	//Make Athletes Clickable
 	public function show($id){
 		$athlete = Racer::findOrFail($id);
-		return view('show',compact('athlete', 'stageWins'));
+		
+		$athleteData = Racer::find($id)->getRacersRace()->where('overall_place', 1)->get();
+		$racesWon = count($athleteData);
+
+		$stageWins = 0;
+		for ($i=1; $i < 8 ; $i++) { 
+			$stageData = Racer::find($id)
+			->getRacersRace()
+			->where('stage_' . $i . '_place', 1)
+			->get();
+			$stageWins += count($stageData);
+		}
+		
+		return view('show',compact('athlete','racesWon','stageWins'));
 	}
 }

@@ -12,5 +12,8 @@
     @if ($athlete->photo_url!= null)
     <img src = "{{ $athlete->photo_url }}" alt="{{ $athlete->name }}">
     @endif
+	
+	<p>Races Won: {{ $racesWon }}</p>
+	<p>Stage Wins: {{ $stageWins }}</p>
 </div>
 @endsection

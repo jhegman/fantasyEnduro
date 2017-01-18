@@ -27,8 +27,8 @@
 					<div class="racer-stats">
 						<div class="head-shot" v-if="element.photo_url" :style="{backgroundImage: 'url(' + element.photo_url + ')'}"></div><!-- /.head-shot -->
 						<div class="head-shot" v-else style="background-image: url({{asset('img/placeholder.jpg')}})"></div><!-- /.head-shot -->
+						<h4 class="racer-name">@{{element.name}}</h2>
 					</div><!-- /.racer-stats -->
-					<h4 class="racer-name">@{{element.name}}</h2>
 				</header>
 			</div>
 			</draggable>
