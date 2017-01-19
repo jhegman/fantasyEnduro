@@ -87,6 +87,7 @@
                     <a href="/set-lineup">Set Lineup</a>
                     <a href="/upload-race">Upload Race</a>
                     <a href="/upload-athlete">Upload Athletes</a>
+                    <a href="/results">Results</a>
                 </div>
             </div>
         </div>

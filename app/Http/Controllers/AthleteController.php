@@ -5,10 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Race;
 use App\Racer;
-use DB;
+use Auth;
 
 class AthleteController extends Controller
 {
+    
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     //Display Table of Athlete
     public function index(){
     	$athletes = Racer::all();
@@ -16,12 +27,11 @@ class AthleteController extends Controller
     }
 
 	//Make Athletes Clickable
-	public function show($id){
+	public function showAthletes($id){
 		$athlete = Racer::findOrFail($id);
 		
 		$athleteData = Racer::find($id)->getRacersRace()->where('overall_place', 1)->get();
 		$racesWon = count($athleteData);
-
 
 		$stageWins = 0;
 		for ($i=1; $i < 8 ; $i++) { 
@@ -33,6 +43,6 @@ class AthleteController extends Controller
 
 		}
 		
-		return view('show',compact('athlete','racesWon','stageWins'));
+		return view('showAthletes',compact('athlete','racesWon','stageWins','athleteData'));
 	}
 }

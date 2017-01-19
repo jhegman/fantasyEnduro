@@ -74,6 +74,7 @@ class HomeController extends Controller
             $race = new Race;
             $race->name = $request->race_name;
             $race->location = $request->race_location;
+            $race->gender = $request->gender;
             $race->save();
             //Loop through uploaded results
             foreach ($results as $key => $result) {
@@ -210,4 +211,30 @@ class HomeController extends Controller
         $racers = Racer::all();
         return $racers;
     }
+
+    //Display Page With All results
+    public function results(){
+        $races = Race::all();
+        return view('results', compact('races'));
+    }
+
+    //Display Individual Results
+    public function showResults($id){
+        //Get All Racers in Race
+        $racers = Race::findOrFail($id)->getRaceRacers()->get();
+        $race = Race::findOrFail($id);
+        
+        //Check first racer to tell how many stages there were
+        //Probably cleaner way to check this
+        $numStages = 8;
+        if(empty($racers[0]->pivot->stage_7_time) == 1){
+            $numStages = 7;
+        }
+        if(empty($racers[0]->pivot->stage_6_time) == 1){
+            $numStages = 6;
+        }
+        
+        return view('showResults',compact('racers','numStages','race'));
+    }
+
 }
