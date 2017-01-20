@@ -7,7 +7,6 @@
 
 require('./bootstrap');
 var draggable = require('vuedraggable');
-var VueResource = require('vue-resource');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -20,27 +19,32 @@ var VueResource = require('vue-resource');
 const app = new Vue({
 	el: '#app',
 	data: {
-		list: [],
-		list2: []
+		athletes: [],
+		yourLineup: [],
+		yourLineupOptions: {
+			disabled: false
+			group: 'athletes',
+		},
+		disable: false,
+		lineupSize: 5,
 	},
 	methods: {
-		add: function() {
-			this.list.push({
-			name: 'Juan'
-			});
+		onStart: function() {
+			if (this.yourLineup.length == this.lineupSize) {
+				this.disable = true;
+			}
+			console.log('test');
 		},
-		replace: function() {
-			this.list = [{
-			name: 'Edgard'
-			}]
+		onEnd: function() {
+
 		}
 	},
 	components: {
 		draggable,
 	},
 	mounted: function () {
-		this.$http.get('/get-users-lineup').then((response) => {
-			this.list = response.body;
+		this.$http.get('/get-users-lineup', {params: {path: window.location.pathname}}).then((response) => {
+			this.athletes = response.body;
 		})
 	}
 });

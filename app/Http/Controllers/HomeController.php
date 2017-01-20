@@ -9,6 +9,8 @@ use Excel;
 use App\Race;
 use App\Racer;
 use Auth;
+use Log;
+use Route;
 
 class HomeController extends Controller
 {
@@ -176,10 +178,10 @@ class HomeController extends Controller
                     if ($existingRacerCheck == null) {
                         $athlete->name = $athleteName;
                         $athlete->gender = $gender;
-                        if($data[3]!=" "){
+                        if ($data[3]!=" ") {
                             $athlete->bike_team = $data[3];
                         }
-                        if($data[4]!=" "){
+                        if ($data[4]!=" ") {
                             $athlete->photo_url = $data[4];
                         }
                         $athlete->save();
@@ -196,18 +198,37 @@ class HomeController extends Controller
     }
 
     /**
-     * [getAvailableRacers returns page where user can set their lineup]
-     * @return App\Racers
+     * [setLineupMen returns page where user can set their lineup]
+     * @return view
      */
-    public function setLineup()
+    public function setLineupMen()
     {
-        return view('set-lineup');
+        return view('set-lineup-men');
     }
 
-    public function getUsersLineup()
+    /**
+     * [setLineupWomen returns page where user can set their lineup]
+     * @return view
+     */
+    public function setLineupWomen()
     {
+        return view('set-lineup-women');
+    }
+
+    /**
+     * [getUsersLineup Ajax call to get racers for setting lineup]
+     * @return [type] [description]
+     */
+    public function getUsersLineup(Request $request)
+    {
+        $path = $request->path;
+        if ($path == '/set-lineup/men') {
+            $racers = Racer::where('gender', 'Men')->orderBy('name', 'ASC')->get();
+        } elseif ($path == '/set-lineup/women') {
+            $racers = Racer::where('gender', 'Women')->orderBy('name', 'ASC')->get();
+        }
         $userID = Auth::id();
-        $racers = Racer::all();
+
         return $racers;
     }
 }
