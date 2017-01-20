@@ -25,8 +25,17 @@ Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-r
 Route::get('/upload-athlete', 'HomeController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
 
-Route::get('/athletes', 'AthleteController@index');
-Route::get('/athletes/{id}', 'AthleteController@show');
+//Create Athletes Page that lists all athletes
+Route::get('/athletes','AthleteController@index');
+
+//Individual Athlete Pages
+Route::get('/athletes/{id}','AthleteController@showAthletes');
+
+//Results Home Page
+Route::get('/results','HomeController@results');
+
+Route::get('/results/{id}','HomeController@showResults');
+
 //Allow user to set lineup
 Route::get('/set-lineup/men', 'HomeController@setLineupMen')->name('set-lineup-men');
 Route::get('/set-lineup/women', 'HomeController@setLineupWomen')->name('set-lineup-women');

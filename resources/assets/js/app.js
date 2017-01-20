@@ -22,7 +22,7 @@ const app = new Vue({
 		athletes: [],
 		yourLineup: [],
 		yourLineupOptions: {
-			disabled: false
+			disabled: false,
 			group: 'athletes',
 		},
 		disable: false,
@@ -33,7 +33,7 @@ const app = new Vue({
 			if (this.yourLineup.length == this.lineupSize) {
 				this.disable = true;
 			}
-			console.log('test');
+			
 		},
 		onEnd: function() {
 
@@ -43,8 +43,11 @@ const app = new Vue({
 		draggable,
 	},
 	mounted: function () {
-		this.$http.get('/get-users-lineup', {params: {path: window.location.pathname}}).then((response) => {
-			this.athletes = response.body;
-		})
+		console.log(window.location.pathname);
+		if (window.location.pathname == '/set-lineup/men' || window.location.pathname == '/set-lineup/women') {
+			this.$http.get('/get-users-lineup', {params: {path: window.location.pathname}}).then((response) => {
+				this.athletes = response.body;
+			});
+		}
 	}
 });

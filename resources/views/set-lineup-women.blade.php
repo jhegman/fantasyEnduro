@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-	<div id="app">
 	<div class="row">
 		<div class="col-md-6">
 			<h2>Available Racers</h2>
