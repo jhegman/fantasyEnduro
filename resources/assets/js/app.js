@@ -7,18 +7,13 @@
 
 require('./bootstrap');
 var draggable = require('vuedraggable');
-var dt      = require( 'datatables.net' )();
-var buttons = require( 'datatables.net-buttons' )();
+require('list.js');
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-// Vue.component('example', require('./components/Example.vue'));
-$(document).ready(function(){
-    $('.table.table.table-hover').DataTable();
-});
+//Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
 	el: '#app',
@@ -55,4 +50,12 @@ const app = new Vue({
 		}
 	}
 });
+
+var options = {
+  valueNames: [ 'name']
+};
+
+var sortMen = new List('men-sort', options);
+var sortWomen = new List('women-sort', options);
+
 
