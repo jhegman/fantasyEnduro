@@ -16,6 +16,10 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
+    "datatables.net": "^2.1.1",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net-buttons": "^1.2.4",
+    "datatables.net-buttons-bs": "^1.2.4",
     "vuedraggable": "^2.7.0-rc0"
   }
 }

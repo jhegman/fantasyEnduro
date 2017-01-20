@@ -8,6 +8,10 @@
 require('./bootstrap');
 var draggable = require('vuedraggable');
 var VueResource = require('vue-resource');
+var $       = require( 'jquery' );
+var dt      = require( 'datatables.net' )();
+var buttons = require( 'datatables.net-buttons' )();
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +19,10 @@ var VueResource = require('vue-resource');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example', require('./components/Example.vue'));
+$(document).ready(function(){
+    $('table.table.table-hover').DataTable();
+});
+Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
 	el: '#app',
@@ -44,3 +51,4 @@ const app = new Vue({
 		})
 	}
 });
+

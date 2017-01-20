@@ -8,7 +8,13 @@
     		<div class="table-responsive">
     		<h2>Men</h2>
     		<table class="table table-hover">
-				<tbody>
+				<thead>
+						<tr>
+						<th> Name </th>
+						<th> Gender </th>
+						</tr>
+				</thead>
+				<tbody>	
 					@foreach ($athletes as $athlete)
 					@if ($athlete->gender == 'Men')
 						<tr>
@@ -27,6 +33,12 @@
     		<div class="table-responsive">
     		<h2>Women</h2>
     		<table class="table table-hover">
+			<thead>
+						<tr>
+						<th> Name </th>
+						<th> Gender </th>
+						</tr>
+			</thead>
 			<tbody>
 				@foreach ($athletes as $athlete)
 				@if ($athlete->gender == 'Women')
