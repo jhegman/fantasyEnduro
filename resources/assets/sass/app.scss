@@ -46,6 +46,10 @@ the file everytime it is saved
 # 3.0 Set Lineup
 --------------------------------------------------------------*/
 
+[v-cloak] {
+  display: none;
+}
+
 .dragArea {
 	height: 500px;
 	overflow: auto;

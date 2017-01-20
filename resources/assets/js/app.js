@@ -7,11 +7,6 @@
 
 require('./bootstrap');
 var draggable = require('vuedraggable');
-var VueResource = require('vue-resource');
-var $       = require( 'jquery' );
-var dt      = require( 'datatables.net' )();
-var buttons = require( 'datatables.net-buttons' )();
-
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,36 +14,41 @@ var buttons = require( 'datatables.net-buttons' )();
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-$(document).ready(function(){
-    $('table.table.table-hover').DataTable();
-});
-Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
 	el: '#app',
 	data: {
-		list: [],
-		list2: []
+		athletes: [],
+		yourLineup: [],
+		yourLineupOptions: {
+			disabled: false,
+			group: 'athletes',
+		},
+		disable: false,
+		lineupSize: 5,
 	},
 	methods: {
-		add: function() {
-			this.list.push({
-			name: 'Juan'
-			});
+		onStart: function() {
+			if (this.yourLineup.length == this.lineupSize) {
+				this.disable = true;
+			}
+			
 		},
-		replace: function() {
-			this.list = [{
-			name: 'Edgard'
-			}]
+		onEnd: function() {
+
 		}
 	},
 	components: {
 		draggable,
 	},
 	mounted: function () {
-		this.$http.get('/get-users-lineup').then((response) => {
-			this.list = response.body;
-		})
+		console.log(window.location.pathname);
+		if (window.location.pathname == '/set-lineup/men' || window.location.pathname == '/set-lineup/women') {
+			this.$http.get('/get-users-lineup', {params: {path: window.location.pathname}}).then((response) => {
+				this.athletes = response.body;
+			});
+		}
 	}
 });
 

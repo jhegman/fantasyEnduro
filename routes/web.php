@@ -37,8 +37,8 @@ Route::get('/results','HomeController@results');
 Route::get('/results/{id}','HomeController@showResults');
 
 //Allow user to set lineup
-Route::get('/set-lineup', 'HomeController@setLineup');
+Route::get('/set-lineup/men', 'HomeController@setLineupMen')->name('set-lineup-men');
+Route::get('/set-lineup/women', 'HomeController@setLineupWomen')->name('set-lineup-women');
 
 //ajax route for setting lineup
 Route::get('/get-users-lineup', 'HomeController@getUsersLineup');
-
