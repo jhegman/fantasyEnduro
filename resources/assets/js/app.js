@@ -7,7 +7,8 @@
 
 require('./bootstrap');
 var draggable = require('vuedraggable');
-
+var dt      = require( 'datatables.net' )();
+var buttons = require( 'datatables.net-buttons' )();
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -15,6 +16,9 @@ var draggable = require('vuedraggable');
  */
 
 // Vue.component('example', require('./components/Example.vue'));
+$(document).ready(function(){
+    $('.table.table.table-hover').DataTable();
+});
 
 const app = new Vue({
 	el: '#app',
