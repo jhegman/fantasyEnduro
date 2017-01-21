@@ -24,6 +24,9 @@ Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-r
 //Upload and process atheltes
 Route::get('/upload-athlete', 'HomeController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
+//Change User Name Page
+Route::get('/change-username', 'HomeController@changeUserName');
+Route::post('/change-username/complete', 'HomeController@userNameChanged')->name('username-changed');
 
 //Create Athletes Page that lists all athletes
 Route::get('/athletes','AthleteController@index');
