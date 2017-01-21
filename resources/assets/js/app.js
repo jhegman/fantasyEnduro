@@ -55,6 +55,7 @@ var options = {
   valueNames: [ 'name']
 };
 
+
 var sortMen = new List('men-sort', options);
 var sortWomen = new List('women-sort', options);
 
