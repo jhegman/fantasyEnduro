@@ -23,7 +23,7 @@
 	   <h2>Race Wins: {{ $racesWon }}</h2>
        @if ($racesWon > 0)
        @foreach ($athleteData as $win)
-       <p><a href = "http://fantasyenduro.dev/results/{{$win->id}}">{{ $win->name }}, {{ $win->location }}</a></p>
+       <p><a href="{{ url('/results')}}/{{$win->id}}">{{ $win->name }}, {{ $win->location }}</a></p>
        @endforeach
        @endif
 

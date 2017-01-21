@@ -16,7 +16,7 @@
 </tr>
 @foreach($racers as $racer)
 <tr>
-<td><a href="http://fantasyenduro.dev/athletes/{{$racer->id}}">{{ $racer->name }}</td></a>
+<td><a href="{{ url('/athletes')}}/{{$racer->id}}">{{ $racer->name }}</td></a>
 <td>{{ $racer->pivot->overall_place }}</td>
 <td>{{ $racer->pivot->stage_1_time }}</td> 
 <td>{{ $racer->pivot->stage_1_place }}</td>
