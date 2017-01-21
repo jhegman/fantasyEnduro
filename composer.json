@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "doctrine/dbal": "^2.5",
         "kris/laravel-form-builder": "^1.10",
         "laravel/framework": "5.3.*",
         "laravel/passport": "^1.0",
-        "maatwebsite/excel": "~2.1.0",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

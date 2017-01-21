@@ -10,9 +10,9 @@
     		<!-- class="search" automagically makes an input a search field. -->
   			<input class="search" placeholder="Search" />
 			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-  			<button class="sort" data-sort="name">
+  			<!-- <button class="sort" data-sort="name">
     			Sort
-  			</button>
+  			</button> -->
     		<table class="table table-hover">
 				<thead>
 						<tr>
@@ -24,7 +24,15 @@
 					@foreach ($athletes as $athlete)
 					@if ($athlete->gender == 'Men')
 						<tr>
-    						<td class="name"><a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}</a></td>
+    						<td class="name">
+    						@if ($athlete->photo_url != null)	
+    						<img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
+    						@else
+    						 <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
+    						 @endif
+    						<a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}
+    						</a>
+    						</td>
    				 			<td>{{ $athlete->gender }}</td>
 						</tr>
 					@endif
@@ -41,9 +49,9 @@
     		<!-- class="search" automagically makes an input a search field. -->
   			<input class="search" placeholder="Search" />
 			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-  			<button class="sort" data-sort="name">
+  			<!-- <button class="sort" data-sort="name">
     			Sort
-  			</button>
+  			</button> -->
     		<table class="table table-hover">
 			<thead>
 						<tr>
@@ -55,7 +63,14 @@
 				@foreach ($athletes as $athlete)
 				@if ($athlete->gender == 'Women')
 					<tr>
-    				<td class="name"><a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}</a></td>
+    				<td class="name">
+    				@if ($athlete->photo_url != null)	
+    				<img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
+    				@else
+    				<img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
+    				@endif
+    				<a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}</a>
+    				</td>
    				 	<td>{{ $athlete->gender }}</td>
 					</tr>
 				@endif

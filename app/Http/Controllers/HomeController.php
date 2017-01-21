@@ -37,6 +37,38 @@ class HomeController extends Controller
     }
 
     /**
+     * Change User Name Form
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changeUserName(FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create(\App\Forms\ChangeUserNameForm::class, [
+            'method' => 'POST',
+            'url' => route('username-changed')
+        ]);
+        $user = Auth::user();
+        return view('change-username')->with('form', $form)->with('user',$user);
+    }
+
+    /**
+     * Change User Name
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function UserNameChanged(Request $request)
+    {
+        //Get New User Name
+        $new_user_name = $request->edit_your_username; 
+        //Get User
+        $user = Auth::user();
+        //Set user name to new username
+        $user->username = $new_user_name;
+        $user->save();
+        return view('username-changed')->with('user',$user);
+    }
+
+    /**
      * Upload Race
      *
      * @return \Illuminate\Http\Response

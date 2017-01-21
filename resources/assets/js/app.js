@@ -49,7 +49,6 @@ const app = new Vue({
 			this.$http.post('/save-users-lineup', {lineup: this.yourLineup, path: window.location.pathname}).then((response) => {
 				return response.json();
 			}).then(result => {
-				console.log(result);
 				this.saveStatus = result.status;
 				this.showNoty = true;
 				this.saveMessage = result.message;
@@ -77,7 +76,9 @@ var options = {
   valueNames: [ 'name']
 };
 
+
 var sortMen = new List('men-sort', options);
 var sortWomen = new List('women-sort', options);
+
 
 

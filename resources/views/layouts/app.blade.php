@@ -70,6 +70,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/change-username') }}">
+                                            Change Username
+                                        </a>    
+                                    </li>
                                 </ul>
                             </li>
                         @endif

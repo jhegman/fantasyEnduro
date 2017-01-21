@@ -33,5 +33,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Lineup');
     }
 
-    use HasRoles;
+    /**
+    * Get the leagues associated with each user
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    */
+    public function leagues()
+    {
+        return $this->belongsToMany('App\League');
+    }
 }
