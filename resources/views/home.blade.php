@@ -10,6 +10,15 @@
                 <div class="panel-body">
                     You are logged in!
                 </div>
+                <div class="panel-body">
+                    Username: {{$user->username}}
+                </div>
+                <div class="panel-body">
+                    My Leagues: 
+                    @foreach ($user->leagues as $league)
+                        {{$league->name}}
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
