@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
+	<transition name="fade">
+		<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert">@{{saveMessage}}</div>
+	</transition>
 	<div class="row">
 		<div class="col-md-6">
 			<h2>Available Racers</h2>
-			<draggable :athletes="athletes" class="dragArea" :options="{group:'athletes'}">
+			<draggable :list="athletes" class="dragArea" :options="{group:'athletes'}">
 			<div class="racer" v-for="athlete in athletes" v-cloak>
 				<header class="racer-header">
 					<div class="head-shot" v-if="athlete.photo_url" :style="{backgroundImage: 'url(' + athlete.photo_url + ')'}"></div><!-- /.head-shot -->
@@ -20,7 +23,7 @@
 		</div><!--./.col-md-6-->
 		<div class="col-md-6">
 			<h2>Your Lineup</h2>
-			<draggable :your-lineup="yourLineup" class="dragArea" :options="yourLineupOptions">
+			<draggable :list="yourLineup" class="dragArea" :options="yourLineupOptions">
 			<div class="racer" v-for="athlete in yourLineup" v-cloak>
 				<header class="racer-header">
 					<div class="racer-stats">
@@ -33,5 +36,6 @@
 			</draggable>
 		</div><!-- /.col-md-6 -->
 	</div><!-- /.row -->
+	<button class="btn-primary" @click="onSave">Save Lineup</button>
 </div>
 @endsection

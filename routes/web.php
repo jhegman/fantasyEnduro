@@ -42,3 +42,5 @@ Route::get('/set-lineup/women', 'HomeController@setLineupWomen')->name('set-line
 
 //ajax route for setting lineup
 Route::get('/get-users-lineup', 'HomeController@getUsersLineup');
+//ajax route for saving lineup
+Route::post('/save-users-lineup', 'HomeController@saveUsersLineup');

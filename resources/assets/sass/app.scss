@@ -50,6 +50,21 @@ the file everytime it is saved
   display: none;
 }
 
+.fade-enter-active, .fade-leave-active {
+ 	transition: opacity .8s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+ 	opacity: 0
+}
+
+.set-linup-noty {
+	position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+}
+
 .dragArea {
 	height: 500px;
 	overflow: auto;

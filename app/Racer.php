@@ -24,4 +24,8 @@ class Racer extends Model
         	'stage_6_place'
     	);
     }
+
+    public function lineups() {
+        return $this->hasMany('App\Lineup');
+    }
 }

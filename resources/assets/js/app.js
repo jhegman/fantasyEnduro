@@ -15,6 +15,8 @@ require('list.js');
  */
 //Vue.component('example', require('./components/Example.vue'));
 
+Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel;
+
 const app = new Vue({
 	el: '#app',
 	data: {
@@ -26,6 +28,9 @@ const app = new Vue({
 		},
 		disable: false,
 		lineupSize: 5,
+		showNoty: false,
+		saveStatus: false,
+		saveMessage: null,
 	},
 	methods: {
 		onStart: function() {
@@ -36,16 +41,33 @@ const app = new Vue({
 		},
 		onEnd: function() {
 
-		}
+		},
+		closeNoty: function() {
+			this.showNoty = false;
+		},
+		onSave: function() {
+			this.$http.post('/save-users-lineup', {lineup: this.yourLineup, path: window.location.pathname}).then((response) => {
+				return response.json();
+			}).then(result => {
+				console.log(result);
+				this.saveStatus = result.status;
+				this.showNoty = true;
+				this.saveMessage = result.message;
+				setTimeout(this.closeNoty, 5000);
+			});
+		},
 	},
 	components: {
 		draggable,
 	},
 	mounted: function () {
-		console.log(window.location.pathname);
 		if (window.location.pathname == '/set-lineup/men' || window.location.pathname == '/set-lineup/women') {
 			this.$http.get('/get-users-lineup', {params: {path: window.location.pathname}}).then((response) => {
-				this.athletes = response.body;
+				return response.json();
+			}).then(result => {
+				this.athletes = result.athletes;
+				console.log(result.yourLineup);
+				this.yourLineup = result.yourLineup;
 			});
 		}
 	}

@@ -2,6 +2,9 @@
 
 @section('content')
 	<div class="container">
+		<transition name="fade">
+			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert">@{{saveMessage}}</div>
+		</transition>
 		<div class="row">
 			<div class="col-md-6">
 				<h2>Available Racers</h2>
@@ -33,5 +36,6 @@
 				</draggable>
 			</div><!-- /.col-md-6 -->
 		</div><!-- /.row -->
+		<button class="btn-primary" @click="onSave">Save Lineup</button>
 	</div><!-- /.container -->
 @endsection

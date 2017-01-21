@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lineup extends Model
 {
-    public function getLineupUser()
+    public function user()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\User');
+    }
+
+    public function racer()
+    {
+    	return $this->belongsTo('App\Racer');
     }
 }

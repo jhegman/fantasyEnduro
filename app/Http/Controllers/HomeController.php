@@ -11,6 +11,8 @@ use App\Racer;
 use Auth;
 use Log;
 use Route;
+use App\SuperAdminOption;
+use App\Lineup;
 
 class HomeController extends Controller
 {
@@ -223,24 +225,42 @@ class HomeController extends Controller
     public function getUsersLineup(Request $request)
     {
         $path = $request->path;
+        $currentUser = Auth::id();
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+        $returnArray = array();
+        $yourLineupRacers = array();
         if ($path == '/set-lineup/men') {
-            $racers = Racer::where('gender', 'Men')->orderBy('name', 'ASC')->get();
+            $athletes = Racer::where('gender', 'Men')->orderBy('name', 'ASC')->get();
+            $yourLineup = Lineup::where('gender', 'Men')
+            ->where('user_id', $currentUser)
+            ->where('week', $week)
+            ->get();
         } elseif ($path == '/set-lineup/women') {
-            $racers = Racer::where('gender', 'Women')->orderBy('name', 'ASC')->get();
+            $athletes = Racer::where('gender', 'Women')->orderBy('name', 'ASC')->get();
+            $yourLineup = Lineup::where('gender', 'Women')
+            ->where('user_id', $currentUser)
+            ->where('week', $week)
+            ->get();
         }
-        $userID = Auth::id();
+        foreach ($yourLineup as $yourLineupRacer) {
+            $yourLineupRacers[] = $yourLineupRacer->racer()->first();
+        }
 
-        return $racers;
+        $returnArray['athletes'] = $athletes;
+        $returnArray['yourLineup'] = $yourLineupRacers;
+        return json_encode($returnArray);
     }
 
     //Display Page With All results
-    public function results(){
+    public function results()
+    {
         $races = Race::all();
         return view('results', compact('races'));
     }
 
     //Display Individual Results
-    public function showResults($id){
+    public function showResults($id)
+    {
         //Get All Racers in Race
         $racers = Race::findOrFail($id)->getRaceRacers()->get();
         $race = Race::findOrFail($id);
@@ -248,14 +268,57 @@ class HomeController extends Controller
         //Check first racer to tell how many stages there were
         //Probably cleaner way to check this
         $numStages = 8;
-        if(empty($racers[0]->pivot->stage_7_time) == 1){
+        if (empty($racers[0]->pivot->stage_7_time) == 1) {
             $numStages = 7;
         }
-        if(empty($racers[0]->pivot->stage_6_time) == 1){
+        if (empty($racers[0]->pivot->stage_6_time) == 1) {
             $numStages = 6;
         }
         
-        return view('showResults',compact('racers','numStages','race'));
+        return view('showResults', compact('racers', 'numStages', 'race'));
     }
 
+    public function saveUsersLineup(Request $request)
+    {
+        $lineup = $request->lineup;
+        $gender = $lineup[0]['gender'];
+        $currentUser = Auth::id();
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+
+        for ($i=0; $i < 5; $i++) {
+            $lineupRecord = Lineup::where('week', $week)
+            ->where('user_id', $currentUser)
+            ->where('lineup_position', $i + 1)
+            ->where('gender', $gender)
+            ->first();
+            if ($lineupRecord != null) {
+                if (array_key_exists($i, $lineup)) {
+                    $lineupRecord->racer_id = $lineup[$i]['id'];
+                    $lineupRecord->save();
+                } else {
+                    $lineupRecord->delete();
+                }
+            } elseif (array_key_exists($i, $lineup)) {
+                $newRecord = new Lineup;
+                $newRecord->user_id = $currentUser;
+                $newRecord->week = $week;
+                $newRecord->racer_id = $lineup[$i]['id'];
+                $newRecord->lineup_position = $i + 1;
+                $newRecord->gender = $gender;
+                $newRecord->save();
+            }
+        }
+
+        if (count($lineup) <= 5) {
+            return json_encode(array(
+                'status'    =>  true,
+                'message'   =>  'Lineup Saved Succesfully'
+            ));
+        } else {
+            return json_encode(array(
+                'status'    =>  false,
+                'message'   =>  'Limit of 5 racers in your lineup. Only first 5 saved'
+            ));
+        }
+    }
 }
