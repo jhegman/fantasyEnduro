@@ -60,13 +60,13 @@ class HomeController extends Controller
     public function UserNameChanged(Request $request)
     {
         //Get New User Name
-        $new_user_name = $request->edit_your_username; 
+        $new_user_name = $request->edit_your_username;
         //Get User
         $user = Auth::user();
         //Set user name to new username
         $user->username = $new_user_name;
         $user->save();
-        return view('username-changed')->with('user',$user);
+        return view('username-changed')->with('user', $user);
     }
 
     /**
@@ -80,7 +80,7 @@ class HomeController extends Controller
             'method' => 'POST',
             'url' => route('upload-race-complete')
         ]);
-        return view('upload-race')->with('form', $form);
+        return view('upload-tools.upload-race')->with('form', $form);
     }
 
     /**
@@ -161,7 +161,7 @@ class HomeController extends Controller
                 }
             }
         }
-        return view('upload-race-complete');
+        return view('upload-tools.upload-race-complete');
     }
 
     /**
@@ -175,7 +175,7 @@ class HomeController extends Controller
             'method' => 'POST',
             'url' => route('upload-athlete-complete')
         ]);
-        return view('upload-athlete')->with('form', $form);
+        return view('upload-tools.upload-athlete')->with('form', $form);
     }
 
      /**
@@ -230,7 +230,7 @@ class HomeController extends Controller
 
             $athletes = Racer::all();
         }
-        return view('upload-athlete-complete', compact('athletes'));
+        return view('upload-tools.upload-athlete-complete', compact('athletes'));
     }
 
     /**
@@ -239,7 +239,7 @@ class HomeController extends Controller
      */
     public function setLineupMen()
     {
-        return view('set-lineup-men');
+        return view('set-lineup.set-lineup-men');
     }
 
     /**
@@ -248,12 +248,16 @@ class HomeController extends Controller
      */
     public function setLineupWomen()
     {
-        return view('set-lineup-women');
+        return view('set-lineup.set-lineup-women');
     }
 
     /**
-     * [getUsersLineup Ajax call to get racers for setting lineup]
-     * @return [type] [description]
+     * AJAX function to get users lineup
+     * @param  Request $request [description]
+     * @return [ARRAY] [
+     *         athletes => Array of all the athletes minus the ones in your lineup
+     *         yourLineup => Array of all the races in current users lineup
+     * ]
      */
     public function getUsersLineup(Request $request)
     {
@@ -311,6 +315,14 @@ class HomeController extends Controller
         return view('result.showResults', compact('racers', 'numStages', 'race'));
     }
 
+    /**
+     * AJAX function for saving your lineup
+     * @param  Request $request
+     * @return [ARRAY] [
+     *         status => Status of save
+     *         message => Message for notificaiton
+     * ]
+     */
     public function saveUsersLineup(Request $request)
     {
         $lineup = $request->lineup;
