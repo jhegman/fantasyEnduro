@@ -40,6 +40,6 @@ class User extends Authenticatable
     */
     public function leagues()
     {
-        return $this->belongsToMany('App\League');
+        return $this->belongsToMany('App\League')->withTimestamps();
     }
 }
