@@ -31,6 +31,7 @@ const app = new Vue({
 		showNoty: false,
 		saveStatus: false,
 		saveMessage: null,
+		searchString: ''
 	},
 	methods: {
 		onStart: function() {
@@ -38,9 +39,6 @@ const app = new Vue({
 				this.disable = true;
 			}
 			
-		},
-		onEnd: function() {
-
 		},
 		closeNoty: function() {
 			this.showNoty = false;
@@ -56,6 +54,13 @@ const app = new Vue({
 			});
 		},
 	},
+	computed: {
+		filteredAthletes: function() {
+			return this.athletes.filter(function (athlete) {
+			      return athlete.name.toLowerCase().indexOf(this.searchString.toLowerCase()) > -1;
+		    }.bind(this));
+		}
+	},
 	components: {
 		draggable,
 	},
@@ -65,7 +70,6 @@ const app = new Vue({
 				return response.json();
 			}).then(result => {
 				this.athletes = result.athletes;
-				console.log(result.yourLineup);
 				this.yourLineup = result.yourLineup;
 			});
 		}

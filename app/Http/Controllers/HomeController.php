@@ -266,12 +266,21 @@ class HomeController extends Controller
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
         $returnArray = array();
         $yourLineupRacers = array();
+        //Men's lineup
         if ($path == '/set-lineup/men') {
-            $athletes = Racer::where('gender', 'Men')->orderBy('name', 'ASC')->get();
             $yourLineup = Lineup::where('gender', 'Men')
             ->where('user_id', $currentUser)
             ->where('week', $week)
             ->get();
+            $yourLineupRacerIDs = array();
+            //Create array of id's from your lineup
+            foreach ($yourLineup as $lineup) {
+                $yourLineupRacerIDs[] = $lineup->racer()->first()->id;
+            }
+            Log::debug($yourLineupRacerIDs);
+            $athletes = Racer::where('gender', 'Men')
+            ->whereNotIn('id', $yourLineupRacerIDs)
+            ->orderBy('name', 'ASC')->get();
         } elseif ($path == '/set-lineup/women') {
             $athletes = Racer::where('gender', 'Women')->orderBy('name', 'ASC')->get();
             $yourLineup = Lineup::where('gender', 'Women')
@@ -326,7 +335,12 @@ class HomeController extends Controller
     public function saveUsersLineup(Request $request)
     {
         $lineup = $request->lineup;
-        $gender = $lineup[0]['gender'];
+        $path = $request->path;
+        if ($path == '/set-lineup/men') {
+            $gender = 'Men';
+        } else {
+            $gender = 'Women';
+        }
         $currentUser = Auth::id();
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
 
