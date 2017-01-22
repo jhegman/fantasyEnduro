@@ -24,9 +24,10 @@
 		<tr>
     		<td>
     		@if(count($userInLeagueCheck) == 0)
-    		<button class="btn-primary" @click="joinLeague({{$league->id}})">Join League</button>    	
+    		<button class="btn-primary" @click="joinLeague({{$league->id}})" v-if="showLeagueSave[{{$league->id}}] === undefined">Join League</button>
+    		<span v-if="showLeagueSave[{{$league->id}}] === true" v-cloak>Joined</span>   	
     		@else
-    			Joined
+    			<span>Joined</span>
     		@endif
     		</td>
     		<td class="name">

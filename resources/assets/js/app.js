@@ -31,7 +31,8 @@ const app = new Vue({
 		showNoty: false,
 		saveStatus: false,
 		saveMessage: null,
-		searchString: ''
+		searchString: '',
+		showLeagueSave: []
 	},
 	methods: {
 		joinLeague: function(league){
@@ -41,6 +42,7 @@ const app = new Vue({
 				this.saveStatus = result.status;
 				this.showNoty = true;
 				this.saveMessage = result.message;
+				this.showLeagueSave[league] = true;
 				setTimeout(this.closeNoty, 5000);
 			});
 		},
