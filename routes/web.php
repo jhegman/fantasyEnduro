@@ -36,7 +36,7 @@ Route::get('/athletes/{id}','AthleteController@showAthletes');
 
 //Results Home Page
 Route::get('/results','HomeController@results');
-
+//Show Results
 Route::get('/results/{id}','HomeController@showResults');
 
 //Allow user to set lineup
@@ -47,3 +47,9 @@ Route::get('/set-lineup/women', 'HomeController@setLineupWomen')->name('set-line
 Route::get('/get-users-lineup', 'HomeController@getUsersLineup');
 //ajax route for saving lineup
 Route::post('/save-users-lineup', 'HomeController@saveUsersLineup');
+
+//Route for leagues page
+Route::get('/leagues','LeagueController@displayLeagues');
+
+//Individual league pages
+Route::get('/leagues/{id}','LeagueController@showLeague');

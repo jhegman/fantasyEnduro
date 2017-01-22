@@ -72,13 +72,15 @@ const app = new Vue({
 	}
 });
 
+
 var options = {
   valueNames: [ 'name']
 };
 
-
+var sortLeague = new List('league-sort', options);
 var sortMen = new List('men-sort', options);
 var sortWomen = new List('women-sort', options);
+
 
 
 

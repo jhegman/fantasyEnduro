@@ -288,7 +288,7 @@ class HomeController extends Controller
     public function results()
     {
         $races = Race::all();
-        return view('results', compact('races'));
+        return view('result.results', compact('races'));
     }
 
     //Display Individual Results
@@ -308,7 +308,7 @@ class HomeController extends Controller
             $numStages = 6;
         }
         
-        return view('showResults', compact('racers', 'numStages', 'race'));
+        return view('result.showResults', compact('racers', 'numStages', 'race'));
     }
 
     public function saveUsersLineup(Request $request)

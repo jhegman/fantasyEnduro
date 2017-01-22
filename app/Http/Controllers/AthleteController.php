@@ -23,7 +23,7 @@ class AthleteController extends Controller
     //Display Table of Athlete
     public function index(){
     	$athletes = Racer::all();
-   		return view('athletes',compact('athletes'));
+   		return view('athlete.athletes',compact('athletes'));
     }
 
 	//Make Athletes Clickable
@@ -43,6 +43,6 @@ class AthleteController extends Controller
 
 		}
 		
-		return view('showAthletes',compact('athlete','racesWon','stageWins','athleteData'));
+		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData'));
 	}
 }
