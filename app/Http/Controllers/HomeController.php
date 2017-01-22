@@ -64,7 +64,7 @@ class HomeController extends Controller
         //Get User
         $user = Auth::user();
         //Set user name to new username
-        $user->username = $new_user_name;
+        $user->name = $new_user_name;
         $user->save();
         return view('username-changed')->with('user',$user);
     }

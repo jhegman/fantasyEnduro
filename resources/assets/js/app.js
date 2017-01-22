@@ -33,6 +33,28 @@ const app = new Vue({
 		saveMessage: null,
 	},
 	methods: {
+		joinLeague: function(league){
+			this.$http.post('/join-league', {league: league, path: window.location.pathname}).then((response) => {
+				return response.json();
+			}).then(result => {
+				this.saveStatus = result.status;
+				this.showNoty = true;
+				this.saveMessage = result.message;
+				setTimeout(this.closeNoty, 5000);
+			});
+		},
+
+		leaveLeague: function(league){
+			this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
+				return response.json();
+			}).then(result => {
+				this.saveStatus = result.status;
+				this.showNoty = true;
+				this.saveMessage = result.message;
+				setTimeout(this.closeNoty, 5000);
+			});
+		},
+		
 		onStart: function() {
 			if (this.yourLineup.length == this.lineupSize) {
 				this.disable = true;

@@ -24,6 +24,7 @@ Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-r
 //Upload and process atheltes
 Route::get('/upload-athlete', 'HomeController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
+
 //Change User Name Page
 Route::get('/change-username', 'HomeController@changeUserName');
 Route::post('/change-username/complete', 'HomeController@userNameChanged')->name('username-changed');
@@ -50,6 +51,13 @@ Route::post('/save-users-lineup', 'HomeController@saveUsersLineup');
 
 //Route for leagues page
 Route::get('/leagues','LeagueController@displayLeagues');
-
 //Individual league pages
 Route::get('/leagues/{id}','LeagueController@showLeague');
+//League Created Page
+Route::post('/leagues/created','LeagueController@createNewLeague')->name('league-created');
+
+//ajax route for joining a league
+Route::post('/join-league', 'LeagueController@joinLeague');
+
+//ajax route for leaving a league
+Route::post('/leave-league', 'LeagueController@leaveLeague');
