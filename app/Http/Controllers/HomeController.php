@@ -277,16 +277,22 @@ class HomeController extends Controller
             foreach ($yourLineup as $lineup) {
                 $yourLineupRacerIDs[] = $lineup->racer()->first()->id;
             }
-            Log::debug($yourLineupRacerIDs);
             $athletes = Racer::where('gender', 'Men')
             ->whereNotIn('id', $yourLineupRacerIDs)
             ->orderBy('name', 'ASC')->get();
         } elseif ($path == '/set-lineup/women') {
-            $athletes = Racer::where('gender', 'Women')->orderBy('name', 'ASC')->get();
             $yourLineup = Lineup::where('gender', 'Women')
             ->where('user_id', $currentUser)
             ->where('week', $week)
             ->get();
+            $yourLineupRacerIDs = array();
+            //Create array of id's from your lineup
+            foreach ($yourLineup as $lineup) {
+                $yourLineupRacerIDs[] = $lineup->racer()->first()->id;
+            }
+            $athletes = Racer::where('gender', 'Women')
+            ->whereNotIn('id', $yourLineupRacerIDs)
+            ->orderBy('name', 'ASC')->get();
         }
         foreach ($yourLineup as $yourLineupRacer) {
             $yourLineupRacers[] = $yourLineupRacer->racer()->first();
