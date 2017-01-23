@@ -24,7 +24,9 @@ const app = new Vue({
 		saveStatus: false,
 		saveMessage: null,
 		showLeagueSave: [],
+		showLeagueLeft: [],
 		timeOut: {}
+
 	},
 	methods: {
 		joinLeague: function(league){
@@ -46,6 +48,7 @@ const app = new Vue({
 				this.saveStatus = result.status;
 				this.showNoty = true;
 				this.saveMessage = result.message;
+				this.showLeagueLeft[league] = true;
 				setTimeout(this.closeNoty, 5000);
 			});
 		},

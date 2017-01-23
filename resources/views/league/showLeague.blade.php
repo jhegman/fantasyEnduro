@@ -18,7 +18,10 @@
 	</tbody>
 	</table>
 @if($userInLeagueCheck > 0)
-<button class="btn-primary" @click="leaveLeague({{$league->id}})">Leave league</button>  
+<button class="btn-primary" @click="leaveLeague({{$league->id}})" v-if="showLeagueLeft[{{$league->id}}] === undefined">Leave league</button>
+    		<span v-if="showLeagueLeft[{{$league->id}}] === true" v-cloak>
+    		<a href="{{ url('/leagues')}}"> Back to Leagues Page</a>
+    		</span>    
 @endif
 </div>
 @endsection

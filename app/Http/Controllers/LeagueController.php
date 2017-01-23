@@ -91,7 +91,6 @@ class LeagueController extends Controller
         $league = League::find($id);
         $league->users()->detach($user->id);
         $league->save();
-
         return json_encode(array(
                 'status'    =>  true,
                 'message'   =>  'League Left'
