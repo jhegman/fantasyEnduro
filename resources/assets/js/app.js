@@ -6,32 +6,23 @@
  */
 
 require('./bootstrap');
-var draggable = require('vuedraggable');
 require('list.js');
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//Vue.component('example', require('./components/Example.vue'));
+
+Vue.component('set-lineup', require('./components/SetLineup.vue'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel;
 
 const app = new Vue({
 	el: '#app',
 	data: {
-		athletes: [],
-		yourLineup: [],
-		yourLineupOptions: {
-			disabled: false,
-			group: 'athletes',
-		},
-		disable: false,
-		lineupSize: 5,
 		showNoty: false,
 		saveStatus: false,
 		saveMessage: null,
-		searchString: '',
 		showLeagueSave: [],
 		timeOut: {}
 	},
@@ -48,7 +39,6 @@ const app = new Vue({
 				this.timeOut = setTimeout(this.closeNoty, 5000);
 			});
 		},
-
 		leaveLeague: function(league){
 			this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
 				return response.json();
@@ -59,37 +49,9 @@ const app = new Vue({
 				setTimeout(this.closeNoty, 5000);
 			});
 		},
-		onStart: function() {
-			if (this.yourLineup.length == this.lineupSize) {
-				this.disable = true;
-			}
-		},
 		closeNoty: function() {
 			this.showNoty = false;
 		},
-		onSave: function() {
-			this.$http.post('/save-users-lineup', {lineup: this.yourLineup, path: window.location.pathname}).then((response) => {
-				return response.json();
-			}).then(result => {
-				this.saveStatus = result.status;
-				this.showNoty = true;
-				this.saveMessage = result.message;
-				setTimeout(this.closeNoty, 5000);
-			});
-		},
-	},
-	components: {
-		draggable,
-	},
-	mounted: function () {
-		if (window.location.pathname == '/set-lineup/men' || window.location.pathname == '/set-lineup/women') {
-			this.$http.get('/get-users-lineup', {params: {path: window.location.pathname}}).then((response) => {
-				return response.json();
-			}).then(result => {
-				this.athletes = result.athletes;
-				this.yourLineup = result.yourLineup;
-			});
-		}
 	}
 });
 
