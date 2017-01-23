@@ -15,6 +15,9 @@ class CreateLeague extends Form
                     'title.required' => 'The title field is mandatory.'
                 ]
             ])
-        ->add('submit', 'submit');
+            ->add('password', 'password',[
+                'label' => 'Password (optional)'
+            ])
+            ->add('submit', 'submit');
     }
 }

@@ -3,8 +3,9 @@
 @section('content')
 <div class="container">
     <transition name="fade">
-			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert">@{{saveMessage}}</div>
+			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
 	</transition>
+    <a href="{{ url('/leagues')}}"> Back to Leagues Page</a>
     <h1>{{ $league->name }}</h1>
     <table>
 	<tbody>

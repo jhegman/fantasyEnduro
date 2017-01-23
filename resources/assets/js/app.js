@@ -25,19 +25,20 @@ const app = new Vue({
 		saveMessage: null,
 		showLeagueSave: [],
 		showLeagueLeft: [],
-		timeOut: {}
+		timeOut: {},
+		password: 'A'
 
 	},
 	methods: {
 		joinLeague: function(league){
-			this.$http.post('/join-league', {league: league, path: window.location.pathname}).then((response) => {
+			this.$http.post('/join-league', {password: this.password, league: league, path: window.location.pathname}).then((response) => {
 				return response.json();
 			}).then(result => {
 				window.clearTimeout(this.timeOut);
 				this.saveStatus = result.status;
 				this.showNoty = true;
 				this.saveMessage = result.message;
-				this.showLeagueSave[league] = true;
+				this.showLeagueSave[league] = result.leagueSave;
 				this.timeOut = setTimeout(this.closeNoty, 5000);
 			});
 		},

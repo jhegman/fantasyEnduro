@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
    	<transition name="fade">
-			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert">@{{saveMessage}}</div>
+			<div style= "position:fixed;" class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
 	</transition>
    	{!! form($form) !!}
     <h1>Leagues</h1>
@@ -15,6 +15,7 @@
 			<th></th>
 			<th> League Name</th>
 			<th> Number of Members</th>
+			<th> Password</th>
 			</tr>
 		</thead>
 		<tbody class="list">
@@ -37,7 +38,12 @@
    			 <td>
 				{{count($league->users)}}
 			</td>
-    	</tr>
+			<td>
+				@if(($league->password != null) and (count($userInLeagueCheck) == 0))
+				<input type="password" v-on:keyup="$data.password = $event.target.value">
+				@endif
+			</td>
+		</tr>
 		@endforeach
 		</tbody>
 		</table>

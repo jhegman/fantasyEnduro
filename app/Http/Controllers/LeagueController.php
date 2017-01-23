@@ -50,6 +50,10 @@ class LeagueController extends Controller
         $user = Auth::user();
         $newLeague = new League();
         $newLeague->name = $request->new_league;
+        $password = $request->password;
+        if($password != ""){
+            $newLeague->password = encrypt($password);
+        }
         $newLeague->save();
         $newLeague->users()->attach($user->id);
 
@@ -61,25 +65,45 @@ class LeagueController extends Controller
     public function joinLeague(Request $request){
         $user = Auth::user();
         $id = $request->league;
+        $password = $request->password;
         $league = League::find($id);
         $userInLeagueCheck = $league->users()->where('id',$user->id)->get();
         
-        //Check to see if user is already in league
-        if(count($userInLeagueCheck) == 0){
-        $league->users()->attach($user->id);
-        $league->save();
+        //If there is no league password, skip password verification
+        if($league->password == null){
+            $league->users()->attach($user->id);
+            $league->save();
+        }
+
+        //Password verification
+        else{
+        //If password is incorrect
+        if ($password != decrypt($league->password)){
+        return json_encode(array(
+                'status'    =>  false,
+                'message'   =>  'Incorrect Password!'
+            ));
+        }
+        
+            //If not in league and password is correct, add to league
+            if(count($userInLeagueCheck) == 0 && $password == decrypt($league->password)){
+            $league->users()->attach($user->id);
+            $league->save();
+            }
         }
         
         if(count($userInLeagueCheck) == 0){
         return json_encode(array(
                 'status'    =>  true,
-                'message'   =>  'League Joined'
+                'message'   =>  'League Joined',
+                'leagueSave'=> true
             ));
         }
         else{
         return json_encode(array(
                 'status'    =>  false,
-                'message'   =>  'Already in this league!'
+                'message'   =>  'Already in this league!',
+                'leagueSave'=>true
             ));
         }
     }
