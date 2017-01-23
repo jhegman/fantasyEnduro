@@ -32,18 +32,20 @@ const app = new Vue({
 		saveStatus: false,
 		saveMessage: null,
 		searchString: '',
-		showLeagueSave: []
+		showLeagueSave: [],
+		timeOut: {}
 	},
 	methods: {
 		joinLeague: function(league){
 			this.$http.post('/join-league', {league: league, path: window.location.pathname}).then((response) => {
 				return response.json();
 			}).then(result => {
+				window.clearTimeout(this.timeOut);
 				this.saveStatus = result.status;
 				this.showNoty = true;
 				this.saveMessage = result.message;
 				this.showLeagueSave[league] = true;
-				setTimeout(this.closeNoty, 5000);
+				this.timeOut = setTimeout(this.closeNoty, 5000);
 			});
 		},
 
@@ -61,7 +63,6 @@ const app = new Vue({
 			if (this.yourLineup.length == this.lineupSize) {
 				this.disable = true;
 			}
-			
 		},
 		closeNoty: function() {
 			this.showNoty = false;
@@ -76,13 +77,6 @@ const app = new Vue({
 				setTimeout(this.closeNoty, 5000);
 			});
 		},
-	},
-	computed: {
-		filteredAthletes: function() {
-			return this.athletes.filter(function (athlete) {
-			      return athlete.name.toLowerCase().indexOf(this.searchString.toLowerCase()) > -1;
-		    }.bind(this));
-		}
 	},
 	components: {
 		draggable,

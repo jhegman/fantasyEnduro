@@ -9,8 +9,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h2>Available Racers</h2>
-				<draggable :list="filteredAthletes" class="dragArea" :options="{group:'athletes'}" @start="onStart">
-				<div class="racer" v-for="athlete in filteredAthletes" v-cloak>
+				<draggable :list="athletes" class="dragArea" :options="{group:'athletes'}" @start="onStart">
+				<div class="racer" v-for="athlete in athletes" v-if="athlete.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1" v-cloak>
 					<header class="racer-header">
 						<div class="head-shot" v-if="athlete.photo_url" :style="{backgroundImage: 'url(' + athlete.photo_url + ')'}"></div><!-- /.head-shot -->
 						<div class="head-shot" v-else style="background-image: url({{asset('img/placeholder.jpg')}})"></div><!-- /.head-shot -->
