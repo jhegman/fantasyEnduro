@@ -12,6 +12,7 @@
     	<table class="table table-hover">
 		<thead>
 			<tr>
+			<th></th>
 			<th> League Name</th>
 			<th> Number of Members</th>
 			</tr>
