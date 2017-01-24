@@ -42,16 +42,17 @@ class HomeController extends Controller
     public function message(Request $request)
     {
         $user = Auth::user();
+        $league_id = $request->league_id;
 
         Log::debug($request);
 
         $message = ChatMessage::create([
             'user_id' => $user->id,
             'message' => $request->message,
-            'league_id'=>$request->league_id
+            'league_id'=>$league_id
         ]);
 
-        event(new ChatMessageWasReceived($message, $user));
+        event(new ChatMessageWasReceived($message, $user, $league_id));
     }
 
     /**

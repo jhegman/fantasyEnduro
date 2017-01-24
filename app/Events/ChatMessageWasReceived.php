@@ -15,6 +15,7 @@ class ChatMessageWasReceived implements ShouldBroadcast
 
     public $chatMessage;
     public $user;
+    public $league_id;
 
     /**
      * Create a new event instance.
@@ -22,10 +23,11 @@ class ChatMessageWasReceived implements ShouldBroadcast
      * @param $chatMessage
      * @param $user
      */
-    public function __construct($chatMessage, $user)
+    public function __construct($chatMessage, $user, $league_id)
     {
         $this->chatMessage = $chatMessage;
         $this->user = $user;
+        $this->league_id = $league_id;
     }
 
     /**
@@ -35,6 +37,6 @@ class ChatMessageWasReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('public-test-channel');
+        return new Channel('publicLeague.'.$this->league_id);
     }
 }

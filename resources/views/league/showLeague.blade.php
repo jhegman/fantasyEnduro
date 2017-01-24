@@ -25,7 +25,7 @@
     		</span>    
 @endif
 @if ($userInLeagueCheck > 0)
-<chat inline-template>
+<chat :league-id="{{$league->id}}" inline-template>
         <div>
             <hr>
 

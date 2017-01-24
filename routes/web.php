@@ -64,3 +64,4 @@ Route::post('/leave-league', 'LeagueController@leaveLeague');
 
 // Send a message by Javascript.
 Route::post('/message', 'HomeController@message');
+
