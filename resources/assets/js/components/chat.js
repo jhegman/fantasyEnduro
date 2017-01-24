@@ -4,12 +4,11 @@ module.exports = {
         return {
             posts: [],
             newMsg: '',
-
         }
     },
 
 
-    ready() {
+    mounted: function () {
         Echo.channel('public-test-channel')
             .listen('ChatMessageWasReceived', (data) => {
 
