@@ -37,9 +37,10 @@ Vue.http.interceptors.push((request, next) => {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from "laravel-echo"
+import Echo from "laravel-echo";
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '3d9c6a3a5ee99b470c32'
+    key: '3d9c6a3a5ee99b470c32',
+    encrypted: true
 });

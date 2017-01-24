@@ -12,10 +12,10 @@ require('list.js');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel;
+
 Vue.component('chat', require('./components/chat'));
 Vue.component('set-lineup', require('./components/SetLineup.vue'));
- 
-Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel;
 
 const app = new Vue({
 	el: '#app',

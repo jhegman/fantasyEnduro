@@ -13,6 +13,8 @@ use Log;
 use Route;
 use App\SuperAdminOption;
 use App\Lineup;
+use App\ChatMessage;
+use App\Events\ChatMessageWasReceived;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,20 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         return view('home')->with('user',$user);
+    }
+
+    public function message(Request $request)
+    {
+        $user = Auth::user();
+
+        Log::debug($request);
+
+        $message = ChatMessage::create([
+            'user_id' => $user->id,
+            'message' => $request->message
+        ]);
+
+        event(new ChatMessageWasReceived($message, $user));
     }
 
     /**
