@@ -61,3 +61,18 @@ Route::post('/join-league', 'LeagueController@joinLeague');
 
 //ajax route for leaving a league
 Route::post('/leave-league', 'LeagueController@leaveLeague');
+
+// Send a message by Javascript.
+Route::post('message', function(Request $request) {
+
+    $user = Auth::user();
+
+    $message = ChatMessage::create([
+        'user_id' => $user->id,
+        'message' => $request->input('message')
+    ]);
+
+    event(new ChatMessageWasReceived($message, $user));
+
+
+});

@@ -10,7 +10,8 @@
         "kris/laravel-form-builder": "^1.10",
         "laravel/framework": "5.3.*",
         "laravel/passport": "^1.0",
-        "maatwebsite/excel": "~2.1.0"
+        "maatwebsite/excel": "~2.1.0",
+        "pusher/pusher-PHP-server": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -17,7 +17,9 @@
     "vue-template-compiler": "^2.1.10"
   },
   "dependencies": {
+    "laravel-echo": "^1.2.3",
     "list.js": "^1.4.1",
+    "pusher-js": "^4.0.0",
     "vue-router": "^2.1.2",
     "vuedraggable": "^2.7.0-rc0"
   }
