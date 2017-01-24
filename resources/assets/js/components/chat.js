@@ -22,10 +22,10 @@ module.exports = {
 
     methods: {
 
-        press() {
+        press(league_id) {
 
             // Send message to backend.
-            this.$http.post('/message/', {message: this.newMsg})
+            this.$http.post('/message/', {message: this.newMsg, league_id: league_id})
                 .then((response) => {
 
                     // Clear input field.

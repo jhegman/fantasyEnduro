@@ -47,7 +47,8 @@ class HomeController extends Controller
 
         $message = ChatMessage::create([
             'user_id' => $user->id,
-            'message' => $request->message
+            'message' => $request->message,
+            'league_id'=>$request->league_id
         ]);
 
         event(new ChatMessageWasReceived($message, $user));

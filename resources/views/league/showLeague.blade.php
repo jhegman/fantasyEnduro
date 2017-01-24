@@ -24,5 +24,22 @@
     		<a href="{{ url('/leagues')}}"> Back to Leagues Page</a>
     		</span>    
 @endif
+@if ($userInLeagueCheck > 0)
+<chat inline-template>
+        <div>
+            <hr>
+
+            <h2>Write something to your league</h2>
+            <input type="text" class="form-control" placeholder="something" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
+
+            <hr>
+            <h3>Messages</h3>
+
+            <ul v-for="post in posts" v-cloak>
+            <b>@{{ post.username }} says:</b> @{{ post.message }}</li>
+            </ul>
+        </div>
+</chat>
+@endif
 </div>
 @endsection

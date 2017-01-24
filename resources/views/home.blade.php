@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="panel-body">  
-        <chat inline-template>
+        <!-- <chat inline-template>
         <div>
             You are logged in!
 
@@ -43,7 +43,7 @@
             </ul>
         </div>
 
-        </chat>
+        </chat> -->
     </div><!-- panel-body -->  
 </div>
 @endsection
