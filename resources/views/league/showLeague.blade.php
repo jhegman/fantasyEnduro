@@ -23,9 +23,8 @@
     		<span v-if="showLeagueLeft[{{$league->id}}] === true" v-cloak>
     		<a href="{{ url('/leagues')}}"> Back to Leagues Page</a>
     		</span>    
-@endif
-@if ($userInLeagueCheck > 0)
-<chat :league-id="{{$league->id}}" inline-template>
+
+<chat inline-template>
         <div>
             <hr>
 
@@ -34,7 +33,11 @@
 
             <hr>
             <h3>Messages</h3>
-
+            @foreach ($messages as $key=>$message)
+            <ul>
+            <b>{{$names[$key]}} says: {{$message->message}}</b>
+            </ul>
+            @endforeach
             <ul v-for="post in posts" v-cloak>
             <b>@{{ post.username }} says:</b> @{{ post.message }}</li>
             </ul>

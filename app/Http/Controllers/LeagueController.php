@@ -7,6 +7,8 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use App\Race;
 use App\Racer;
 use App\League;
+use App\User;
+use App\ChatMessage;
 use Auth;
 
 class LeagueController extends Controller
@@ -38,11 +40,17 @@ class LeagueController extends Controller
     	$user = Auth::user();
         $league = League::findOrFail($id);
     	$users = $league->users;
-
+        $messages = ChatMessage::all()->where('league_id', $id);
+        $ids = [];
+        $names = [];
+        foreach ($messages as $key => $message) {
+            $ids[$key] = $message->user_id;
+            $names[$key] = User::findOrFail($ids[$key])->name;
+        }
         //Check if current user is in league for Leave League button
         $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());
 
-    	return view('league.showLeague',compact('league','users','userInLeagueCheck'));
+    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names'));
     }
 
     //Create New League form

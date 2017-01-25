@@ -20,7 +20,6 @@ module.exports = {
                     username: data.user.name
                 });
             })
-    // });
     },
 
     methods: {
