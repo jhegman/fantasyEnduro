@@ -7,6 +7,9 @@ module.exports = {
         }
     },
     mounted: function () {
+        //scroll to bottom of chat
+        var elem = document.getElementById('chatArea');
+                    elem.scrollTop = elem.scrollHeight + 1;
         //Get league ID from url
         var path = window.location.pathname;
         //gets every character after '/leagues/'
@@ -31,6 +34,8 @@ module.exports = {
 
                     // Clear input field.
                     this.newMsg = '';
+                    var elem = document.getElementById('chatArea');
+                    elem.scrollTop = elem.scrollHeight + 1;
                 });
         }
     }

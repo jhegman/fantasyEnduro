@@ -40,7 +40,13 @@ class LeagueController extends Controller
     	$user = Auth::user();
         $league = League::findOrFail($id);
     	$users = $league->users;
-        $messages = ChatMessage::all()->where('league_id', $id);
+        //$messages = ChatMessage::all()->latest();
+        $messages = ChatMessage::where('league_id', $id)
+        ->orderBy('id','desc')
+        ->take(50)
+        ->get()
+        ->reverse();
+
         $ids = [];
         $names = [];
         foreach ($messages as $key => $message) {
