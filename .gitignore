@@ -1,4 +1,4 @@
-/public/uploads
+/public/uploads/avatar
 /node_modules
 /public/storage
 /storage/*.key
