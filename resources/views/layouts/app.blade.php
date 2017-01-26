@@ -55,6 +55,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <img src ="/uploads/avatar/{{Auth::user()->avatar}}" class="img-circle" height="32px" width="32px"/>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -71,8 +72,8 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/change-username') }}">
-                                            Change Username
+                                        <a href="{{ url('/profile-settings') }}">
+                                            Profile Settings
                                         </a>    
                                     </li>
                                 </ul>

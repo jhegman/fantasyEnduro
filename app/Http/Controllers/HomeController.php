@@ -8,6 +8,7 @@ use Storage;
 use Excel;
 use App\Race;
 use App\Racer;
+use Image;
 use Auth;
 use Log;
 use Route;
@@ -39,6 +40,31 @@ class HomeController extends Controller
         return view('home')->with('user',$user);
     }
 
+    /**
+    * Profile settings to change pic and username
+    *
+    */
+    public function changeProfilePic(Request $request, FormBuilder $formBuilder)
+    {
+        if($request->hasFile('image')){
+        $avatar = $request->file('image');
+        
+        $fileName = time(). '.' . $avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(300,300)->save( public_path('/uploads/avatar/' . $fileName));
+
+        $user = Auth::user();
+        $user->avatar = $fileName;
+        $user->save();
+    }
+        $form = $formBuilder->create(\App\Forms\ChangeUserNameForm::class, [
+            'method' => 'POST',
+            'url' => route('username-changed')
+        ]);
+        $user = Auth::user();
+        $av = $request->file();
+        return view('profile-settings',compact('user','form'));
+    }
+
     public function message(Request $request)
     {
         $user = Auth::user();
@@ -60,14 +86,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changeUserName(FormBuilder $formBuilder)
+    public function profileSettings(FormBuilder $formBuilder)
     {
         $form = $formBuilder->create(\App\Forms\ChangeUserNameForm::class, [
             'method' => 'POST',
             'url' => route('username-changed')
         ]);
         $user = Auth::user();
-        return view('change-username')->with('form', $form)->with('user',$user);
+        return view('profile-settings')->with('form', $form)->with('user',$user);
     }
 
     /**

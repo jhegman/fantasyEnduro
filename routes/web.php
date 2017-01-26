@@ -26,7 +26,7 @@ Route::get('/upload-athlete', 'HomeController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
 
 //Change User Name Page
-Route::get('/change-username', 'HomeController@changeUserName');
+Route::get('/profile-settings', 'HomeController@profileSettings');
 Route::post('/change-username/complete', 'HomeController@userNameChanged')->name('username-changed');
 
 //Create Athletes Page that lists all athletes
@@ -64,4 +64,8 @@ Route::post('/leave-league', 'LeagueController@leaveLeague');
 
 // Send a message by Javascript.
 Route::post('/message', 'HomeController@message');
+
+//Profile picture submit route
+Route::post('/profile-settings','HomeController@changeProfilePic');
+
 
