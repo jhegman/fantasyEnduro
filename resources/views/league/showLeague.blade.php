@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="col-md-6">
-        <!-- <transition name="fade">
+        <transition name="fade">
 			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
-	   </transition> -->
+	   </transition>
         <a href="{{ url('/leagues')}}"> Back to Leagues Page</a>
             <h1>{{ $league->name }}</h1>
                 <table>
@@ -37,7 +37,7 @@
                             </ul>
                         @endforeach
                             <ul v-for="post in posts" v-cloak>
-                                <b>@{{ post.username }} says:</b> @{{ post.message }}</li>
+                                <b id="newChat">@{{ post.username }} says:</b> @{{ post.message }}</li>
                             </ul>
             
                  </div>

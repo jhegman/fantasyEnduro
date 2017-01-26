@@ -32,6 +32,7 @@ module.exports = {
                     this.newMsg = '';
                 });
         },
+        
         scrollDown(){
         $('#chatArea').animate({scrollTop: $('#chatArea').prop("scrollHeight")}, 500);
         },
