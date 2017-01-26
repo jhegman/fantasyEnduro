@@ -34,7 +34,11 @@ module.exports = {
         },
         
         scrollDown(){
+        // if you want to check if user is scrolled up
+        // var elem = document.getElementById('chatArea');
+        // if( elem.scrollTop === (elem.scrollHeight - elem.offsetHeight)){}
         $('#chatArea').animate({scrollTop: $('#chatArea').prop("scrollHeight")}, 500);
+
         },
         
         scrollDownStart(){

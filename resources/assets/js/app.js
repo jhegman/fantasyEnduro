@@ -26,7 +26,8 @@ const app = new Vue({
 		showLeagueSave: [],
 		showLeagueLeft: [],
 		timeOut: {},
-		password: 'A'
+		password: 'A',
+		seen: false
 
 	},
 	methods: {
@@ -67,7 +68,6 @@ var options = {
 var sortLeague = new List('league-sort', options);
 var sortMen = new List('men-sort', options);
 var sortWomen = new List('women-sort', options);
-
 
 
 

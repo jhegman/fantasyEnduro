@@ -7783,4 +7783,8 @@ button.close {
   height: 200px;
 }
 
+.dropdown {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=app.css.map */

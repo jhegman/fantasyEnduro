@@ -29,7 +29,6 @@ class AthleteController extends Controller
 	//Make Athletes Clickable
 	public function showAthletes($id){
 		$athlete = Racer::findOrFail($id);
-		
 		$athleteData = Racer::find($id)->getRacersRace()->where('overall_place', 1)->get();
 		$racesWon = count($athleteData);
 
