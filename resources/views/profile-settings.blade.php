@@ -17,7 +17,6 @@
             </form>
         </div>
         <div class="col-md-12">
-            <h2>Your current user name: {{$user->name}}</h2>
                 {!! form($form) !!}
         </div>
     </div>
