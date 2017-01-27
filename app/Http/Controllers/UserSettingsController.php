@@ -32,6 +32,7 @@ class UserSettingsController extends Controller
     /**
     * Profile settings to change pic and username
     *
+    *@return \Illuminate\Http\Response
     */
     public function changeProfilePic(Request $request, FormBuilder $formBuilder)
     {
