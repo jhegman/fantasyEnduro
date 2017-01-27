@@ -26,12 +26,19 @@ the file everytime it is saved
 # 0.0 Variables
 --------------------------------------------------------------*/
 
+$color-white: #fff;
+$color-black: #000;
+
 /*--------------------------------------------------------------
 # 1.0 Imports
 --------------------------------------------------------------*/
 
+//Normalize
+@import 'node_modules/normalize-scss/sass/normalize';
+@include normalize();
+
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,300,400,600);
 @import "node_modules/font-awesome/scss/font-awesome";
 
 // Variables
@@ -43,9 +50,78 @@ the file everytime it is saved
 /*--------------------------------------------------------------
 # 2.0 Typography
 --------------------------------------------------------------*/
+body {
+    font-family: 'Raleway', sans-serif;
+}
+/*--------------------------------------------------------------
+# 3.0 Welcome Page
+--------------------------------------------------------------*/
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    font-size: 84px;
+    font-weight: 100;
+    color: $color-white;
+}
+
+.links > a {
+    color: $color-white;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.landing-bg-image {
+	position: relative;
+	background-image: url(../img/landing-page-bg-image.jpg);
+	background-size: cover;
+	background-position: 50% 50%;
+
+	.cover {
+		background: linear-gradient(to right, rgba(0, 0, 0, .5) 0%, transparent 100%);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+}
 
 /*--------------------------------------------------------------
-# 3.0 Set Lineup
+# 4.0 Set Lineup
 --------------------------------------------------------------*/
 
 [v-cloak] {
@@ -93,15 +169,15 @@ the file everytime it is saved
 }
 
 /*--------------------------------------------------------------
-# 4.0 Race Result Pages
+# 5.0 Race Result Pages
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# 5.0 Athlete Pages
+# 6.0 Athlete Pages
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# 6.0 League Pages
+# 7.0 League Pages
 --------------------------------------------------------------*/
 #chatArea{
 	overflow: auto;
