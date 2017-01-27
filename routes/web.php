@@ -19,15 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 //Upload and process race
-Route::get('/upload-race', 'HomeController@uploadRace');
-Route::post('/upload-race/complete', 'HomeController@storeRace')->name('upload-race-complete');
+Route::get('/upload-race', 'UploadRaceController@uploadRace');
+Route::post('/upload-race/complete', 'UploadRaceController@storeRace')->name('upload-race-complete');
 //Upload and process atheltes
-Route::get('/upload-athlete', 'HomeController@uploadAthlete');
-Route::post('/upload-athlete/complete', 'HomeController@storeAthlete')->name('upload-athlete-complete');
+Route::get('/upload-athlete', 'UploadAthleteController@uploadAthlete');
+Route::post('/upload-athlete/complete', 'UploadAthleteController@storeAthlete')->name('upload-athlete-complete');
 
 //Change User Name Page
-Route::get('/profile-settings', 'HomeController@profileSettings');
-Route::post('/change-username/complete', 'HomeController@userNameChanged')->name('username-changed');
+Route::get('/profile-settings', 'UserSettingsController@profileSettings');
+Route::post('/change-username/complete', 'UserSettingsController@userNameChanged')->name('username-changed');
 
 //Create Athletes Page that lists all athletes
 Route::get('/athletes','AthleteController@index');
@@ -36,18 +36,18 @@ Route::get('/athletes','AthleteController@index');
 Route::get('/athletes/{id}','AthleteController@showAthletes');
 
 //Results Home Page
-Route::get('/results','HomeController@results');
+Route::get('/results','ResultsController@results');
 //Show Results
-Route::get('/results/{id}','HomeController@showResults');
+Route::get('/results/{id}','ResultsController@showResults');
 
 //Allow user to set lineup
-Route::get('/set-lineup/men', 'HomeController@setLineupMen')->name('set-lineup-men');
-Route::get('/set-lineup/women', 'HomeController@setLineupWomen')->name('set-lineup-women');
+Route::get('/set-lineup/men', 'SetLineupController@setLineupMen')->name('set-lineup-men');
+Route::get('/set-lineup/women', 'SetLineupController@setLineupWomen')->name('set-lineup-women');
 
 //ajax route for setting lineup
-Route::get('/get-users-lineup', 'HomeController@getUsersLineup');
+Route::get('/get-users-lineup', 'SetLineupController@getUsersLineup');
 //ajax route for saving lineup
-Route::post('/save-users-lineup', 'HomeController@saveUsersLineup');
+Route::post('/save-users-lineup', 'SetLineupController@saveUsersLineup');
 
 //Route for leagues page
 Route::get('/leagues','LeagueController@displayLeagues');
@@ -66,6 +66,6 @@ Route::post('/leave-league', 'LeagueController@leaveLeague');
 Route::post('/message', 'HomeController@message');
 
 //Profile picture submit route
-Route::post('/profile-settings','HomeController@changeProfilePic');
+Route::post('/profile-settings','UserSettingsController@changeProfilePic');
 
 
