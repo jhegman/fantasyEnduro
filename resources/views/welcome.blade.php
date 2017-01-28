@@ -32,7 +32,7 @@
                     @if (Auth::check())
                         <a href="/athletes">Athletes</a>
                         <a href="/set-lineup">Set Lineup</a>
-                        <a href="/upload-race">Leagues</a>
+                        <a href="/leagues">Leagues</a>
                         <a href="/results">Results</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>

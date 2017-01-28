@@ -68,4 +68,7 @@ Route::post('/message', 'HomeController@message');
 //Profile picture submit route
 Route::post('/profile-settings','UserSettingsController@changeProfilePic');
 
+//User profiles
+Route::get('/{name}','UserController@showUser');
+
 

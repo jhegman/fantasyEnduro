@@ -9,7 +9,7 @@ class CreateLeague extends Form
     public function buildForm()
     {
         $this->add('new_league', 'text',[
-                'label' => 'Create new league:',
+                'label' => 'League name:',
                 'rules' => 'required|min:3',
                 'error_messages' => [
                     'title.required' => 'The title field is mandatory.'

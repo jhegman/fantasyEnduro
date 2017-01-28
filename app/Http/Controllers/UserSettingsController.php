@@ -77,8 +77,12 @@ class UserSettingsController extends Controller
      */
     public function UserNameChanged(Request $request)
     {
+        //validate name
+        $this->validate($request, [
+            'name' =>'unique:users',
+            ]);
         //Get New User Name
-        $new_user_name = $request->edit_your_username;
+        $new_user_name = $request->name;
         //Get User
         $user = Auth::user();
         //Set user name to new username

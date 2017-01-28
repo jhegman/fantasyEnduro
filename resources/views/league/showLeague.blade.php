@@ -14,7 +14,7 @@
 	                   @foreach($users as $user)
 	                       <tr>
                                 <td>
-                                {{$user->name}}
+                                <a href="{{ url($user->name) }}">{{$user->name}}</a>
                                 </td>
 	                       </tr>
 	                   @endforeach
