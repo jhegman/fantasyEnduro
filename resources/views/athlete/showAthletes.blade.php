@@ -44,6 +44,7 @@
                     <tr>
                         <th> Race</th>
                         <th> Rank</th>
+                        <th> Race Points</th>
                     </tr>
                 </thead>
             <tbody>
@@ -54,6 +55,9 @@
                     </td>
                     <td>
                         {{$race->pivot->overall_place}}
+                    </td>
+                    <td>
+                        {{$race->pivot->points}}
                     </td>
                 <tr>
             @endforeach

@@ -7,6 +7,7 @@
 <table class="table table-hover">
 <tbody>
 <tr>
+<td>Race Points</td>
 <td>Name</td>
 <td>Overall Place</td>
 @for ($i = 1; $i< $numStages; $i++)
@@ -16,6 +17,7 @@
 </tr>
 @foreach($racers as $racer)
 <tr>
+<td>{{ $racer->pivot->points }}</td>
 <td><a href="{{ url('/athletes')}}/{{$racer->id}}">{{ $racer->name }}</td></a>
 <td>{{ $racer->pivot->overall_place }}</td>
 <td>{{ $racer->pivot->stage_1_time }}</td> 

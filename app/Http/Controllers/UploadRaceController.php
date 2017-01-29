@@ -67,6 +67,20 @@ class UploadRaceController extends Controller
                 // Getting all results
             })->get();
 
+            //
+            if($request->gender == 'Men'){
+            $pointslist = Excel::load('storage/app/public/points_ews_men.csv', function ($reader) {
+                // Load mens points list
+            })->get();
+            }
+            
+            else{
+            $pointslist = Excel::load('storage/app/public/points_ews_women.csv', function ($reader) {
+                // Load womens points list
+            })->get();   
+            
+            }   
+
             //Create New Race
             $race = new Race;
             $race->name = $request->race_name;
@@ -101,7 +115,9 @@ class UploadRaceController extends Controller
                         'stage_5_place' =>  intval(trim($result->stage_5_place, '()')),
                         'stage_6_time'  =>  $result->stage_6_time,
                         'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
+                        'points' => intval($pointslist[intval($result->overall_place)-1]->points),
                     ]);
+                    
                 } else {
                     $existingRacerCheck->getRacersRace()->attach($race->id, [
                         'overall_place' =>  intval(trim($result->overall_place, '()')),
@@ -117,10 +133,12 @@ class UploadRaceController extends Controller
                         'stage_5_place' =>  intval(trim($result->stage_5_place, '()')),
                         'stage_6_time'  =>  $result->stage_6_time,
                         'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
+                        'points' => intval($pointslist[intval($result->overall_place)-1]->points),
                     ]);
                 }
             }
         }
         return view('upload-tools.upload-race-complete');
     }
+
 }
