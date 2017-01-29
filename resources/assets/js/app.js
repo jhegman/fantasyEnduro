@@ -27,7 +27,8 @@ const app = new Vue({
 		showLeagueLeft: [],
 		timeOut: {},
 		password: 'A',
-		seen: false
+		seen: false,
+		result: true
 
 	},
 	methods: {
