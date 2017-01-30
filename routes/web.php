@@ -41,6 +41,7 @@ Route::get('/results','ResultsController@results');
 Route::get('/results/{id}','ResultsController@showResults');
 
 //Allow user to set lineup
+Route::get('/set-lineup', 'SetLineupController@setLineup')->name('set-lineup');
 Route::get('/set-lineup/men', 'SetLineupController@setLineupMen')->name('set-lineup-men');
 Route::get('/set-lineup/women', 'SetLineupController@setLineupWomen')->name('set-lineup-women');
 

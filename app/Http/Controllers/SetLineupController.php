@@ -30,6 +30,15 @@ class SetLineupController extends Controller
     }
 
     /**
+     * [setLineup returns page where user can choose what gender to set lineup for]
+     * @return view
+     */
+    public function setLineup()
+    {
+        return view('set-lineup.set-lineup');
+    }
+
+    /**
      * [setLineupMen returns page where user can set their lineup]
      * @return view
      */
