@@ -43,4 +43,15 @@ class User extends Authenticatable
         return $this->belongsToMany('App\League')->withTimestamps();
     }
 
+    /**
+    * Get the leagues associated with each user
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\hasMany
+    */
+    public function points()
+    {
+        return $this->hasMany('App\Point')->withTimestamps();
+    }
+
+
 }

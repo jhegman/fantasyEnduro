@@ -11,6 +11,7 @@ class UploadForm extends Form
         $this->add('race_upload', 'file')
         ->add('race_name', 'text')
         ->add('race_location', 'text')
+        ->add('week', 'text')
         ->add('gender', 'select', [
             'choices' => ['Men' => 'Male', 'Women' => 'Female'],
             'selected' => 'Men',

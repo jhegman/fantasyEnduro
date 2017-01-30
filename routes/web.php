@@ -69,6 +69,12 @@ Route::post('/message', 'HomeController@message');
 Route::post('/profile-settings','UserSettingsController@changeProfilePic');
 
 //User profiles
-Route::get('/{name}','UserController@showUser');
+Route::get('/user/{name}','UserController@showUser');
+
+//Give user points
+Route::get('/score-race','ScoreRaceController@score');
+
+//Score race submit route
+Route::post('/score-race','ScoreRaceController@scoreRace');
 
 

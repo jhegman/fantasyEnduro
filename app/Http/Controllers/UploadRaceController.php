@@ -116,6 +116,7 @@ class UploadRaceController extends Controller
                         'stage_6_time'  =>  $result->stage_6_time,
                         'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
                         'points' => intval($pointslist[intval($result->overall_place)-1]->points),
+                        'week' => $request->week,
                     ]);
                     
                 } else {
@@ -134,6 +135,7 @@ class UploadRaceController extends Controller
                         'stage_6_time'  =>  $result->stage_6_time,
                         'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
                         'points' => intval($pointslist[intval($result->overall_place)-1]->points),
+                         'week' => $request->week,
                     ]);
                 }
             }
