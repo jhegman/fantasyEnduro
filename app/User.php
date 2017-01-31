@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
 
     /**
-    * Get the leagues associated with each user
+    * Get the points associated with each user
     *
     * @return \Illuminate\Database\Eloquent\Relations\hasMany
     */

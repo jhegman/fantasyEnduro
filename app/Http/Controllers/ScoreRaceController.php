@@ -51,6 +51,17 @@ class ScoreRaceController extends Controller
 			$point->points = $points;
 			$point->save();
 		}
+		//get all user results
+		$rankings = Point::where('week',$week)
+		->orderBy('points','DESC')
+		->get();
+
+		//loop through and set each users rank
+		foreach ($rankings as $key => $ranking) {
+			$ranking->rank = $key+1;
+			$ranking->save();
+		}
+
 		$points = Point::all();
 		return view('upload-tools.score-race',compact('points'));
 	}

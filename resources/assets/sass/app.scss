@@ -13,6 +13,7 @@ the file everytime it is saved
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+<<<<<<< HEAD
 # Variables
 # Imports
 # Typography
@@ -22,6 +23,8 @@ the file everytime it is saved
 # Race Result Pages
 # Athlete Pages
 # League Pages
+# User Pages
+
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -320,4 +323,12 @@ input[type="number"] {
 
 .dropdown {
 	cursor: pointer;
+}
+
+/*--------------------------------------------------------------
+# 8.0 User Pages
+--------------------------------------------------------------*/
+.lineups{
+	list-style: none;
+    padding-left: 0;
 }

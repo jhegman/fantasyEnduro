@@ -32,7 +32,11 @@ class AthleteController extends Controller
 		$athleteData = Racer::find($id)->getRacersRace()->where('overall_place', 1)->get();
 		$racesWon = count($athleteData);
 		$result = Racer::find($id)->getRacersRace()->get();
-		//dd($result);
+		$points = 0;
+		foreach ($result as $key => $race) {
+			$points += $race->pivot->points;
+		}
+		
 		$stageWins = 0;
 		for ($i=1; $i < 8 ; $i++) { 
 			$stageData = Racer::find($id)
@@ -43,6 +47,6 @@ class AthleteController extends Controller
 
 		}
 		
-		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData','result'));
+		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData','result','points'));
 	}
 }
