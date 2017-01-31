@@ -13,29 +13,30 @@ the file everytime it is saved
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-# 0.0 Variables
-# 1.0 Imports
-# 2.0 Typography
-# 3.0 Set Linup
-# 4.0 Race Result Pages
-# 5.0 Athlete Pages
-# 6.0 League Pages
+# Variables
+# Imports
+# Typography
+# Reusable Components
+# Welcome Page
+# Set Linup
+# Race Result Pages
+# Athlete Pages
+# League Pages
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# 0.0 Variables
+# Variables
 --------------------------------------------------------------*/
 
 $color-white: #fff;
 $color-black: #000;
+$color-blue: #21b8c6;
+$color-grey: #e7ecf1;
+$color-light-grey: #f1f3f6;
 
 /*--------------------------------------------------------------
-# 1.0 Imports
+# Imports
 --------------------------------------------------------------*/
-
-//Normalize
-@import 'node_modules/normalize-scss/sass/normalize';
-@include normalize();
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:100,300,400,600);
@@ -48,13 +49,77 @@ $color-black: #000;
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 /*--------------------------------------------------------------
-# 2.0 Typography
+# Typography
 --------------------------------------------------------------*/
 body {
     font-family: 'Raleway', sans-serif;
 }
+
 /*--------------------------------------------------------------
-# 3.0 Welcome Page
+# Reusable Components
+--------------------------------------------------------------*/
+
+.btn-primary {
+	border-radius: 3px;
+	box-shadow: none;
+	background-color: $color-blue;
+	border: 0;
+	transition: 0.3s;
+	text-transform: uppercase;
+	padding: 10px 25px;
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-blue, 10%);
+	}
+}
+
+//Form Styling
+
+input[type="text"],
+input[type="password"]
+input[type="number"] {
+	height: 40px;
+	border: 1px solid $color-light-grey;
+	padding-left: 15px;
+
+	&::-webkit-input-placeholder {
+	   color: #ced6dc;
+	}
+
+	&:-moz-placeholder { /* Firefox 18- */
+	   color: #ced6dc;  
+	}
+
+	&::-moz-placeholder {  /* Firefox 19+ */
+	   color: #ced6dc;  
+	}
+
+	&:-ms-input-placeholder {  
+	   color: #ced6dc;  
+	}
+}
+
+//Search Bar
+.search-wrap {
+	position: relative;
+
+	input {
+		padding-left: 40px;
+	}
+
+	.fa-search {
+		position: absolute;
+		left: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 20px;
+		color: #ced6dc;
+	}
+}
+
+/*--------------------------------------------------------------
+# Welcome Page
 --------------------------------------------------------------*/
 
 .full-height {
@@ -121,7 +186,7 @@ body {
 }
 
 /*--------------------------------------------------------------
-# 4.0 Set Lineup
+# Set Lineup
 --------------------------------------------------------------*/
 
 [v-cloak] {
@@ -144,7 +209,7 @@ body {
 }
 
 .dragArea {
-	height: 500px;
+	height: 400px;
 	overflow: auto;
 
 	.racer {
@@ -166,14 +231,78 @@ body {
 		display: inline-block;
 		vertical-align: middle;
 	}
+
+	.racer-header {
+		position: relative;
+	}
+
+	.plus-btn,
+	.minus-btn {
+		display: flex;
+		align-items: center;
+		height: 30px;
+		width: 30px;
+		justify-content: center;
+		vertical-align: middle;
+		border-radius: 50%;
+		background-color: $color-blue;
+		color: $color-white;
+		margin-right: 25px;
+		position: absolute;
+		top: 50%;
+		right: 25px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		transition: 0.3s;
+
+		&:hover,
+		&:focus {
+			transform: translateY(-50%) scale(1.1);
+		}
+	}
+}
+
+.lineup-search {
+	margin-bottom: 25px;
+}
+
+.available-racers,
+.your-lineup {
+	.content-wrap {
+		background-color: $color-white;
+		box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
+		border-radius: 5px;
+		padding: 25px 0 25px 0;
+	}
+
+	h2 {
+		text-align: center;
+		margin: 0;
+	}
+
+	.racer {
+		padding-left: 25px;
+
+		&:not(:last-of-type) {
+			border-bottom: 1px solid $color-light-grey;
+		}
+	}
+}
+
+.save-lineup {
+	text-align: center;
+
+	.save-lineup-btn {
+		margin-top: 25px;
+	}
 }
 
 /*--------------------------------------------------------------
-# 5.0 Race Result Pages
+# Race Result Pages
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# 6.0 Athlete Pages
+# Athlete Pages
 --------------------------------------------------------------*/
 .button-results, .race-results, .statistics{
 	background: #fff;
@@ -182,7 +311,7 @@ body {
 }
 
 /*--------------------------------------------------------------
-# 7.0 League Pages
+# League Pages
 --------------------------------------------------------------*/
 #chatArea {
 	overflow: auto;
