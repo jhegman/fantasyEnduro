@@ -8,6 +8,20 @@
         </div>
         <div class="col-md-10">
             <h1>{{ $user->name }}</h1>
+            @if (Auth::user()->name == $user->name)
+                <ul class="lineups">
+                    <li>
+                        <a href="{{url('/set-lineup/men')}}">
+                            Set your men's team
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/set-lineup/women')}}">
+                            Set your women's team
+                        </a>
+                    </li>
+                </ul>
+            @endif
         </div>
     </div>   
     <div class="row">

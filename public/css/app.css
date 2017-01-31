@@ -16,10 +16,12 @@ the file everytime it is saved
 # 0.0 Variables
 # 1.0 Imports
 # 2.0 Typography
-# 3.0 Set Linup
-# 4.0 Race Result Pages
-# 5.0 Athlete Pages
-# 6.0 League Pages
+# 3.0 Welcome Page
+# 4.0 Set Linup
+# 5.0 Race Result Pages
+# 6.0 Athlete Pages
+# 7.0 League Pages
+# 8.0 User Pages
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # 0.0 Variables
@@ -11377,6 +11379,14 @@ body {
 
 .dropdown {
   cursor: pointer;
+}
+
+/*--------------------------------------------------------------
+# 8.0 User Pages
+--------------------------------------------------------------*/
+.lineups {
+  list-style: none;
+  padding-left: 0;
 }
 
 /*# sourceMappingURL=app.css.map */

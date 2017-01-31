@@ -78,6 +78,12 @@
                                                 Profile Settings
                                         </a>   
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/user') }}/{{ Auth::user()->name }}">
+                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                My Team
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif

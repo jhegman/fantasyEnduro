@@ -21,12 +21,13 @@
     <div class="row">
         <div class="col-md-12">
             <button class="button-results" v-on:click="result = true">Results</button>
-            <button class="button-results" v-on:click="result = !result">Statistics</button>
+            <button class="button-results" v-on:click="result = false">Statistics</button>
         </div>
     </div>
     <div class="row"> 
         <div v-if="!result" class="col-md-6 statistics" v-cloak>
-	       <h2>Race Wins: {{ $racesWon }}</h2>
+	       <h2> Points this season: {{$points}}
+           <h2>Race Wins: {{ $racesWon }}</h2>
             @if ($racesWon > 0)
                 @foreach ($athleteData as $win)
                     <p>
