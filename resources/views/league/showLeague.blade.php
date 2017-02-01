@@ -34,18 +34,23 @@
                             <div id="chatArea">
                             @foreach ($messages as $key=>$message)
                                 <ul>
-                                    <b>{{$names[$key]}} says:</b> {{$message->message}}
+                                    <span>
+                                    <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
+                                    </span>
+                                    <b>{{$names[$key]->name}}:</b> 
+                                    <span>{{$message->message}}</span>
                                 </ul>
                             @endforeach
                                 <ul v-for="post in posts" v-cloak>
-                                    <b id="newChat">@{{ post.username }} says:</b> @{{ post.message }}</li>
+                                    <span>
+                                        <img :src="'/uploads/avatar/' + post.avatar" class="img-circle" height="32px" width="32px"/>
+                                    </span>
+                                        <b> @{{ post.username }}:</b> @{{ post.message }}</li>
                                 </ul>
                             </div>
-                    <hr>
-
-                    <hr>
-                <h2>Write something to your league</h2>
-                    <input type="text" class="form-control" placeholder="something" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
+                        <hr>
+                        <hr>
+                    <input type="text" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
                 </div>
             </chat>
     @endif

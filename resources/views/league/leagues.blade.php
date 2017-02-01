@@ -17,7 +17,10 @@
     	</div>
     	<h1>Leagues</h1>
     	<div id="league-sort" class="table-responsive">
-    		<input class="search" placeholder="Search" />
+    		<div class="search-wrap lineup-search">
+            	<i class="fa fa-search" aria-hidden="true"></i>
+            	<input class="search" type="text" v-model="searchString" placeholder="Search">
+        	</div><!-- /.search-wrap -->
     			<table class="table table-hover">
 					<thead>
 						<tr>

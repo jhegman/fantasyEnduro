@@ -51,7 +51,7 @@ class LeagueController extends Controller
         $names = [];
         foreach ($messages as $key => $message) {
             $ids[$key] = $message->user_id;
-            $names[$key] = User::findOrFail($ids[$key])->name;
+            $names[$key] = User::findOrFail($ids[$key]);//->name;
         }
         //Check if current user is in league for Leave League button
         $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());

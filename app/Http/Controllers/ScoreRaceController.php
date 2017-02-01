@@ -50,6 +50,9 @@ class ScoreRaceController extends Controller
 			$point->user_id = $user->id;
 			$point->points = $points;
 			$point->save();
+			$userCulmulativePoints = $user->points;
+			$user->points = $userCulmulativePoints + $points;
+			$user->save();
 		}
 		//get all user results
 		$rankings = Point::where('week',$week)

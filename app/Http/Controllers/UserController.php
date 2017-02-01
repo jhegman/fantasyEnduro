@@ -9,6 +9,7 @@ use Excel;
 use App\Race;
 use App\Racer;
 use App\User;
+use App\Point;
 use Image;
 use Auth;
 use Log;
@@ -37,6 +38,8 @@ class UserController extends Controller
         ->where('gender','Women')
         ->where('week', $week)->get();
 
+        $rankings = Point::where('user_id',$user->id)->get();
+
         foreach ($userLineupsMen as $key=> $userLineup) {
             $men[$key] = $userLineup->racer()->first();
         }
@@ -44,6 +47,6 @@ class UserController extends Controller
             $women[$key] = $userLineup->racer()->first();
         }
 
-		return view('user.showUser',compact('user','men','women'));
+		return view('user.showUser',compact('user','men','women','rankings'));
 	}
 }
