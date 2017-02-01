@@ -78,4 +78,7 @@ Route::get('/score-race','ScoreRaceController@score');
 //Score race submit route
 Route::post('/score-race','ScoreRaceController@scoreRace');
 
+//Rankings Page
+Route::get('/rankings','RankingController@ranking');
+
 

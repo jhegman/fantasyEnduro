@@ -34,6 +34,7 @@
                         <a href="/set-lineup">Set Lineup</a>
                         <a href="/leagues">Leagues</a>
                         <a href="/results">Results</a>
+                        <a href="/rankings">Rankings</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
