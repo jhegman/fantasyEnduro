@@ -181,10 +181,17 @@ class SetLineupController extends Controller
             $stageWins += count($stageData);
         }
 
+        $results = Racer::find($id)->getRacersRace()->get();
+        $pointsScored = 0;
+        foreach ($results as $key => $result) {
+            $pointsScored += $result->pivot->points;
+        }
+
         $returnArray = [
             'athleteObject' =>  $athleteObject,
             'racesWon'      =>  $racesWon,
-            'stageWins'     =>  $stageWins
+            'stageWins'     =>  $stageWins,
+            'pointsScored'  =>  $pointsScored
         ];
 
         return json_encode($returnArray);

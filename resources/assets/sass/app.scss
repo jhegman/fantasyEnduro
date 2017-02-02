@@ -13,7 +13,6 @@ the file everytime it is saved
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-<<<<<<< HEAD
 # Variables
 # Imports
 # Typography
@@ -33,7 +32,9 @@ the file everytime it is saved
 
 $color-white: #fff;
 $color-black: #000;
-$color-blue: #21b8c6;
+$color-turquoise: #21b8c6;
+$color-red: #DD3352;
+$color-purple: #9013EF;
 $color-grey: #e7ecf1;
 $color-light-grey: #f1f3f6;
 
@@ -65,15 +66,17 @@ body {
 .btn-primary {
 	border-radius: 3px;
 	box-shadow: none;
-	background-color: $color-blue;
+	background-color: $color-turquoise;
 	border: 0;
 	transition: 0.3s;
 	text-transform: uppercase;
 	padding: 10px 25px;
+	display: inline-block;
 
 	&:hover,
 	&:focus {
-		background-color: darken($color-blue, 10%);
+		background-color: darken($color-turquoise, 10%);
+		text-decoration: none;
 	}
 }
 
@@ -123,44 +126,53 @@ input[type="number"] {
 
 //Modal
 .modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .5);
-  display: table;
-  transition: opacity .3s ease;
+	position: fixed;
+	z-index: 9998;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	display: table;
+	transition: opacity .3s ease;
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+	@media screen and (min-width: $screen-sm) {
+		display: table-cell;
+		vertical-align: middle;
+	}
 }
 
 .modal-container {
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-}
+	position: absolute;
+	top: 20px;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
+	transition: all .3s ease;
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
+	@media screen and (min-width: $screen-sm) {
+		position: relative;
+		top: initial;
+		bottom: initial;
+		left: initial;
+		right: initial;
+		width: 450px;
+		margin: 0 auto;
+	}
 
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
+	.fa-times {
+		cursor: pointer;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		font-size: 20px;
+	}
 }
 
 /*
@@ -173,17 +185,17 @@ input[type="number"] {
  */
 
 .modal-enter {
-  opacity: 0;
+	opacity: 0;
 }
 
 .modal-leave-active {
-  opacity: 0;
+	opacity: 0;
 }
 
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 /*--------------------------------------------------------------
@@ -298,6 +310,7 @@ input[type="number"] {
 	.racer-name {
 		display: inline-block;
 		vertical-align: middle;
+		cursor: pointer;
 	}
 
 	.racer-header {
@@ -313,7 +326,7 @@ input[type="number"] {
 		justify-content: center;
 		vertical-align: middle;
 		border-radius: 50%;
-		background-color: $color-blue;
+		background-color: $color-turquoise;
 		color: $color-white;
 		margin-right: 25px;
 		position: absolute;
@@ -365,6 +378,98 @@ input[type="number"] {
 	}
 }
 
+.racer-meta {
+	text-align: center;
+
+	.athlete-profile-btn {
+		margin-bottom: 20px;
+		margin-top: 10px;
+	}
+}
+
+.page-set-lineupmen,
+.page-set-lineupwomen {
+	.modal-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@media screen and (min-width: $screen-sm) {
+			display: block;
+		}
+	}
+}
+
+//Lineup Modal
+.modal-head-shot {
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	background-position: 50% 50%;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+
+.stats {
+	margin-bottom: -20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	border-radius: 0 0 3px 3px;
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	left: 20px;
+
+	@media screen and (min-width: $screen-sm) {
+		position: static;
+		width: auto;
+	}
+}
+
+.races-won,
+.stages-won,
+.points-scored {
+	float: left;
+	width: 33.3333%;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@media screen and (min-width: $screen-sm) {
+		height: 90px;
+	}
+
+	span {
+		display: block;
+		text-align: center;
+	}
+
+	.stat-title {
+		font-size: 14px;
+		color: $color-white;
+	}
+
+	.stat {
+		font-size: 20px;
+		color: $color-white;
+	}
+}
+
+.races-won {
+	background-color: $color-purple;
+	border-bottom-left-radius: 3px;
+}
+
+.stages-won {
+	background-color: $color-red;
+}
+
+.points-scored {
+	background-color: $color-turquoise;
+	border-bottom-right-radius: 3px;
+}
+
 /*--------------------------------------------------------------
 # Race Result Pages
 --------------------------------------------------------------*/
@@ -383,7 +488,8 @@ input[type="number"] {
 --------------------------------------------------------------*/
 #chatArea {
 	overflow: auto;
-	height: 200px;
+	height: 300px;
+
 }
 
 .dropdown {
@@ -393,7 +499,7 @@ input[type="number"] {
 /*--------------------------------------------------------------
 # 8.0 User Pages
 --------------------------------------------------------------*/
-.lineups{
+.lineups {
 	list-style: none;
     padding-left: 0;
 }

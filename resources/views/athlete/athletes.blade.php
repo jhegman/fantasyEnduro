@@ -6,18 +6,16 @@
     	<!-- Men's Table -->
     	<div class="col-md-6">
     		<div id="men-sort" class="table-responsive">
-    		<h2>Men</h2>
-    		<!-- class="search" automagically makes an input a search field. -->
-  			<input class="search" placeholder="Search" />
-			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-  			<!-- <button class="sort" data-sort="name">
-    			Sort
-  			</button> -->
+    		    <h2>Men</h2>
+    		    <div class="search-wrap lineup-search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input class="search" type="text" v-model="searchString" placeholder="Search">
+                </div><!-- /.search-wrap -->
     		<table class="table table-hover">
 				<thead>
 						<tr>
-						<th> Name </th>
-						<th> Gender </th>
+						    <th> Name </th>
+						    <th> Gender </th>
 						</tr>
 				</thead>
 				<tbody class="list">	
@@ -25,15 +23,16 @@
 					@if ($athlete->gender == 'Men')
 						<tr>
     						<td class="name">
-    						@if ($athlete->photo_url != null)	
-    						<img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
-    						@else
-    						 <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
-    						 @endif
-    						<a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}
-    						</a>
+    						    @if ($athlete->photo_url != null)	
+    						        <img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
+    						    @else
+    						        <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
+    						    @endif
+    						    <a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}
+    						    </a>
     						</td>
-   				 			<td>{{ $athlete->gender }}</td>
+   				 			<td>{{ $athlete->gender }}
+                            </td>
 						</tr>
 					@endif
 					@endforeach
@@ -46,32 +45,32 @@
     	<div class="col-md-6">
     		<div id="women-sort" class="table-responsive">
     		<h2>Women</h2>
-    		<!-- class="search" automagically makes an input a search field. -->
-  			<input class="search" placeholder="Search" />
-			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-  			<!-- <button class="sort" data-sort="name">
-    			Sort
-  			</button> -->
+    		<div class="search-wrap lineup-search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input class="search" type="text" v-model="searchString" placeholder="Search">
+            </div><!-- /.search-wrap -->
     		<table class="table table-hover">
 			<thead>
-						<tr>
-						<th> Name </th>
-						<th> Gender </th>
-						</tr>
+			    <tr>
+				<th> Name</th>
+				<th> Gender </th>
+				</tr>
 			</thead>
 			<tbody class="list">
 				@foreach ($athletes as $athlete)
 				@if ($athlete->gender == 'Women')
 					<tr>
-    				<td class="name">
-    				@if ($athlete->photo_url != null)	
-    				<img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
-    				@else
-    				<img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
-    				@endif
-    				<a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}</a>
-    				</td>
-   				 	<td>{{ $athlete->gender }}</td>
+    				    <td class="name">
+    				        @if ($athlete->photo_url != null)	
+    				            <img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
+    				        @else
+    				            <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
+    				        @endif
+    				        <a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}</a>
+    				    </td>
+   				 	    <td>
+                        {{ $athlete->gender }}
+                        </td>
 					</tr>
 				@endif
 				@endforeach

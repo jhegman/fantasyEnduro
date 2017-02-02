@@ -13,7 +13,6 @@ the file everytime it is saved
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-<<<<<<< HEAD
 # Variables
 # Imports
 # Typography
@@ -10784,10 +10783,12 @@ body {
   transition: 0.3s;
   text-transform: uppercase;
   padding: 10px 25px;
+  display: inline-block;
 }
 
 .btn-primary:hover, .btn-primary:focus {
   background-color: #1a8f9a;
+  text-decoration: none;
 }
 
 input[type="text"],
@@ -10850,34 +10851,45 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   transition: opacity .3s ease;
 }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+@media screen and (min-width: 768px) {
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
 
 .modal-container {
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  padding: 20px;
   background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+@media screen and (min-width: 768px) {
+  .modal-container {
+    position: relative;
+    top: initial;
+    bottom: initial;
+    left: initial;
+    right: initial;
+    width: 450px;
+    margin: 0 auto;
+  }
 }
 
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
+.modal-container .fa-times {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
 }
 
 /*
@@ -11020,6 +11032,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 .dragArea .racer-name {
   display: inline-block;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .dragArea .racer-header {
@@ -11094,6 +11107,116 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   margin-top: 25px;
 }
 
+.racer-meta {
+  text-align: center;
+}
+
+.racer-meta .athlete-profile-btn {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.page-set-lineupmen .modal-container,
+.page-set-lineupwomen .modal-container {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .page-set-lineupmen .modal-container,
+  .page-set-lineupwomen .modal-container {
+    display: block;
+  }
+}
+
+.modal-head-shot {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.stats {
+  margin-bottom: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  border-radius: 0 0 3px 3px;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  left: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .stats {
+    position: static;
+    width: auto;
+  }
+}
+
+.races-won,
+.stages-won,
+.points-scored {
+  float: left;
+  width: 33.3333%;
+  height: 60px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .races-won,
+  .stages-won,
+  .points-scored {
+    height: 90px;
+  }
+}
+
+.races-won span,
+.stages-won span,
+.points-scored span {
+  display: block;
+  text-align: center;
+}
+
+.races-won .stat-title,
+.stages-won .stat-title,
+.points-scored .stat-title {
+  font-size: 14px;
+  color: #fff;
+}
+
+.races-won .stat,
+.stages-won .stat,
+.points-scored .stat {
+  font-size: 20px;
+  color: #fff;
+}
+
+.races-won {
+  background-color: #9013EF;
+  border-bottom-left-radius: 3px;
+}
+
+.stages-won {
+  background-color: #DD3352;
+}
+
+.points-scored {
+  background-color: #21b8c6;
+  border-bottom-right-radius: 3px;
+}
+
 /*--------------------------------------------------------------
 # Race Result Pages
 --------------------------------------------------------------*/
@@ -11111,7 +11234,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 --------------------------------------------------------------*/
 #chatArea {
   overflow: auto;
-  height: 200px;
+  height: 300px;
 }
 
 .dropdown {

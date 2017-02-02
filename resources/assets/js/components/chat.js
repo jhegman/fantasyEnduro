@@ -17,6 +17,7 @@ module.exports = {
                 this.posts.push({
                     message: data.chatMessage.message,
                     username: data.user.name,
+                    avatar: data.user.avatar,
                 });
                 this.scrollDown();
             })

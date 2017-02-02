@@ -8,6 +8,10 @@
             <form enctype="multipart/form-data" action="/score-race" method="POST">
                 <label>Enter Week</label>
                     {{Form::text('week')}}
+                <label>Enter Men's Race ID</label>
+                    {{Form::text('race_id_men')}}
+                <label>Enter Women's Race ID</label>
+                    {{Form::text('race_id_women')}}
                     {{Form::token()}}
                     <input type="submit" class="btn-primary">
             </form>
