@@ -164,4 +164,29 @@ class SetLineupController extends Controller
             ));
         }
     }
+
+    public function getAthleteStats(Request $request)
+    {
+        $id = $request->id;
+        $athleteObject = Racer::find($id);
+        $athleteRaces = $athleteObject->getRacersRace()->where('overall_place', 1)->get();
+        $racesWon = count($athleteRaces);
+
+        $stageWins = 0;
+        for ($i=1; $i < 8 ; $i++) { 
+            $stageData = $athleteObject
+            ->getRacersRace()
+            ->where('stage_' . $i . '_place', 1)
+            ->get();
+            $stageWins += count($stageData);
+        }
+
+        $returnArray = [
+            'athleteObject' =>  $athleteObject,
+            'racesWon'      =>  $racesWon,
+            'stageWins'     =>  $stageWins
+        ];
+
+        return json_encode($returnArray);
+    }
 }

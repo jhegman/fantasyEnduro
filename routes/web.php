@@ -49,6 +49,7 @@ Route::get('/set-lineup/women', 'SetLineupController@setLineupWomen')->name('set
 Route::get('/get-users-lineup', 'SetLineupController@getUsersLineup');
 //ajax route for saving lineup
 Route::post('/save-users-lineup', 'SetLineupController@saveUsersLineup');
+Route::get('/get-athlete-stats', 'SetLineupController@getAthleteStats');
 
 //Route for leagues page
 Route::get('/leagues','LeagueController@displayLeagues');

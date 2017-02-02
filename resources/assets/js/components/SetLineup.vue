@@ -16,7 +16,7 @@
                         <header class="racer-header">
                             <div class="head-shot" v-if="athlete.photo_url" :style="{backgroundImage: 'url(' + athlete.photo_url + ')'}"></div><!-- /.head-shot -->
                             <div class="head-shot" v-else style="background-image: url('/img/placeholder.jpg')"></div><!-- /.head-shot -->
-                            <h4 class="racer-name">{{athlete.name}}</h4>
+                            <h4 class="racer-name" @click="openModal(athlete.id)">{{athlete.name}}</h4>
                             <div class="plus-btn" @click="addAthleteToLineup(athlete, index)">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </div><!-- /.plus-btn -->
@@ -53,10 +53,12 @@
                 <button class="btn-primary save-lineup-btn" @click="onSave">Save Lineup</button>
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
+        <modal v-if="showModal"></modal>
     </div>
 </template>
 <script>
     var draggable = require('vuedraggable');
+    var modal = require('./Modal.vue');
     export default {
         data: function() {
             return {
@@ -72,6 +74,8 @@
                 saveStatus: false,
                 saveMessage: null,
                 searchString: '',
+                showModal: false,
+                modalData: {}
             };
         },
         methods: {
@@ -100,6 +104,13 @@
             removeAthleteFromLineup: function(athlete, index) {
                 this.athletes.push(athlete);
                 this.yourLineup.splice(index, 1);
+            },
+            openModal: function(id) {
+                this.$http.get('/get-athlete-stats', {params: {id: id}}).then((response) => {
+                    return response.json();
+                }).then(result => {
+                    console.log(result);
+                });
             }
         },
         mounted: function () {
@@ -113,7 +124,8 @@
             }
         },
         components: {
-            draggable
+            draggable,
+            'modal': modal
         }
     }
 </script>

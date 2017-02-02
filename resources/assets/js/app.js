@@ -28,8 +28,7 @@ const app = new Vue({
 		timeOut: {},
 		password: 'A',
 		seen: false,
-		result: true
-
+		result: true,
 	},
 	methods: {
 		joinLeague: function(league){
@@ -57,10 +56,9 @@ const app = new Vue({
 		},
 		closeNoty: function() {
 			this.showNoty = false;
-		},
+		}
 	}
 });
-
 
 var options = {
   valueNames: [ 'name']
