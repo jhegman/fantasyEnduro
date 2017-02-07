@@ -14,7 +14,10 @@
 	                   @foreach($users as $user)
 	                       <tr>
                                 <td>
-                                <a href="{{ url('/user',$user->name) }}">{{$user->name}}</a>
+                                    <a href="{{ url('/user',$user->name) }}">{{$user->name}}</a>
+                                </td>
+                                <td>
+                                    Score: {{$user->points}}
                                 </td>
 	                       </tr>
 	                   @endforeach

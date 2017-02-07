@@ -23,7 +23,16 @@ class RankingController extends Controller
 {
 	public function ranking(){
 		$overallRankings = User::orderBy('points','DESC')->get();
+		$topMen = Racer::where('gender', 'Men')
+		->orderBy('points', 'DESC')
+		->take(10)
+		->get();
 
-		return view('result.rankings',compact('overallRankings'));
+		$topWomen = Racer::where('gender', 'Women')
+		->orderBy('points', 'DESC')
+		->take(10)
+		->get();
+
+		return view('result.rankings',compact('overallRankings','topMen','topWomen'));
 	}
 }

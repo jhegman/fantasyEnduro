@@ -40,7 +40,8 @@ class LeagueController extends Controller
     	$user = Auth::user();
         $league = League::findOrFail($id);
     	$users = $league->users;
-        //$messages = ChatMessage::all()->latest();
+        $users = $users->sortByDesc('points');
+
         $messages = ChatMessage::where('league_id', $id)
         ->orderBy('id','desc')
         ->take(50)
@@ -51,7 +52,7 @@ class LeagueController extends Controller
         $names = [];
         foreach ($messages as $key => $message) {
             $ids[$key] = $message->user_id;
-            $names[$key] = User::findOrFail($ids[$key]);//->name;
+            $names[$key] = User::findOrFail($ids[$key]);
         }
         //Check if current user is in league for Leave League button
         $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());

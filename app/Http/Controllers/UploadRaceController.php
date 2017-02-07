@@ -100,6 +100,7 @@ class UploadRaceController extends Controller
                     $racer = new Racer;
                     $racer->name = $result->name;
                     $racer->gender = $request->gender;
+                    $racer->points = intval($pointslist[intval($result->overall_place)-1]->points);
                     $racer->save();
                     $racer->getRacersRace()->attach($race->id, [
                         'overall_place' =>  intval(trim($result->overall_place, '()')),
@@ -137,6 +138,8 @@ class UploadRaceController extends Controller
                         'points' => intval($pointslist[intval($result->overall_place)-1]->points),
                          'week' => $request->week,
                     ]);
+                    $existingRacerCheck->points = intval($pointslist[intval($result->overall_place)-1]->points);
+                    $existingRacerCheck->save();
                 }
             }
         }
