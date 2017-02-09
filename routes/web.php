@@ -82,4 +82,10 @@ Route::post('/score-race','ScoreRaceController@scoreRace');
 //Rankings Page
 Route::get('/rankings','RankingController@ranking');
 
+//Set Time to close lineup selection
+Route::get('/close-lineups','UploadAthleteController@uploadTimes');
+
+//Submit route close lineups
+Route::post('/close-lineups','UploadAthleteController@storeTimes');
+
 

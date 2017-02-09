@@ -23,6 +23,7 @@ the file everytime it is saved
 # Athlete Pages
 # League Pages
 # User Pages
+# Rankings Page
 
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
@@ -11242,11 +11243,19 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 }
 
 /*--------------------------------------------------------------
-# 8.0 User Pages
+# User Pages
 --------------------------------------------------------------*/
 .lineups {
   list-style: none;
   padding-left: 0;
+}
+
+/*--------------------------------------------------------------
+# Rankings Page
+--------------------------------------------------------------*/
+.overflow {
+  overflow: auto;
+  height: 300px;
 }
 
 /*# sourceMappingURL=app.css.map */

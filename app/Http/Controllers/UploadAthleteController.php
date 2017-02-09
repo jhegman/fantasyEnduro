@@ -12,6 +12,7 @@ use Image;
 use Auth;
 use Log;
 use Route;
+use App\SelectionPeriod;
 use App\SuperAdminOption;
 use App\Lineup;
 use App\ChatMessage;
@@ -26,7 +27,7 @@ class UploadAthleteController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('super');
     }
 
     /**
@@ -96,5 +97,33 @@ class UploadAthleteController extends Controller
             $athletes = Racer::all();
         }
         return view('upload-tools.upload-athlete-complete', compact('athletes'));
+    }
+
+    /**
+     * Upload Times to database
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadTimes(){
+        return view('upload-tools.close-lineups');
+    }
+
+    /**
+     * Upload Times to database
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeTimes(Request $request){
+            $times = Excel::load('storage/app/public/times.csv', function ($reader) {
+                // Load times
+            })->get();
+        foreach ($times as $time) {
+            $period = new SelectionPeriod;
+            $period->week = $time->week;
+            $period->closed = $time->close;
+            $period->reopen = $time->reopen;
+            $period->save();
+        }
+        return view('upload-tools.close-lineups');
     }
 }

@@ -13,6 +13,8 @@ use Auth;
 use Log;
 use Route;
 use App\SuperAdminOption;
+use Carbon\Carbon;
+use App\SelectionPeriod;
 use App\Lineup;
 use App\ChatMessage;
 use App\Events\ChatMessageWasReceived;
@@ -44,7 +46,18 @@ class SetLineupController extends Controller
      */
     public function setLineupMen()
     {
-        return view('set-lineup.set-lineup-men');
+        $isOpen = true;
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+        //get current time
+        $now = Carbon::now();
+        $period = SelectionPeriod::where('week',$week)->first();
+        $closed = Carbon::parse($period->closed);
+        $reopen = Carbon::parse($period->reopen);
+        //If between two times then selection is closed
+        if($now->gt($closed) && $now->lt($reopen)){
+            $isOpen = false;
+        }
+        return view('set-lineup.set-lineup-men',compact('isOpen'));
     }
 
     /**
@@ -53,7 +66,18 @@ class SetLineupController extends Controller
      */
     public function setLineupWomen()
     {
-        return view('set-lineup.set-lineup-women');
+        $isOpen = true;
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+        //get current time
+        $now = Carbon::now();
+        $period = SelectionPeriod::where('week',$week)->first();
+        $closed = Carbon::parse($period->closed);
+        $reopen = Carbon::parse($period->reopen);
+        //If between two times then selection is closed
+        if($now->gt($closed) && $now->lt($reopen)){
+            $isOpen = false;
+        }
+        return view('set-lineup.set-lineup-women',compact('isOpen'));
     }
 
     /**

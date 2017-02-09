@@ -21,6 +21,16 @@ use App\Events\ChatMessageWasReceived;
 
 class ScoreRaceController extends Controller
 {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('super');
+    }
+    
 	public function score(){
 		$points = Point::all();
 		return view('upload-tools.score-race',compact('points'));

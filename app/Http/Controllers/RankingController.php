@@ -21,16 +21,25 @@ use App\Events\ChatMessageWasReceived;
 
 class RankingController extends Controller
 {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	public function ranking(){
 		$overallRankings = User::orderBy('points','DESC')->get();
+		
 		$topMen = Racer::where('gender', 'Men')
 		->orderBy('points', 'DESC')
-		->take(10)
 		->get();
 
 		$topWomen = Racer::where('gender', 'Women')
 		->orderBy('points', 'DESC')
-		->take(10)
 		->get();
 
 		return view('result.rankings',compact('overallRankings','topMen','topWomen'));

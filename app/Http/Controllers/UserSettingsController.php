@@ -51,7 +51,6 @@ class UserSettingsController extends Controller
             'url' => route('username-changed')
         ]);
         $user = Auth::user();
-        $av = $request->file();
         return view('profile-settings',compact('user','form'));
     }
 
