@@ -355,6 +355,24 @@ input[type="number"] {
 		box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
 		border-radius: 5px;
 		padding: 25px 0 25px 0;
+		position: relative;
+
+		.too-many-racers {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 10;
+
+			h3 {
+				color: $color-turquoise;
+			}
+		}
 	}
 
 	h2 {
@@ -469,6 +487,62 @@ input[type="number"] {
 .points-scored {
 	background-color: $color-turquoise;
 	border-bottom-right-radius: 3px;
+}
+
+.lineup-cta {
+	align-items: center;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+
+		.cta-image {
+			transform: scale(1.05);
+		}
+	}
+
+	.cta-image {
+		background-position: 50% 50%;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		transition: 0.3s;
+	}
+
+	.cover {
+		background: linear-gradient(to right, rgba(0, 0, 0, .8) 0%, transparent 100%);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	h2 {
+		position: relative;
+		z-index: 2;
+		color: $color-white;
+	}
+}
+
+.men-lineup {
+	.cta-image {
+		background-image: url('../img/set-mens-lineup.jpg');
+	}
+}
+
+.women-lineup {
+	.cta-image {
+		background-image: url('../img/set-womens-lineup.jpg');
+	}
 }
 
 /*--------------------------------------------------------------

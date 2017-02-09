@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="/set-lineup/men" class="btn btn-primary">Set Men's Lineup</a>
-<a href="/set-lineup/women" class="btn btn-primary">Set Women's Lineup</a>
+<div class="container-fluid">
+	<div class="row">
+		<a href="/set-lineup/men" class="lineup-cta men-lineup col-md-6">
+			<span class="cta-image"></span>
+			<div class="cover"></div><!-- /.cover -->
+			<h2 class="cta-title">Set Men's Lineup</h2>
+		</a>
+		<a href="/set-lineup/women" class="lineup-cta women-lineup col-md-6">
+			<span class="cta-image"></span>
+			<div class="cover"></div><!-- /.cover -->
+			<h2 class="cta-title">Set Women's Lineup</h2>
+		</a>
+	</div><!-- /.row -->
+</div><!-- /.container-fluid -->
 @endsection

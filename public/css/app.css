@@ -11082,6 +11082,29 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
   border-radius: 5px;
   padding: 25px 0 25px 0;
+  position: relative;
+}
+
+.available-racers .content-wrap .too-many-racers,
+.your-lineup .content-wrap .too-many-racers {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.available-racers .content-wrap .too-many-racers h3,
+.your-lineup .content-wrap .too-many-racers h3 {
+  color: #21b8c6;
 }
 
 .available-racers h2,
@@ -11216,6 +11239,63 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 .points-scored {
   background-color: #21b8c6;
   border-bottom-right-radius: 3px;
+}
+
+.lineup-cta {
+  -webkit-box-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: flex;
+  height: 100vh;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.lineup-cta:hover, .lineup-cta:focus {
+  text-decoration: none;
+}
+
+.lineup-cta:hover .cta-image, .lineup-cta:focus .cta-image {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.lineup-cta .cta-image {
+  background-position: 50% 50%;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.lineup-cta .cover {
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.lineup-cta h2 {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.men-lineup .cta-image {
+  background-image: url("../img/set-mens-lineup.jpg");
+}
+
+.women-lineup .cta-image {
+  background-image: url("../img/set-womens-lineup.jpg");
 }
 
 /*--------------------------------------------------------------

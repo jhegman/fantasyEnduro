@@ -11,7 +11,14 @@
             <div class="col-md-6 available-racers">
                 <div class="content-wrap">
                     <h2>Available Racers</h2>
-                    <draggable :list="athletes" class="dragArea" :options="{group:'athletes'}">
+                    <draggable 
+                    :list="athletes" 
+                    class="dragArea" 
+                    :options="{group:'athletes'}"
+                    :move="onMove"
+                    @start="checkLineupSize"
+                    @end="disableLineup = false"
+                    >
                     <div class="racer" v-for="(athlete, index) in athletes" v-if="athlete.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1" v-cloak>
                         <header class="racer-header">
                             <div class="head-shot" v-if="athlete.photo_url" :style="{backgroundImage: 'url(' + athlete.photo_url + ')'}"></div><!-- /.head-shot -->
@@ -30,8 +37,17 @@
             </div><!--./.col-md-6-->
             <div class="col-md-6 your-lineup">
                 <div class="content-wrap">
+                    <div class="too-many-racers"
+                    v-if="disableLineup"
+                    >
+                        <h3>5 Racer Limit</h3>
+                    </div><!-- /.too-many-racers -->
                     <h2>Your Lineup</h2>
-                    <draggable :list="yourLineup" class="dragArea" :options="yourLineupOptions">
+                    <draggable 
+                    :list="yourLineup" 
+                    class="dragArea" 
+                    :options="{group:'athletes'}"
+                    >
                     <div class="racer" v-for="(athlete, index) in yourLineup" v-cloak>
                         <header class="racer-header">
                             <div class="head-shot" v-if="athlete.photo_url" :style="{backgroundImage: 'url(' + athlete.photo_url + ')'}"></div><!-- /.head-shot -->
@@ -93,12 +109,8 @@
             return {
                 athletes: [],
                 yourLineup: [],
-                yourLineupOptions: {
-                    disabled: false,
-                    group: 'athletes',
-                },
-                disable: false,
                 lineupSize: 5,
+                disableLineup: false,
                 showNoty: false,
                 saveStatus: false,
                 saveMessage: null,
@@ -118,17 +130,30 @@
                     setTimeout(this.closeNoty, 5000);
                 });
             },
-            onStart: function() {
+            checkLineupSize: function() {
                 if (this.yourLineup.length == this.lineupSize) {
-                    this.disable = true;
+                    this.disableLineup = true;
+                }
+            },
+            onMove: function() {
+                if (this.yourLineup.length == this.lineupSize) {
+                    return false;
                 }
             },
             closeNoty: function() {
                 this.showNoty = false;
             },
             addAthleteToLineup: function(athlete, index) {
-                this.yourLineup.push(athlete);
-                this.athletes.splice(index, 1);
+                if (this.yourLineup.length == this.lineupSize) {
+                    this.disableLineup = true;
+                    setTimeout(this.closeLineupLimit, 1000);
+                } else {
+                    this.yourLineup.push(athlete);
+                    this.athletes.splice(index, 1);
+                }
+            },
+            closeLineupLimit: function() {
+                this.disableLineup = false;
             },
             removeAthleteFromLineup: function(athlete, index) {
                 this.athletes.push(athlete);
