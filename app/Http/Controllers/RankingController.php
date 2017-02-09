@@ -36,10 +36,12 @@ class RankingController extends Controller
 		
 		$topMen = Racer::where('gender', 'Men')
 		->orderBy('points', 'DESC')
+		->take(100)
 		->get();
 
 		$topWomen = Racer::where('gender', 'Women')
 		->orderBy('points', 'DESC')
+		->take(100)
 		->get();
 
 		return view('result.rankings',compact('overallRankings','topMen','topWomen'));

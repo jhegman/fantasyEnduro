@@ -586,3 +586,85 @@ input[type="number"] {
 	overflow: auto;
 	height: 300px;
 }
+
+.rankings, .rankings-first{
+	display:table-row;
+}
+
+.rankings-top{
+    display:table-row;
+    background-color: #f5f5f5;
+    font-family: "proxima-nova",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    color: #5b6c77;
+    text-transform: uppercase;
+}
+.rider{
+	display: table-cell;
+    padding-left: 5px;
+    padding-bottom: 17px;
+    padding-top: 17px;
+    line-height: 1.7;
+    vertical-align: middle;
+    border-top: 1px solid #e6e7e9;
+}
+
+.rank{
+	display: table-cell;
+    padding-bottom: 17px;
+    padding-top: 17px;
+    color: #94a1a9;
+    width: 30px;
+    border-top: 1px solid #e6e7e9;
+    line-height: 1.7;
+    vertical-align: middle;
+}
+.rank-top, .rider-top{
+	border-collapse: collapse;
+    display: table-cell;
+    line-height: 1.7;
+    padding-bottom: 13px;
+    padding-top: 13px;
+    vertical-align: middle;
+}
+
+.rankings:before, .rankings-top:after, .rankings-top:before, .rankings:after {
+	content:"";
+	width:30px;
+	display:table-cell;
+}
+
+.rankings-first:after, .rankings-first:before{
+	content:"";
+	width:30px;
+	display:table-cell;
+	border-top: 1px solid #e6e7e9;
+}
+
+.rider a{
+	color: #232323;
+	transition: color 0.2s ease;
+	text-decoration: none;
+    font-weight: 600;
+}
+
+.rider a:hover{
+	color: #3097D1;
+}
+
+.rider-container{
+	background-color: #fff;
+    display: table;
+    width: 100%;
+    border: 1px solid #e6e7e9;
+    border-top: 2px solid #147cd1;
+}
+
+.score{
+	color: #94a1a9;
+    font-size: 12px;
+    font-weight: 400;
+}
