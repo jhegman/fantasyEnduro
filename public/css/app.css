@@ -11081,6 +11081,29 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
   border-radius: 5px;
   padding: 25px 0 25px 0;
+  position: relative;
+}
+
+.available-racers .content-wrap .too-many-racers,
+.your-lineup .content-wrap .too-many-racers {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.available-racers .content-wrap .too-many-racers h3,
+.your-lineup .content-wrap .too-many-racers h3 {
+  color: #21b8c6;
 }
 
 .available-racers h2,
