@@ -13,7 +13,6 @@ class CreateRaceRacerTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('race_racer')) {
             Schema::create('race_racer', function (Blueprint $table) {
                 $table->increments('id');
                 $table->timestamps();
@@ -36,7 +35,6 @@ class CreateRaceRacerTable extends Migration
                 $table->integer('stage_7_place')->nullable();
             });
         }
-    }
 
     /**
      * Reverse the migrations.
