@@ -69,13 +69,13 @@ class UploadRaceController extends Controller
 
             //
             if($request->gender == 'Men'){
-            $pointslist = Excel::load('storage/app/public/points_ews_men.csv', function ($reader) {
+            $pointslist = Excel::load('public/points_ews_men.csv', function ($reader) {
                 // Load mens points list
             })->get();
             }
             
             else{
-            $pointslist = Excel::load('storage/app/public/points_ews_women.csv', function ($reader) {
+            $pointslist = Excel::load('public/points_ews_women.csv', function ($reader) {
                 // Load womens points list
             })->get();   
             

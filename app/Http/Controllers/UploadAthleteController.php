@@ -114,7 +114,7 @@ class UploadAthleteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function storeTimes(Request $request){
-            $times = Excel::load('storage/app/public/times.csv', function ($reader) {
+            $times = Excel::load('public/times.csv', function ($reader) {
                 // Load times
             })->get();
         foreach ($times as $time) {
