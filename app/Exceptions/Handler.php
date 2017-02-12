@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Jrean\UserVerification\Exceptions\UserNotVerifiedException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -44,6 +46,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof UserNotVerifiedException) {
+            return response()->view('vendor.laravel-user-verification.user-verification', [], 500);
+        }
         return parent::render($request, $exception);
     }
 

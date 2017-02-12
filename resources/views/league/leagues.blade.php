@@ -13,13 +13,30 @@
    					<i class="fa fa-plus-square-o" aria-hidden="true"></i>
    				</span>
    		<div class="newLeague" v-if="seen" v-cloak>
-   			{!! form($form) !!}
+   			{!! Form::open(['url' => 'leagues/created']) !!}
+            <div class="form-group {{$errors->has('new_league') ? 'has-error' : ''}}">
+                {{ Form::label('new_league', 'League name:', ['class' => 'control-label']) }}
+                {{ Form::text('new_league', null, ['class' => 'form-control']) }}
+                @if ($errors->first('new_league'))
+                    <span class="errors">{{ $errors->first('new_league') }}</span>
+                @endif
+            </div><!-- /.form-group -->
+
+            <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
+                {{ Form::label('password', 'Password (optional)', ['class' => 'control-label']) }}
+                {{ Form::password('password', ['class' => 'form-control']) }}
+                @if ($errors->first('password'))
+                    <span class="errors">{{ $errors->first('new_league') }}</span>
+                @endif
+            </div><!-- /.form-group -->
+            {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+        {!! Form::close() !!}
     	</div>
     	<h1>Leagues</h1>
     	<div id="league-sort" class="table-responsive">
     		<div class="search-wrap lineup-search">
             	<i class="fa fa-search" aria-hidden="true"></i>
-            	<input class="search" type="text" v-model="searchString" placeholder="Search">
+            	<input class="search" type="text" placeholder="Search">
         	</div><!-- /.search-wrap -->
     			<table class="table table-hover">
 					<thead>

@@ -18,10 +18,22 @@ use App\SuperAdminOption;
 use App\Lineup;
 use App\ChatMessage;
 use App\Events\ChatMessageWasReceived;
+use Jrean\UserVerification\Facades\UserVerification;
 
 class UserController extends Controller
 {
-	public function showUser($name){
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+	public function showUser($name)
+    {
 		$user = User::where('name',$name)->first();
 		$week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
 
@@ -29,12 +41,12 @@ class UserController extends Controller
         $men = [];
         $women = [];
         $userLineupsMen = User::find($user->id)
-        ->getLineup()
+        ->lineups()
         ->where('week', $week)
         ->where('gender','Men')
         ->get();
         $userLineupsWomen = User::find($user->id)
-        ->getLineup()
+        ->lineups()
         ->where('gender','Women')
         ->where('week', $week)->get();
 
@@ -49,4 +61,17 @@ class UserController extends Controller
 
 		return view('user.showUser',compact('user','men','women','rankings'));
 	}
+
+    public function userVerified(FormBuilder $formBuilder)
+    {
+        return view('user.user-verified');
+    }
+
+    public function resendVerification()
+    {
+        $user = Auth::user();
+        UserVerification::send($user, 'Fantasy Enduro - Verify Your Account');
+
+        return view('user.verification-resent');
+    }
 }

@@ -10822,6 +10822,10 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   color: #ced6dc;
 }
 
+.errors {
+  color: #a94442;
+}
+
 .search-wrap {
   position: relative;
 }
@@ -11329,6 +11333,10 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 .lineups {
   list-style: none;
   padding-left: 0;
+}
+
+.not-valid-user {
+  text-align: center;
 }
 
 /*--------------------------------------------------------------

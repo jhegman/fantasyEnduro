@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+
+use Jrean\UserVerification\Traits\UserVerification;
 
 class User extends Authenticatable
 {
@@ -28,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getLineup()
+    public function lineups()
     {
         return $this->hasMany('App\Lineup');
     }
@@ -53,5 +54,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Point')->withTimestamps();
     }
 
+    /**
+     * Check if the user is verified.
+     *
+     * @return boolean
+     */
+    public function isVerified()
+    {
+        return (bool) $this->verified;
+    }
 
 }

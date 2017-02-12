@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Race extends Model
 {
-    public function getRaceRacers()
+    public function racers()
     {
         return $this->belongsToMany('App\Racer')->withTimestamps()->withPivot(
         	'overall_place',

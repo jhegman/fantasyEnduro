@@ -28,7 +28,7 @@ class SetLineupController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isVerified']);
     }
 
     /**
@@ -207,19 +207,19 @@ class SetLineupController extends Controller
     {
         $id = $request->id;
         $athleteObject = Racer::find($id);
-        $athleteRaces = $athleteObject->getRacersRace()->where('overall_place', 1)->get();
+        $athleteRaces = $athleteObject->races()->where('overall_place', 1)->get();
         $racesWon = count($athleteRaces);
 
         $stageWins = 0;
         for ($i=1; $i < 8 ; $i++) { 
             $stageData = $athleteObject
-            ->getRacersRace()
+            ->races()
             ->where('stage_' . $i . '_place', 1)
             ->get();
             $stageWins += count($stageData);
         }
 
-        $results = Racer::find($id)->getRacersRace()->get();
+        $results = Racer::find($id)->races()->get();
         $pointsScored = 0;
         foreach ($results as $key => $result) {
             $pointsScored += $result->pivot->points;

@@ -28,7 +28,7 @@ class ScoreRaceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('super');
+        $this->middleware(['super', 'auth']);
     }
     
 	public function score(){
@@ -46,18 +46,18 @@ class ScoreRaceController extends Controller
 		$top3MenCheck=[];
 		$top3WomenCheck=[];
 		//Get top 3 men racer id
-		$top3Men = Race::findOrFail($race_id_men)->getRaceRacers()->take(3)->get();
+		$top3Men = Race::findOrFail($race_id_men)->racers()->take(3)->get();
 		foreach ($top3Men as $key => $value) {
 			$top3MenCheck[$key] = $value->id;
 		}
 		//Get top 3 women racer id
-		$top3Women = Race::findOrFail($race_id_women)->getRaceRacers()->take(3)->get();
+		$top3Women = Race::findOrFail($race_id_women)->racers()->take(3)->get();
 		foreach ($top3Women as $key => $value) {
 			$top3WomenCheck[$key] = $value->id;
 		}
 
 		foreach ($users as $user) {
-			$userLineups = User::find($user->id)->getLineup()->where('week', $week)->get();
+			$userLineups = User::find($user->id)->lineups()->where('week', $week)->get();
 			$bonusCheckerMen = [];
 			$bonusCheckerWomen = [];
 			$tmpMen = $userLineups->where('gender','Men')->take(3);
@@ -73,7 +73,7 @@ class ScoreRaceController extends Controller
 			$points = 0;
 			foreach ($userLineups as $userLineup) {
 				$result = Racer::find($userLineup->racer()->first()->id)
-				->getRacersRace()
+				->races()
 				->where('week', $week)
 				->first();
 

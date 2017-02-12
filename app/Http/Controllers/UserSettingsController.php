@@ -26,47 +26,28 @@ class UserSettingsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isVerified']);
     }
 
     /**
-    * Profile settings to change pic and username
-    *
-    *@return \Illuminate\Http\Response
+       * Profile settings to change pic and username
+       *
+       *@return \Illuminate\Http\Response
     */
-    public function changeProfilePic(Request $request, FormBuilder $formBuilder)
+    public function profileSettings(Request $request, FormBuilder $formBuilder)
     {
-        if($request->hasFile('image')){
-        $avatar = $request->file('image');
-        
-        $fileName = time(). '.' . $avatar->getClientOriginalExtension();
-        Image::make($avatar)->resize(300,300)->save( public_path('/uploads/avatar/' . $fileName));
+        if ($request->hasFile('image')){
+            $avatar = $request->file('image');
+            
+            $fileName = time(). '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save( public_path('/uploads/avatar/' . $fileName));
 
+            $user = Auth::user();
+            $user->avatar = $fileName;
+            $user->save();
+        }
         $user = Auth::user();
-        $user->avatar = $fileName;
-        $user->save();
-    }
-        $form = $formBuilder->create(\App\Forms\ChangeUserNameForm::class, [
-            'method' => 'POST',
-            'url' => route('username-changed')
-        ]);
-        $user = Auth::user();
-        return view('profile-settings',compact('user','form'));
-    }
-
-    /**
-     * Change User Name Form
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function profileSettings(FormBuilder $formBuilder)
-    {
-        $form = $formBuilder->create(\App\Forms\ChangeUserNameForm::class, [
-            'method' => 'POST',
-            'url' => route('username-changed')
-        ]);
-        $user = Auth::user();
-        return view('profile-settings')->with('form', $form)->with('user',$user);
+        return view('profile-settings')->with('user',$user);
     }
 
     /**
@@ -78,8 +59,9 @@ class UserSettingsController extends Controller
     {
         //validate name
         $this->validate($request, [
-            'name' =>'unique:users',
-            'name' =>'required|min:3|regex:/(^[A-Za-z0-9 ]+$)+/',
+            
+            'name' =>'unique:users|required|regex:/(^[A-Za-z0-9 ]+$)+/',
+
             ]);
         //Get New User Name
         $new_user_name = $request->name;

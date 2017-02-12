@@ -26,7 +26,7 @@ class ResultsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isVerified']);
     }
 
     //Display Page With All results
@@ -40,7 +40,7 @@ class ResultsController extends Controller
     public function showResults($id)
     {
         //Get All Racers in Race
-        $racers = Race::findOrFail($id)->getRaceRacers()->get();
+        $racers = Race::findOrFail($id)->racers()->get();
         $race = Race::findOrFail($id);
         
         //Check first racer to tell how many stages there were
