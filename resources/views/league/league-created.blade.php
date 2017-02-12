@@ -10,7 +10,9 @@
     		</svg>
     		<h2 class="changed">League Created</h2>
     		<h2 class="newUser">Your New League: {{$newLeague->name}}</h2>
-    		<h2 class="newUser">League Password: {{decrypt($newLeague->password)}}</h2>
+    		@if ($newLeague->password != null)
+            <h2 class="newUser">League Password: {{decrypt($newLeague->password)}}</h2>
+            @endif
     		<a class="btn-primary btn-home" href="{{url('/leagues')}}"> Back to leagues page</a>
     	</div>
     </div>
