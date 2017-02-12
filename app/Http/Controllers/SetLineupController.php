@@ -142,6 +142,20 @@ class SetLineupController extends Controller
      */
     public function saveUsersLineup(Request $request)
     {
+        //Check to see if selection is open
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+        //get current time
+        $now = Carbon::now();
+        $period = SelectionPeriod::where('week',$week)->first();
+        $closed = Carbon::parse($period->closed);
+        $reopen = Carbon::parse($period->reopen);
+        if($now->gt($closed) && $now->lt($reopen)){
+            return json_encode(array(
+                'status'    =>  false,
+                'message'   =>  'Selection Period Closed!'
+            ));
+        }
+        //proceed
         $lineup = $request->lineup;
         $path = $request->path;
         if ($path == '/set-lineup/men') {

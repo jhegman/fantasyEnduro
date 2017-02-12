@@ -114,7 +114,7 @@ class UploadAthleteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function storeTimes(Request $request){
-            $times = Excel::load('storage/app/public/times.csv', function ($reader) {
+            $times = Excel::load('public/times.csv', function ($reader) {
                 // Load times
             })->get();
         foreach ($times as $time) {
@@ -122,6 +122,7 @@ class UploadAthleteController extends Controller
             $period->week = $time->week;
             $period->closed = $time->close;
             $period->reopen = $time->reopen;
+            $period->send_email = $time->send_email;
             $period->save();
         }
         return view('upload-tools.close-lineups');
