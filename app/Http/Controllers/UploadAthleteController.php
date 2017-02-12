@@ -105,7 +105,11 @@ class UploadAthleteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function uploadTimes(){
-        return view('upload-tools.close-lineups');
+        $full = false;
+        if(SelectionPeriod::first() !=null){
+            $full = true;
+        }
+        return view('upload-tools.close-lineups',compact('full'));
     }
 
     /**
@@ -125,6 +129,10 @@ class UploadAthleteController extends Controller
             $period->send_email = $time->send_email;
             $period->save();
         }
-        return view('upload-tools.close-lineups');
+        $full = false;
+        if(SelectionPeriod::first() !=null){
+            $full = true;
+        }
+        return view('upload-tools.close-lineups',compact('full'));
     }
 }

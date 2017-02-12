@@ -10,10 +10,6 @@ class CreateLeague extends Form
     {
         $this->add('new_league', 'text',[
                 'label' => 'League name:',
-                'rules' => 'required|min:3',
-                'error_messages' => [
-                    'title.required' => 'The title field is mandatory.'
-                ]
             ])
             ->add('password', 'password',[
                 'label' => 'Password (optional)'

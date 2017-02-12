@@ -88,4 +88,7 @@ Route::get('/close-lineups','UploadAthleteController@uploadTimes');
 //Submit route close lineups
 Route::post('/close-lineups','UploadAthleteController@storeTimes');
 
+//post route to unsubsribe from emails
+Route::post('/unsubscribe','UserSettingsController@unsubscribe');
+
 

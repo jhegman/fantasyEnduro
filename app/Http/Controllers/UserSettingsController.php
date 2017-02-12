@@ -79,6 +79,7 @@ class UserSettingsController extends Controller
         //validate name
         $this->validate($request, [
             'name' =>'unique:users',
+            'name' =>'required|min:3|regex:/(^[A-Za-z0-9 ]+$)+/',
             ]);
         //Get New User Name
         $new_user_name = $request->name;
@@ -88,5 +89,21 @@ class UserSettingsController extends Controller
         $user->name = $new_user_name;
         $user->save();
         return view('username-changed')->with('user', $user);
+    }
+
+    public function unsubscribe(Request $request, FormBuilder $formBuilder){
+
+        $user = Auth::user();
+        $checked = $request->send_emails;
+        if($checked != null){
+            $user->subscribed = true;
+            $user->save();
+        }
+        else{
+            $user->subscribed = false;
+            $user->save();
+        }
+
+        return view('user.unsubscribe');
     }
 }

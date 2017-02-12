@@ -6,6 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\SuperAdminOption;
+use App\SelectionPeriod;
+use Carbon\Carbon;
 
 class SetLineup extends Mailable
 {
@@ -28,6 +31,9 @@ class SetLineup extends Mailable
      */
     public function build()
     {
-        return $this->view('set-lineup.set-lineup-email');
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+        $period = SelectionPeriod::where('week',$week)->first();
+        $period = Carbon::parse($period->closed)->toDayDateTimeString();
+        return $this->view('set-lineup.set-lineup-email',compact('period'));
     }
 }

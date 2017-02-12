@@ -19,6 +19,19 @@
         <div class="col-md-12">
                 {!! form($form) !!}
         </div>
+        <div class="col-md-12">
+            <h2> Reminder Emails</h2>
+            <form enctype="multipart/form-data" action="/unsubscribe" method="POST">
+                <label>Subscribe to reminder emails?</label>
+                {{Form::token()}}
+                @if ($user->subscribed == 1)
+                {{ Form::checkbox('send_emails[]', 'value', true) }}
+                @else
+                {{ Form::checkbox('send_emails[]', 'value', false) }}
+                @endif
+                <input style="display:block" value="Update" type="submit" class="btn-primary">
+            </form>
+        </div>
     </div>
 </div>
 @endsection

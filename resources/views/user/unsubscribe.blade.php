@@ -8,10 +8,13 @@
     			<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
     			<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
     		</svg>
-    		<h2 class="changed">League Created</h2>
-    		<h2 class="newUser">Your New League: {{$newLeague->name}}</h2>
-    		<h2 class="newUser">League Password: {{decrypt($newLeague->password)}}</h2>
-    		<a class="btn-primary btn-home" href="{{url('/leagues')}}"> Back to leagues page</a>
+    		<h2 class="changed">Your email settings have been updated!</h2>
+            @if(Auth::user()->subscribed == 1)
+                <h2 class="newUser"> You are now subscribed to email reminders</h2>
+            @else
+                <h2 class="newUser"> You will now no longer recieve emails from Fantasy Enduro</h2>
+            @endif
+    		<a class="btn-primary btn-home" href="{{url('/home')}}"> Home</a>
     	</div>
     </div>
 </div>

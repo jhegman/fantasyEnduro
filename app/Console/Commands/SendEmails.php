@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use App\SelectionPeriod;
 use App\Lineup;
+use App\SuperAdminOption;
 
 class SendEmails extends Command
 {
@@ -46,6 +47,8 @@ class SendEmails extends Command
         $send = false;
         $today = Carbon::today();
         $emailDates = SelectionPeriod::all();
+        $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
+        
         //compare todays date to dates that emails should be sent
         foreach ($emailDates as $emailDate) {
             if(Carbon::parse($emailDate->send_email) == $today){
@@ -56,7 +59,11 @@ class SendEmails extends Command
         if($send == true){
         $users = User::all();
         foreach ($users as $key => $user) {
+            //check if their lineup is full and if they are subscribed to emails
+            if(count($user->getLineup()->where('week', $week)->get()) < 10
+                && $user->subscribed == 1){
             \Mail::to($user)->send(new SetLineup);
+            }
         }
     }
 

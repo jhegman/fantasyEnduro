@@ -62,6 +62,9 @@ class LeagueController extends Controller
 
     //Create New League form
     public function createNewLeague(Request $request){
+        $this->validate($request, [
+            'new_league' =>'required|min:3|regex:/(^[A-Za-z0-9 ]+$)+/',
+            ]);
         $user = Auth::user();
         $newLeague = new League();
         $newLeague->name = $request->new_league;

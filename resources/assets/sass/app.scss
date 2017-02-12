@@ -24,6 +24,7 @@ the file everytime it is saved
 # League Pages
 # User Pages
 # Rankings Page
+# User Settings
 
 --------------------------------------------------------------*/
 
@@ -38,6 +39,7 @@ $color-red: #DD3352;
 $color-purple: #9013EF;
 $color-grey: #e7ecf1;
 $color-light-grey: #f1f3f6;
+$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 
 /*--------------------------------------------------------------
 # Imports
@@ -667,4 +669,91 @@ input[type="number"] {
 	color: #94a1a9;
     font-size: 12px;
     font-weight: 400;
+}
+
+/*--------------------------------------------------------------
+# User Settings Page
+--------------------------------------------------------------*/
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: $color-turquoise;
+  fill: none;
+  animation: stroke .6s $curve forwards;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px $color-turquoise;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke .3s $curve .8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px $color-turquoise;
+  }
+}
+
+.changed{
+	height: 20px;
+	font-family: ProximaNova;
+	font-size: 24px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 0.2px;
+	text-align: center;
+	color: #475965;
+}
+
+.newUser{
+	height: 14px;
+	font-family: ProximaNova;
+	font-size: 15px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 0.2px;
+	text-align: center;
+	color: #7d8e9a;
+}
+
+.btn-home{
+	display:table;
+	margin-left:auto;
+	margin-right:auto;
 }
