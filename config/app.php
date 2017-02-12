@@ -162,14 +162,15 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
 
-        //
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +232,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        //'Form' => Collective\Html\FormFacade::class,
+        //'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

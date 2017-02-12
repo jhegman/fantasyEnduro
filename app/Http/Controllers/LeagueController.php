@@ -21,18 +21,14 @@ class LeagueController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isVerified']);
     }
 
     //Display table of leagues
-    public function displayLeagues(FormBuilder $formBuilder){
+    public function displayLeagues(){
     	$user = Auth::user();
-        $form = $formBuilder->create(\App\Forms\CreateLeague::class, [
-            'method' => 'POST',
-            'url' => route('league-created')
-        ]);
         $leagues = League::all();
-   		return view('league.leagues',compact('leagues','form','user'));
+   		return view('league.leagues',compact('leagues','user'));
     }
 
     //Display individual league pages
@@ -61,7 +57,11 @@ class LeagueController extends Controller
     }
 
     //Create New League form
-    public function createNewLeague(Request $request){
+    public function createNewLeague(Request $request)
+    {
+        $this->validate($request, [
+            'new_league' => 'required|min:3|unique:leagues,name',
+        ]);
         $user = Auth::user();
         $newLeague = new League();
         $newLeague->name = $request->new_league;
@@ -77,7 +77,8 @@ class LeagueController extends Controller
     }
 
     //Allow user to join league
-    public function joinLeague(Request $request){
+    public function joinLeague(Request $request)
+    {
         $user = Auth::user();
         $id = $request->league;
         $password = $request->password;

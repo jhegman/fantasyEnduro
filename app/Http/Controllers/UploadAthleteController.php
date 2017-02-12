@@ -27,7 +27,7 @@ class UploadAthleteController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('super');
+        $this->middleware(['super', 'auth']);
     }
 
     /**

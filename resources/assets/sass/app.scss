@@ -107,6 +107,10 @@ input[type="number"] {
 	}
 }
 
+.errors {
+	color: #a94442;
+}
+
 //Search Bar
 .search-wrap {
 	position: relative;
@@ -577,6 +581,10 @@ input[type="number"] {
 .lineups {
 	list-style: none;
     padding-left: 0;
+}
+
+.not-valid-user {
+	text-align: center;
 }
 
 /*--------------------------------------------------------------

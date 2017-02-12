@@ -8,16 +8,24 @@
         </div>
         <div class=col-md-10>
             <h1>{{$user->name}}</h1>
-            <form enctype="multipart/form-data" action="/profile-settings" method="POST">
+            {!! Form::open(['url' => 'profile-settings', 'files' => true]) !!}
                 <label>Update Profile Picture</label>
-                    <!-- <input type="file" name="avatar"> -->
-                    {{Form::file('image')}}
-                    {{Form::token()}}
-                    <input type="submit" class="btn-primary">
-            </form>
+                <!-- <input type="file" name="avatar"> -->
+                {{ Form::file('image') }}
+                {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+            {!! Form::close() !!}
         </div>
         <div class="col-md-12">
-                {!! form($form) !!}
+            {!! Form::open(['url' => 'change-username/complete']) !!}
+                <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
+                    {{ Form::label('name', 'Edit your Username:', ['class' => 'control-label']) }}
+                    {{ Form::text('name', null, ['class' => 'form-control']) }}
+                    @if ($errors->first('name'))
+                        <span class="errors">{{ $errors->first('name') }}</span>
+                    @endif
+                </div><!-- /.form-group -->
+                {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
+
 class RegisterController extends Controller
 {
     /*
@@ -22,12 +27,21 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    use VerifiesUsers;
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/home';
+
+
+    /**
+     * Where to redirect after verifcation
+     * @var string
+     */
+    protected $redirectAfterVerification = '/email-verification/user-verified';
 
     /**
      * Create a new controller instance.
@@ -67,5 +81,29 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+    * Handle a registration request for the application.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        event(new Registered($user));
+
+        $this->guard()->login($user);
+
+        UserVerification::generate($user);
+
+        UserVerification::send($user, 'Fantasy Enduro - Verify Your Account');
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }

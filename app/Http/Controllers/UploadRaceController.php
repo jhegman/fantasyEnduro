@@ -26,7 +26,7 @@ class UploadRaceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('super');
+        $this->middleware(['super', 'auth']);
     }
 
     /**
@@ -102,7 +102,7 @@ class UploadRaceController extends Controller
                     $racer->gender = $request->gender;
                     $racer->points = intval($pointslist[intval($result->overall_place)-1]->points);
                     $racer->save();
-                    $racer->getRacersRace()->attach($race->id, [
+                    $racer->races()->attach($race->id, [
                         'overall_place' =>  intval(trim($result->overall_place, '()')),
                         'stage_1_time'  =>  $result->stage_1_time,
                         'stage_1_place' =>  intval(trim($result->stage_1_place, '()')),
@@ -121,7 +121,7 @@ class UploadRaceController extends Controller
                     ]);
                     
                 } else {
-                    $existingRacerCheck->getRacersRace()->attach($race->id, [
+                    $existingRacerCheck->races()->attach($race->id, [
                         'overall_place' =>  intval(trim($result->overall_place, '()')),
                         'stage_1_time'  =>  $result->stage_1_time,
                         'stage_1_place' =>  intval(trim($result->stage_1_place, '()')),

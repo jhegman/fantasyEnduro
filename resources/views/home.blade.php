@@ -8,7 +8,13 @@
                 <div class="panel-heading">Dashboard</div>
                 
                 <div class="panel-body">
-                    You are logged in!
+                    <div class="alert alert-success" role="alert">You are logged in!</div>
+                    @if (!$user->isVerified())
+                        <div class="alert alert-danger">Your Account has not been verified! Please check your email and click the link to verify your account.</div>
+                        {!! Form::open(['url' => 'email-verification/resend-verification']) !!}
+                            {{ Form::submit('Resend Verification', ['class' => 'btn btn-primary']) }}
+                        {!! Form::close() !!}
+                    @endif
                 </div>
     
                 <div class="panel-body">

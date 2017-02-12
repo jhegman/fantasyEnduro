@@ -68,7 +68,7 @@ Route::post('/leave-league', 'LeagueController@leaveLeague');
 Route::post('/message', 'HomeController@message');
 
 //Profile picture submit route
-Route::post('/profile-settings','UserSettingsController@changeProfilePic');
+Route::post('/profile-settings','UserSettingsController@profileSettings');
 
 //User profiles
 Route::get('/user/{name}','UserController@showUser');
@@ -88,4 +88,7 @@ Route::get('/close-lineups','UploadAthleteController@uploadTimes');
 //Submit route close lineups
 Route::post('/close-lineups','UploadAthleteController@storeTimes');
 
+//User Verification
+Route::get('/email-verification/user-verified', 'UserController@userVerified');
+Route::post('/email-verification/resend-verification', 'UserController@resendVerification');
 

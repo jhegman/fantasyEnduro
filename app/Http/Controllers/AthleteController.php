@@ -17,7 +17,7 @@ class AthleteController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isVerified']);
     }
     
     //Display Table of Athlete
@@ -29,9 +29,9 @@ class AthleteController extends Controller
 	//Make Athletes Clickable
 	public function showAthletes($id){
 		$athlete = Racer::findOrFail($id);
-		$athleteData = Racer::find($id)->getRacersRace()->where('overall_place', 1)->get();
+		$athleteData = Racer::find($id)->races()->where('overall_place', 1)->get();
 		$racesWon = count($athleteData);
-		$result = Racer::find($id)->getRacersRace()->get();
+		$result = Racer::find($id)->races()->get();
 		$points = 0;
 		foreach ($result as $key => $race) {
 			$points += $race->pivot->points;
@@ -40,7 +40,7 @@ class AthleteController extends Controller
 		$stageWins = 0;
 		for ($i=1; $i < 8 ; $i++) { 
 			$stageData = Racer::find($id)
-			->getRacersRace()
+			->races()
 			->where('stage_' . $i . '_place', 1)
 			->get();
 			$stageWins += count($stageData);
