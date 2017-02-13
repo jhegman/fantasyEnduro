@@ -11313,6 +11313,107 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   background: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 5px;
+  margin-top: 20px;
+}
+
+.cover-athlete {
+  height: 350px;
+  display: table;
+  width: 100%;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1000px rgba(3, 39, 63, 0.85);
+  background-image: url("../img/richie.jpg");
+}
+
+.stats {
+  display: table-cell;
+  vertical-align: bottom;
+  padding-left: 10%;
+  font-size: 26px;
+  line-height: 1;
+  color: white;
+  padding-bottom: 20px;
+  position: static;
+}
+
+.athlete-name {
+  display: inline-block;
+  line-height: 15px;
+  vertical-align: middle;
+}
+
+.athlete-name h1 {
+  margin-bottom: 0px;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.athlete-name span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 18px;
+  margin-bottom: 4px;
+}
+
+.tabs {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-top: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  height: 40px;
+}
+
+.tabs-container {
+  border-bottom: 1px solid #e6e7e9;
+  width: 100%;
+}
+
+.athlete-links {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  display: block;
+  font-size: 14px;
+  padding-top: 6px;
+  width: auto;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  float: none;
+  font-weight: 600;
+  color: #5eaffd;
+  cursor: pointer;
+  line-height: 2;
+}
+
+.athlete-links a:hover {
+  color: #232323;
+  text-decoration: none;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.athlete-links a {
+  text-decoration: none;
+}
+
+.active {
+  border-bottom: 3px solid #147cd1;
+}
+
+.active a {
+  color: #232323;
 }
 
 /*--------------------------------------------------------------

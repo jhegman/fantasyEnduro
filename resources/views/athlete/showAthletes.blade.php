@@ -1,31 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="cover-athlete">
+    <div class="stats">
+        @if ($athlete->photo_url!= null)
+            <img src = "{{ $athlete->photo_url }}" alt="{{ $athlete->name }}" class="img-circle" height="82px" width="82px">
+        @else
+            <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="82px" width="82px">
+        @endif
+        <div class="athlete-name">
+            <h1>{{$athlete->name}}</h1>
+            <span>{{$athlete->bike_team}}</span>
+        </div>
+    </div>
+</div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            @if ($athlete->photo_url!= null)
-                <img src = "{{ $athlete->photo_url }}" alt="{{ $athlete->name }}" class="img-circle">
-            @else
-                <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle">
-            @endif
-        </div>
-        <div class="col-md-4">
-            <h1>{{ $athlete->name }}</h1>
-            <h2>{{ $athlete->gender }}</h2>
-            @if ($athlete->bike_team!= null)
-                <h2>{{ $athlete->bike_team }}</h2>
-            @endif
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <button class="button-results" v-on:click="result = true">Results</button>
-            <button class="button-results" v-on:click="result = false">Statistics</button>
-        </div>
-    </div>
+    <div class="tabs-container">
+        <ul class="tabs">
+            <li class="athlete-links" v-bind:class="{ active: result }">
+                <a v-on:click="result = true">Results</a>
+            </li>
+            <li class="athlete-links" v-bind:class="{ active: !result }">
+                <a v-on:click="result = false">Stats</a>
+            </li>
+        </ul>
+    </div>  
     <div class="row"> 
-        <div v-if="!result" class="col-md-6 statistics" v-cloak>
+        <div v-if="!result" class="col-md-12 statistics" v-cloak>
 	       <h2> Points this season: {{$points}}
            <h2>Race Wins: {{ $racesWon }}</h2>
             @if ($racesWon > 0)
@@ -39,7 +40,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6" v-if="result" v-cloak>
+        <div class="col-md-12" v-if="result" v-cloak>
            <table class="table race-results">
                 <thead>
                     <tr>
@@ -64,7 +65,6 @@
             @endforeach
             </tbody>
             </table> 
-           </ul>
         </div>
     </div>
 </div>

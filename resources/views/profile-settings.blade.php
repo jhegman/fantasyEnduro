@@ -33,9 +33,9 @@
                 <label>Subscribe to reminder emails?</label>
                 {{Form::token()}}
                 @if ($user->subscribed == 1)
-                {{ Form::checkbox('send_emails[]', 'value', true) }}
+                <input type="checkbox" name="send_emails" value="1" checked>
                 @else
-                {{ Form::checkbox('send_emails[]', 'value', false) }}
+                <input type="checkbox" name="send_emails" value="0">
                 @endif
                 <input style="display:block" value="Update" type="submit" class="btn-primary">
             </form>
