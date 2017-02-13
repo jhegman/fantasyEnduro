@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="cover-athlete">
-    <div class="stats">
+    <div class="athlete-info">
         @if ($athlete->photo_url!= null)
             <img src = "{{ $athlete->photo_url }}" alt="{{ $athlete->name }}" class="img-circle" height="82px" width="82px">
         @else

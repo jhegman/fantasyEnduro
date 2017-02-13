@@ -11325,7 +11325,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   background-image: url("../img/richie.jpg");
 }
 
-.stats {
+.athlete-info {
   display: table-cell;
   vertical-align: bottom;
   padding-left: 10%;
