@@ -36,26 +36,60 @@
                         <h3>Messages</h3>
                             <div id="chatArea">
                             @foreach ($messages as $key=>$message)
-                                <ul>
-                                    <span>
-                                    <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
-                                    </span>
-                                    <b>{{$names[$key]->name}}:</b> 
-                                    <span>{{$message->message}}</span>
-                                </ul>
+                                @if($user)
+                                    <ul style="text-align: right;">
+                                        <span class="my-chats">
+                                            {{$message->message}}
+                                        </span>
+                                        <span class="arrow-right">
+                                            &#9658;
+                                        </span>
+                                        <span>
+                                            <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
+                                        </span>
+                                    </ul>
+                                @else
+                                    <ul>
+                                        <span>
+                                            <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
+                                        </span>
+                                        <span class="arrow-left">
+                                            &#x25C0;
+                                        </span>
+                                        <b>{{$names[$key]->name}}:</b> 
+                                        <span class="others-chats">
+                                        {{$message->message}}
+                                        </span>
+                                    </ul>
+                                @endif
                             @endforeach
-                                <ul v-for="post in posts" v-cloak>
+                                <ul v-for="post in posts" v-if="post.username == '{{$user->name}}'" v-cloak style="text-align: right;">
+                                    <span class="my-chats">
+                                        @{{ post.message }}</li>
+                                     </span>
+                                     <span class="arrow-right">
+                                        &#9658;
+                                    </span>
                                     <span>
                                         <img :src="'/uploads/avatar/' + post.avatar" class="img-circle" height="32px" width="32px"/>
                                     </span>
-                                        <b> @{{ post.username }}:</b> @{{ post.message }}</li>
+                                </ul>
+                                <!-- Other users chats -->
+                                <ul v-for="post in posts" v-else v-cloak>
+                                    <span>
+                                        <img :src="'/uploads/avatar/' + post.avatar" class="img-circle" height="32px" width="32px"/>
+                                    </span>
+                                    <b> @{{ post.username }}:</b> 
+                                    <span class="others-chats">
+                                    @{{ post.message }}</li>
+                                    </span>
                                 </ul>
                             </div>
                         <hr>
                         <hr>
-                    <input type="text" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
-                </div>
-            </chat>
+                        <input type="text" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
+                    </div>
+                </chat>
     @endif
     </div>
     </div>

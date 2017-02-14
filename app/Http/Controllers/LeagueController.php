@@ -53,7 +53,7 @@ class LeagueController extends Controller
         //Check if current user is in league for Leave League button
         $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());
 
-    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names'));
+    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','user'));
     }
 
     //Create New League form
