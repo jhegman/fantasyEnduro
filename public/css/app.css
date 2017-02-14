@@ -11453,6 +11453,11 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   font-size: 6px;
 }
 
+.arrow-left {
+  color: #475965;
+  font-size: 6px;
+}
+
 /*--------------------------------------------------------------
 # User Pages
 --------------------------------------------------------------*/
