@@ -36,7 +36,7 @@
                         <h3>Messages</h3>
                             <div id="chatArea">
                             @foreach ($messages as $key=>$message)
-                                @if($user)
+                                @if(Auth::user()->name === $names[$key]->name)
                                     <ul style="text-align: right;">
                                         <span class="my-chats">
                                             {{$message->message}}
@@ -53,9 +53,6 @@
                                         <span>
                                             <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
                                         </span>
-                                        <span class="arrow-left">
-                                            &#x25C0;
-                                        </span>
                                         <b>{{$names[$key]->name}}:</b> 
                                         <span class="others-chats">
                                         {{$message->message}}
@@ -63,7 +60,7 @@
                                     </ul>
                                 @endif
                             @endforeach
-                                <ul v-for="post in posts" v-if="post.username == '{{$user->name}}'" v-cloak style="text-align: right;">
+                                <ul v-for="post in posts" v-if="post.username == '{{Auth::user()->name}}'" v-cloak style="text-align: right;">
                                     <span class="my-chats">
                                         @{{ post.message }}</li>
                                      </span>

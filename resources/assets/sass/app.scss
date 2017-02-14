@@ -678,33 +678,32 @@ input[type="number"] {
 }
 
 .my-chats{
-	width: 165px;
-    height: 42px;
+	max-width: 300px;
     border-radius: 2.8px;
     background-color: #21b8c6;
     box-shadow: 0 1px 1px 0 rgba(2, 2, 2, 0.02);
     padding: 8px;
+    padding-top: 4px;
+	padding-bottom: 4px;
     color: #ffffff;
+    display: inline-table;
 }
 
 .others-chats{
-	width: 165px;
-	height: 42px;
+	max-width: 300px;
 	border-radius: 2.8px;
 	background-color: #e7ecf1;
 	box-shadow: 0 1px 1px 0 rgba(2, 2, 2, 0.02);
 	padding: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	color: #475965;
+	display: inline-table;
 }
 
 .arrow-right{
 	color: #21b8c6;
     font-size: 6px;
-}
-
-.arrow-left{
-	color: #475965;
-	font-size: 6px;
 }
 
 /*--------------------------------------------------------------

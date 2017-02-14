@@ -38,6 +38,8 @@ Vue.http.interceptors.push((request, next) => {
  */
 
 import Echo from "laravel-echo";
+//504e28f412c6916a2481
+//3d9c6a3a5ee99b470c32
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
