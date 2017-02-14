@@ -10,7 +10,9 @@ module.exports = {
         //Get league ID from url
         var path = window.location.pathname;
         //gets every character after '/leagues/'
-        var league_id = path.slice(9);
+        var league_id = path.split('/leagues/');
+        league_id = league_id[1];
+
         Echo.channel('publicLeague.'+league_id)
             .listen('ChatMessageWasReceived', (data) => {
                 // Push ata to posts list.
