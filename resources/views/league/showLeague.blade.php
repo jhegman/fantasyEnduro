@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div id="container" class="container">
         <transition name="fade">
 			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
 	   </transition>
@@ -76,9 +76,12 @@
                             </div>
                         <hr>
                         <hr>
-                        <input type="text" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
-                    </div>
-                </chat>
+                <div id="input-wrap" class="input-wrap">
+                    <i id="emoji-icon" class="fa fa-smile-o choose-emoji-btn" aria-hidden="true"></i>
+                    <input type="text" id="chat-input" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
+                </div><!-- /.input-wrap -->
+            </div>
+        </chat>
     @endif
     </div>
     </div>
