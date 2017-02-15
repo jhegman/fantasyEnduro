@@ -56,9 +56,8 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-//Emoji Picker
-@import "./emoji/nanoscroller";
-@import "./emoji/emoji";
+// Emoji Picker
+@import "node_modules/rm-emoji-picker/src/scss/emojipicker.scss";
 
 /*--------------------------------------------------------------
 # Typography
@@ -660,7 +659,7 @@ input[type="number"] {
 	text-decoration: none;
 }
 
-.active{
+.active:not(.select-category){
 	border-bottom: 3px solid #147cd1;
 }
 
@@ -679,6 +678,48 @@ input[type="number"] {
 
 .dropdown {
 	cursor: pointer;
+}
+
+.my-chats{
+	max-width: 300px;
+    border-radius: 2.8px;
+    background-color: #21b8c6;
+    box-shadow: 0 1px 1px 0 rgba(2, 2, 2, 0.02);
+    padding: 8px;
+    padding-top: 4px;
+	padding-bottom: 4px;
+    color: #ffffff;
+    display: inline-table;
+}
+
+.others-chats{
+	max-width: 300px;
+	border-radius: 2.8px;
+	background-color: #e7ecf1;
+	box-shadow: 0 1px 1px 0 rgba(2, 2, 2, 0.02);
+	padding: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	color: #475965;
+	display: inline-table;
+}
+
+.arrow-right{
+	color: #21b8c6;
+    font-size: 6px;
+}
+
+.input-wrap {
+	position: relative;
+
+	.choose-emoji-btn {
+		position: absolute;
+		top: 50%;
+		right: 15px;
+		transform: translateY(-50%);
+		font-size: 18px;
+		cursor: pointer;
+	}
 }
 
 /*--------------------------------------------------------------

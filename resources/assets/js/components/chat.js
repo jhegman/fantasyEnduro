@@ -1,9 +1,18 @@
+import EmojiPicker from "rm-emoji-picker";
 module.exports = {
 
     data() {
         return {
             posts: [],
             newMsg: '',
+            picker: new EmojiPicker({
+                sheets: {
+                    apple   : '/sheets/sheet_apple_64_indexed_128.png',
+                    google  : '/sheets/sheet_google_64_indexed_128.png',
+                    twitter : '/sheets/sheet_twitter_64_indexed_128.png',
+                    emojione: '/sheets/sheet_emojione_64_indexed_128.png'
+                }
+            })
         }
     },
     mounted: function () {
@@ -12,7 +21,6 @@ module.exports = {
         //gets every character after '/leagues/'
         var league_id = path.split('/leagues/');
         league_id = league_id[1];
-        console.log(league_id);
         Echo.channel('publicLeague.'+league_id)
             .listen('ChatMessageWasReceived', (data) => {
                 // Push ata to posts list.
@@ -25,11 +33,18 @@ module.exports = {
             })
             //scroll down to bottom when page is loaded
             this.scrollDownStart();
+
+        const icon      = document.getElementById('emoji-icon');
+        const container = document.getElementById('input-wrap');
+        const editable  = document.getElementById('chat-input');
+
+        this.picker.listenOn(icon, container, editable);
     },
     methods: {
         press(league_id) {
             // Send message to backend.
-            this.$http.post('/message/', {message: this.newMsg, league_id: league_id})
+            var emojiMessage = this.picker.getText();
+            this.$http.post('/message/', {message: emojiMessage, league_id: league_id})
                 .then((response) => {
                     // Clear input field.
                     this.newMsg = '';

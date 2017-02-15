@@ -57,11 +57,10 @@ class SendEmails extends Command
         }
 
         if($send == true){
-        $users = User::all();
+        $users = User::where('subscribed', '1')->get();
         foreach ($users as $key => $user) {
-            //check if their lineup is full and if they are subscribed to emails
-            if(count($user->lineups()->where('week', $week)->get()) < 10
-                && $user->subscribed == 1){
+            //check if their lineup is full
+            if(count($user->lineups()->where('week', $week)->get()) < 10){
             \Mail::to($user)->send(new SetLineup);
             }
         }

@@ -8,14 +8,6 @@
 require('./bootstrap');
 require('list.js');
 
-//Emoji Picker
-require('./emoji/nanoscroller.min.js');
-require('./emoji/tether.min.js');
-require('./emoji/config.js');
-require('./emoji/util.js');
-require('./emoji/jquery.emojiarea.js');
-require('./emoji/emoji-picker.js');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -77,6 +69,3 @@ var options = {
 var sortLeague = new List('league-sort', options);
 var sortMen = new List('men-sort', options);
 var sortWomen = new List('women-sort', options);
-
-
-
