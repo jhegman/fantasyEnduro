@@ -53,7 +53,7 @@
                             </div>
                         <hr>
                         <hr>
-                    <input type="text" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
+                    <input type="text" class="form-control" data-emojiable="true" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
                 </div>
             </chat>
     @endif

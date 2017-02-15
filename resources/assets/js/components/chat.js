@@ -12,7 +12,7 @@ module.exports = {
         //gets every character after '/leagues/'
         var league_id = path.split('/leagues/');
         league_id = league_id[1];
-
+        console.log(league_id);
         Echo.channel('publicLeague.'+league_id)
             .listen('ChatMessageWasReceived', (data) => {
                 // Push ata to posts list.

@@ -56,6 +56,10 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+//Emoji Picker
+@import "./emoji/nanoscroller";
+@import "./emoji/emoji";
+
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
