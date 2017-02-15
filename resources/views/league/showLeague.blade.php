@@ -56,22 +56,24 @@
                                         </ul>
                                     @endif
                                 @endforeach
-                                    <ul v-for="post in posts" v-if="post.username == '{{Auth::user()->name}}'" v-cloak style="text-align: right;">
-                                        <li class="my-chats">
-                                            @{{ post.message }}
-                                         </li><li class="arrow-right">
-                                            &#9658;
-                                        </li><li class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
-                                        </li>
-                                    </ul>
+                                    <ul v-for="post in posts" style="text-align: right;">
+                                        <div class="message-wrap" v-if="post.username == '{{Auth::user()->name}}'" v-cloak>
+                                            <li class="my-chats">
+                                                @{{ post.message }}
+                                             </li><li class="arrow-right">
+                                                &#9658;
+                                            </li><li class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
+                                            </li>
+                                        </div>
                                     <!-- Other users chats -->
-                                    <ul v-for="post in posts" v-else v-cloak>
-                                        <span class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
-                                        </span>
-                                            <b> @{{ post.username }}:</b> 
-                                        <span class="others-chats">
-                                            @{{ post.message }}</li>
-                                        </span>
+                                        <div class="message-wrap" v-else v-cloak>
+                                            <span class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
+                                            </span>
+                                                <b> @{{ post.username }}:</b> 
+                                            <span class="others-chats">
+                                                @{{ post.message }}</li>
+                                            </span>
+                                        </div>
                                     </ul>
                             </div>
                         <hr>
