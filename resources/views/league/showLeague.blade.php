@@ -35,52 +35,44 @@
                     <div>
                         <h3>Messages</h3>
                             <div id="chatArea">
-                            @foreach ($messages as $key=>$message)
-                                @if(Auth::user()->name === $names[$key]->name)
-                                    <ul style="text-align: right;">
-                                        <span class="my-chats">
-                                            {{$message->message}}
-                                        </span>
-                                        <span class="arrow-right">
+                                @foreach ($messages as $key=>$message)
+                                    @if(Auth::user()->name === $names[$key]->name)
+                                        <ul style="text-align: right;">
+                                            <li class="my-chats">
+                                                {{$message->message}}
+                                            </li><li class="arrow-right">
+                                                &#9658;
+                                            </li><li class="li-image" style="background-image: url({{ url('/uploads/avatar',$names[$key]->avatar) }})">
+                                            </li>
+                                        </ul>
+                                    @else
+                                        <ul>
+                                            <span class="li-image" style="background-image: url({{ url('/uploads/avatar',$names[$key]->avatar) }})"> 
+                                            </span>
+                                                <b>{{$names[$key]->name}}:</b> 
+                                            <span class="others-chats">
+                                                {{$message->message}}
+                                            </span>
+                                        </ul>
+                                    @endif
+                                @endforeach
+                                    <ul v-for="post in posts" v-if="post.username == '{{Auth::user()->name}}'" v-cloak style="text-align: right;">
+                                        <li class="my-chats">
+                                            @{{ post.message }}
+                                         </li><li class="arrow-right">
                                             &#9658;
-                                        </span>
-                                        <span>
-                                            <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
-                                        </span>
+                                        </li><li class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
+                                        </li>
                                     </ul>
-                                @else
-                                    <ul>
-                                        <span>
-                                            <img src = "{{ url('/uploads/avatar',$names[$key]->avatar) }}" class="img-circle" height="32px" width="32px"/>
+                                    <!-- Other users chats -->
+                                    <ul v-for="post in posts" v-else v-cloak>
+                                        <span class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
                                         </span>
-                                        <b>{{$names[$key]->name}}:</b> 
+                                            <b> @{{ post.username }}:</b> 
                                         <span class="others-chats">
-                                        {{$message->message}}
+                                            @{{ post.message }}</li>
                                         </span>
                                     </ul>
-                                @endif
-                            @endforeach
-                                <ul v-for="post in posts" v-if="post.username == '{{Auth::user()->name}}'" v-cloak style="text-align: right;">
-                                    <span class="my-chats">
-                                        @{{ post.message }}</li>
-                                     </span>
-                                     <span class="arrow-right">
-                                        &#9658;
-                                    </span>
-                                    <span>
-                                        <img :src="'/uploads/avatar/' + post.avatar" class="img-circle" height="32px" width="32px"/>
-                                    </span>
-                                </ul>
-                                <!-- Other users chats -->
-                                <ul v-for="post in posts" v-else v-cloak>
-                                    <span>
-                                        <img :src="'/uploads/avatar/' + post.avatar" class="img-circle" height="32px" width="32px"/>
-                                    </span>
-                                    <b> @{{ post.username }}:</b> 
-                                    <span class="others-chats">
-                                    @{{ post.message }}</li>
-                                    </span>
-                                </ul>
                             </div>
                         <hr>
                         <hr>

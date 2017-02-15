@@ -11455,6 +11455,18 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 .arrow-right {
   color: #21b8c6;
   font-size: 6px;
+  display: inline-block;
+}
+
+.li-image {
+  display: inline-block;
+  background-position: 50% 50%;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*--------------------------------------------------------------
@@ -11467,6 +11479,16 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 .not-valid-user {
   text-align: center;
+}
+
+.head-shot-user {
+  background-position: 50% 50%;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*--------------------------------------------------------------

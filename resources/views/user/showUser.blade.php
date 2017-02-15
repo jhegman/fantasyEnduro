@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <img src = "{{ url('/uploads/avatar',$user->avatar) }}" class="img-circle" height="150px" width="150px">
+            <div class="head-shot-user" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
+            </div>
         </div>
         <div class="col-md-10">
             <h1>{{ $user->name }}</h1>
