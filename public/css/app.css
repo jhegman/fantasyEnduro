@@ -11867,7 +11867,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 }
 
 .my-chats {
-  max-width: 300px;
+  max-width: 60%;
   border-radius: 2.8px;
   background-color: #21b8c6;
   box-shadow: 0 1px 1px 0 rgba(2, 2, 2, 0.02);
@@ -11879,7 +11879,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 }
 
 .others-chats {
-  max-width: 300px;
+  max-width: 60%;
   border-radius: 2.8px;
   background-color: #e7ecf1;
   box-shadow: 0 1px 1px 0 rgba(2, 2, 2, 0.02);
