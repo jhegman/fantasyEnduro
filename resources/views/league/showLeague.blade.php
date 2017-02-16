@@ -56,8 +56,8 @@
                                         </ul>
                                     @endif
                                 @endforeach
-                                    <ul v-for="post in posts" style="text-align: right;">
-                                        <div class="message-wrap" v-if="post.username == '{{Auth::user()->name}}'" v-cloak>
+                                    <ul v-for="post in posts">
+                                        <div class="message-wrap" v-if="post.username == '{{Auth::user()->name}}'" style="text-align: right;" v-cloak>
                                             <li class="my-chats">
                                                 @{{ post.message }}
                                              </li><li class="arrow-right">
