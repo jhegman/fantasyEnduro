@@ -19,6 +19,7 @@ the file everytime it is saved
 # Reusable Components
 # Welcome Page
 # Navigation
+# Login Page
 # Home Page
 # Set Linup
 # Race Result Pages
@@ -11581,6 +11582,14 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   .navbar-offcanvas .user-settings {
     float: right;
   }
+}
+
+/*--------------------------------------------------------------
+# Login Page
+--------------------------------------------------------------*/
+.page-login .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 /*--------------------------------------------------------------
