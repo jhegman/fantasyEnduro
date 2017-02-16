@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('list.js');
+require('offcanvas-bootstrap/dist/js/bootstrap.offcanvas.js');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

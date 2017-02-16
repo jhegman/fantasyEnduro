@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container main-content">
     <div class="row">
         <div class="col-md-2">
             <div class="head-shot-user" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">

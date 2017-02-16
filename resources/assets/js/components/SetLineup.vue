@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container main-content">
         <div class="search-wrap lineup-search">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input type="text" v-model="searchString" placeholder="Search">

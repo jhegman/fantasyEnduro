@@ -18,6 +18,8 @@ the file everytime it is saved
 # Typography
 # Reusable Components
 # Welcome Page
+# Navigation
+# Home Page
 # Set Linup
 # Race Result Pages
 # Athlete Pages
@@ -4862,7 +4864,7 @@ dd {
   clear: both;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .dl-horizontal dt {
     float: left;
     width: 160px;
@@ -7284,7 +7286,7 @@ tbody.collapse.in {
   margin-bottom: 2px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-right .dropdown-menu {
     right: 0;
     left: auto;
@@ -7834,8 +7836,8 @@ tbody.collapse.in {
 
 .navbar {
   position: relative;
-  min-height: 50px;
-  margin-bottom: 22px;
+  min-height: 100px;
+  margin-bottom: 0;
   border: 1px solid transparent;
 }
 
@@ -7848,7 +7850,7 @@ tbody.collapse.in {
   clear: both;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar {
     border-radius: 4px;
   }
@@ -7863,7 +7865,7 @@ tbody.collapse.in {
   clear: both;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-header {
     float: left;
   }
@@ -7891,7 +7893,7 @@ tbody.collapse.in {
   overflow-y: auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-collapse {
     width: auto;
     border-top: 0;
@@ -7934,7 +7936,7 @@ tbody.collapse.in {
   margin-left: -15px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .container > .navbar-header,
   .container > .navbar-collapse,
   .container-fluid > .navbar-header,
@@ -7949,7 +7951,7 @@ tbody.collapse.in {
   border-width: 0 0 1px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-static-top {
     border-radius: 0;
   }
@@ -7963,7 +7965,7 @@ tbody.collapse.in {
   z-index: 1030;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-fixed-top,
   .navbar-fixed-bottom {
     border-radius: 0;
@@ -7983,10 +7985,10 @@ tbody.collapse.in {
 
 .navbar-brand {
   float: left;
-  padding: 14px 15px;
+  padding: 39px 15px;
   font-size: 18px;
   line-height: 22px;
-  height: 50px;
+  height: 100px;
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -7997,7 +7999,7 @@ tbody.collapse.in {
   display: block;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
@@ -8009,8 +8011,8 @@ tbody.collapse.in {
   float: right;
   margin-right: 15px;
   padding: 9px 10px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 33px;
+  margin-bottom: 33px;
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
@@ -8032,14 +8034,14 @@ tbody.collapse.in {
   margin-top: 4px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-toggle {
     display: none;
   }
 }
 
 .navbar-nav {
-  margin: 7px -15px;
+  margin: 19.5px -15px;
 }
 
 .navbar-nav > li > a {
@@ -8048,7 +8050,7 @@ tbody.collapse.in {
   line-height: 22px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;
@@ -8070,7 +8072,7 @@ tbody.collapse.in {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-nav {
     float: left;
     margin: 0;
@@ -8079,8 +8081,8 @@ tbody.collapse.in {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 39px;
+    padding-bottom: 39px;
   }
 }
 
@@ -8091,8 +8093,8 @@ tbody.collapse.in {
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
@@ -8146,7 +8148,7 @@ tbody.collapse.in {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .navbar-form .form-group {
     margin-bottom: 5px;
   }
@@ -8155,7 +8157,7 @@ tbody.collapse.in {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-form {
     width: auto;
     border: 0;
@@ -8182,26 +8184,26 @@ tbody.collapse.in {
 }
 
 .navbar-btn {
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 
 .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn {
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 39px;
+  margin-bottom: 39px;
 }
 
 .navbar-text {
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 39px;
+  margin-bottom: 39px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-text {
     float: left;
     margin-left: 15px;
@@ -8209,7 +8211,7 @@ tbody.collapse.in {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-left {
     float: left !important;
   }
@@ -8281,7 +8283,7 @@ tbody.collapse.in {
   color: #555;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #777;
   }
@@ -8380,7 +8382,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #fff;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
     border-color: #090909;
   }
@@ -11203,6 +11205,101 @@ span.emoji-inner {
   z-index: 2;
 }
 
+@media (max-width: 991px) {
+  .offcanvas-stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+  .navbar-default .navbar-offcanvas {
+    background-color: #fff;
+  }
+  .navbar-inverse .navbar-offcanvas {
+    background-color: #222;
+  }
+  .navbar-offcanvas {
+    position: fixed;
+    width: 100%;
+    max-width: 250px;
+    left: -250px;
+    top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    z-index: 999;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transition: all 0.15s ease-in;
+    transition: all 0.15s ease-in;
+  }
+  .navbar-offcanvas.in {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  .navbar-offcanvas.navbar-offcanvas-fade {
+    opacity: 0;
+  }
+  .navbar-offcanvas.navbar-offcanvas-fade.in {
+    opacity: 1;
+  }
+  .navbar-offcanvas.offcanvas-transform.in {
+    -webkit-transform: translateX(250px);
+    transform: translateX(250px);
+  }
+  .navbar-offcanvas.offcanvas-position.in {
+    left: 0;
+  }
+  .navbar-offcanvas.navbar-offcanvas-right {
+    left: auto;
+    right: -250px;
+  }
+  .navbar-offcanvas.navbar-offcanvas-right.offcanvas-transform.in {
+    -webkit-transform: translateX(-250px);
+    transform: translateX(-250px);
+  }
+  .navbar-offcanvas.navbar-offcanvas-right.offcanvas-position.in {
+    left: auto;
+    right: 0;
+  }
+  .navbar-offcanvas .dropdown.active .caret {
+    border-top: 0;
+    border-bottom: 4px solid;
+  }
+  .navbar-offcanvas .dropdown-menu {
+    position: relative;
+    width: 100%;
+    border: inherit;
+    box-shadow: none;
+    -webkit-transition: height 0.15s ease-in;
+    transition: height 0.15s ease-in;
+  }
+  .navbar-offcanvas .dropdown-menu.shown {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.offcanvas-toggle {
+  background: #f8f8f8;
+}
+
+.offcanvas-toggle .icon-bar {
+  background: #000;
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+.offcanvas-toggle.is-open .icon-bar:nth-child(1) {
+  -webkit-transform: rotate(45deg) translate(5px, 4px);
+  transform: rotate(45deg) translate(5px, 4px);
+}
+
+.offcanvas-toggle.is-open .icon-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.offcanvas-toggle.is-open .icon-bar:nth-child(3) {
+  -webkit-transform: rotate(-45deg) translate(4px, -4px);
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
@@ -11428,6 +11525,73 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 }
 
 /*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+.navbar-brand {
+  padding: 15px;
+  position: relative;
+  z-index: 5;
+}
+
+.navbar-brand .logo {
+  width: 150px;
+}
+
+.navbar-default {
+  border-bottom: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-offcanvas {
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-offcanvas .menu-items {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-offcanvas .menu-items li {
+    display: inline-block;
+    float: none;
+  }
+}
+
+.navbar-offcanvas .menu-items li a {
+  font-size: 16px;
+  color: #475965;
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-offcanvas .menu-items {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-offcanvas .user-settings {
+    float: right;
+  }
+}
+
+/*--------------------------------------------------------------
+# Home Page
+--------------------------------------------------------------*/
+.page-home .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/*--------------------------------------------------------------
 # Set Lineup
 --------------------------------------------------------------*/
 [v-cloak] {
@@ -11582,6 +11746,12 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   margin-top: 10px;
 }
 
+.page-set-lineupmen .main-content,
+.page-set-lineupwomen .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 .page-set-lineupmen .modal-container,
 .page-set-lineupwomen .modal-container {
   display: -webkit-box;
@@ -11688,7 +11858,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   align-items: center;
   display: -webkit-box;
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 100px);
   -webkit-box-pack: center;
   justify-content: center;
   position: relative;
@@ -11743,9 +11913,20 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # Race Result Pages
 --------------------------------------------------------------*/
+.page-results .main-content,
+.page-resultsid .main-content {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
 /*--------------------------------------------------------------
 # Athlete Pages
 --------------------------------------------------------------*/
+.page-athletes .main-content {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
 .button-results, .race-results, .statistics {
   background: #fff;
   border: 1px solid #e2e2e2;
@@ -11834,6 +12015,14 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   line-height: 2;
 }
 
+.athlete-links.active {
+  border-bottom: 3px solid #147cd1;
+}
+
+.athlete-links.active a {
+  color: #232323;
+}
+
 .athlete-links a:hover {
   color: #232323;
   text-decoration: none;
@@ -11845,17 +12034,15 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   text-decoration: none;
 }
 
-.active:not(.select-category) {
-  border-bottom: 3px solid #147cd1;
-}
-
-.active a {
-  color: #232323;
-}
-
 /*--------------------------------------------------------------
 # League Pages
 --------------------------------------------------------------*/
+.page-leagues .main-content,
+.page-leaguesid .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 #chatArea {
   overflow: auto;
   height: 300px;
@@ -11923,6 +12110,11 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # User Pages
 --------------------------------------------------------------*/
+.page-username .main-content {
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
 .lineups {
   list-style: none;
   padding-left: 0;
@@ -11945,6 +12137,11 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # Rankings Page
 --------------------------------------------------------------*/
+.page-rankings .main-content {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
 .overflow {
   overflow: auto;
   height: 300px;

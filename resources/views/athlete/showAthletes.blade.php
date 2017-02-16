@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container main-content">
     <div class="tabs-container">
         <ul class="tabs">
             <li class="athlete-links" v-bind:class="{ active: result }">

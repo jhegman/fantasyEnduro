@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="container" class="container">
+<div id="container" class="container main-content">
         <transition name="fade">
 			<div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
 	   </transition>

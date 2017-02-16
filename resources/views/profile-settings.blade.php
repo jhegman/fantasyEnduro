@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container main-content">
     <div class="row">
         <div class=col-md-2>
             <img src = "uploads/avatar/{{$user->avatar}}" class="img-circle" height="150px" width="150px">

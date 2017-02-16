@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container main-content">
 	<h1>{{$race->name}} , {{$race->location}}</h1>
 		<div class="table-responsive">
 			<table class="table table-hover">

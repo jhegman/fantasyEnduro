@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid main-content">
 	<div class="row">
 		<a href="/set-lineup/men" class="lineup-cta men-lineup col-md-6">
 			<span class="cta-image"></span>

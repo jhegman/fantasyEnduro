@@ -18,6 +18,8 @@ the file everytime it is saved
 # Typography
 # Reusable Components
 # Welcome Page
+# Navigation
+# Home Page
 # Set Linup
 # Race Result Pages
 # Athlete Pages
@@ -39,7 +41,14 @@ $color-red: #DD3352;
 $color-purple: #9013EF;
 $color-grey: #e7ecf1;
 $color-light-grey: #f1f3f6;
+$color-nav-text: #475965;
 $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+
+//Bootstrap Navbar Overrides
+$navbar-height: 100px;
+$navbar-margin-bottom: 0;
+$grid-float-breakpoint: 992px;
+$offcanvas-media: 991px;
 
 
 /*--------------------------------------------------------------
@@ -58,6 +67,9 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 
 // Emoji Picker
 @import "node_modules/rm-emoji-picker/src/scss/emojipicker.scss";
+
+// Bootstrap Offcanvas
+@import "node_modules/offcanvas-bootstrap/src/sass/bootstrap.offcanvas.scss";
 
 /*--------------------------------------------------------------
 # Typography
@@ -281,6 +293,73 @@ input[type="number"] {
 }
 
 /*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+
+.navbar-brand {
+	padding: 15px;
+	position: relative;
+	z-index: 5;
+
+	.logo {
+		width: 150px;
+	}
+}
+
+.navbar-default {
+	border-bottom: 0;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.navbar-offcanvas {
+	@media screen and (min-width: $grid-float-breakpoint) {
+		position: relative;
+	}
+
+	.menu-items {
+		@media screen and (min-width: $grid-float-breakpoint) {
+			text-align: center;
+			width: 100%;
+		}
+
+		li {
+			@media screen and (min-width: $grid-float-breakpoint) {
+				display: inline-block;
+				float: none;
+			}
+
+			a {
+				font-size: 16px;
+				color: $color-nav-text;
+			}
+		}
+		@media screen and (min-width: $grid-float-breakpoint) {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	.user-settings {
+		@media screen and (min-width: $grid-float-breakpoint) {
+			float: right;
+		}
+	}
+}
+
+/*--------------------------------------------------------------
+# Home Page
+--------------------------------------------------------------*/
+
+.page-home {
+	.main-content {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+}
+
+/*--------------------------------------------------------------
 # Set Lineup
 --------------------------------------------------------------*/
 
@@ -422,6 +501,10 @@ input[type="number"] {
 
 .page-set-lineupmen,
 .page-set-lineupwomen {
+	.main-content {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
 	.modal-container {
 		display: flex;
 		align-items: center;
@@ -506,7 +589,7 @@ input[type="number"] {
 .lineup-cta {
 	align-items: center;
 	display: flex;
-	height: 100vh;
+	height: calc(100vh - 100px);
 	justify-content: center;
 	position: relative;
 	overflow: hidden;
@@ -563,9 +646,23 @@ input[type="number"] {
 # Race Result Pages
 --------------------------------------------------------------*/
 
+.page-results,
+.page-resultsid {
+	.main-content {
+		padding-top: 30px;
+		padding-bottom: 50px;
+	}
+}
+
 /*--------------------------------------------------------------
 # Athlete Pages
 --------------------------------------------------------------*/
+.page-athletes {
+	.main-content {
+		padding-top: 30px;
+		padding-bottom: 50px;
+	}
+}
 .button-results, .race-results, .statistics{
 	background: #fff;
     border: 1px solid #e2e2e2;
@@ -647,6 +744,14 @@ input[type="number"] {
     color: #5eaffd;
     cursor: pointer;
     line-height: 2;
+
+    &.active {
+    	border-bottom: 3px solid #147cd1;
+
+    	a {
+			color: #232323;
+    	}
+    }
 }
 
 .athlete-links a:hover{
@@ -659,17 +764,16 @@ input[type="number"] {
 	text-decoration: none;
 }
 
-.active:not(.select-category){
-	border-bottom: 3px solid #147cd1;
-}
-
-.active a{
-	color: #232323;
-}
-
 /*--------------------------------------------------------------
 # League Pages
 --------------------------------------------------------------*/
+.page-leagues,
+.page-leaguesid {
+	.main-content {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+}
 #chatArea {
 	overflow: auto;
 	height: 300px;
@@ -737,6 +841,12 @@ input[type="number"] {
 /*--------------------------------------------------------------
 # User Pages
 --------------------------------------------------------------*/
+.page-username {
+	.main-content {
+		padding-bottom: 50px;
+		padding-top: 50px;
+	}
+}
 .lineups {
 	list-style: none;
     padding-left: 0;
@@ -759,6 +869,13 @@ input[type="number"] {
 /*--------------------------------------------------------------
 # Rankings Page
 --------------------------------------------------------------*/
+.page-rankings {
+	.main-content {
+		padding-top: 30px;
+		padding-bottom: 50px;
+	}
+}
+
 .overflow {
 	overflow: auto;
 	height: 300px;

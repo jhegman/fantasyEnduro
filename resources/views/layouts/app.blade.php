@@ -25,11 +25,11 @@
 <body class="page-{{str_slug(Route::current()->getPath(), '-')}}">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="container nav-container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <button type="button" class="navbar-toggle offcanvas-toggle" data-toggle="offcanvas" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -37,20 +37,27 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        <img class="logo" src="{{asset('img/fantasy-enduro-logo.png')}}" alt="Fantasy Enduro Logo" />
                     </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <div class="navbar-offcanvas navbar-offcanvas-touch clearfix" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav menu-items">
                         <!-- Authentication Links -->
+                        <li><a href="{{ url('/athletes') }}">Athletes</a></li>
+                        <li><a href="{{ url('/set-lineup') }}">Set Lineup</a></li>
+                        <li><a href="{{ url('/leagues') }}">Leagues</a></li>
+                        <li><a href="{{ url('/results') }}">Results</a></li>
+                        <li><a href="{{ url('/rankings') }}">Rankings</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav user-settings">
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
