@@ -28,6 +28,9 @@ class AthleteController extends Controller
 
 	//Make Athletes Clickable
 	public function showAthletes($id){
+		$banner_photos = array('../img/richie.jpg','../img/richie1.jpg','../img/cecile2.jpg');
+		$photo = $banner_photos[rand(0,2)];
+
 		$athlete = Racer::findOrFail($id);
 		$athleteData = Racer::find($id)->races()->where('overall_place', 1)->get();
 		$racesWon = count($athleteData);
@@ -47,6 +50,6 @@ class AthleteController extends Controller
 
 		}
 		
-		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData','result','points'));
+		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData','result','points','photo'));
 	}
 }

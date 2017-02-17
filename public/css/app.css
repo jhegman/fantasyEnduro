@@ -11554,28 +11554,34 @@ input[type="email"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # Register Page
 --------------------------------------------------------------*/
-.page-register .main-content {
+.page-register .main-content,
+.page-login .main-content {
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
-.page-register .form-group {
+.page-register .form-group,
+.page-login .form-group {
   margin-bottom: 30px;
 }
 
-.page-register .form-group:first-of-type {
+.page-register .form-group:first-of-type,
+.page-login .form-group:first-of-type {
   margin-top: 30px;
 }
 
-.page-register .form-group:last-of-type .col-md-12 {
+.page-register .form-group:last-of-type .col-md-12,
+.page-login .form-group:last-of-type .col-md-12 {
   text-align: center;
 }
 
-.page-register .form-group .col-md-12 {
+.page-register .form-group .col-md-12,
+.page-login .form-group .col-md-12 {
   position: relative;
 }
 
-.page-register .form-group .col-md-12 i {
+.page-register .form-group .col-md-12 i,
+.page-login .form-group .col-md-12 i {
   position: absolute;
   top: 50%;
   left: 30px;
@@ -11588,7 +11594,8 @@ input[type="email"]:-ms-input-placeholder {
   transition: 0.3s;
 }
 
-.page-register .form-group .col-md-12 label {
+.page-register .form-group .col-md-12 label,
+.page-login .form-group .col-md-12 label {
   position: absolute;
   top: 50%;
   left: 50px;
@@ -11601,36 +11608,56 @@ input[type="email"]:-ms-input-placeholder {
   transition: 0.3s;
 }
 
-.page-register .form-group .col-md-12 input {
+.page-register .form-group .col-md-12 input,
+.page-login .form-group .col-md-12 input {
   height: 40px;
   padding-left: 40px;
 }
 
-.page-register .form-group .col-md-12 input:focus ~ label {
+.page-register .form-group .col-md-12 input:focus ~ label,
+.page-login .form-group .col-md-12 input:focus ~ label {
   -webkit-transform: translate(-30px, -45px);
   transform: translate(-30px, -45px);
   opacity: 1;
 }
 
-.page-register .form-group .col-md-12 input:focus ~ i {
+.page-register .form-group .col-md-12 input:focus ~ i,
+.page-login .form-group .col-md-12 input:focus ~ i {
   opacity: 1;
 }
 
-.page-register .form-group .col-md-12 input:not([value=""]):not(:focus) ~ label {
+.page-register .form-group .col-md-12 input:not([value=""]):not(:focus) ~ label,
+.page-login .form-group .col-md-12 input:not([value=""]):not(:focus) ~ label {
   -webkit-transform: translate(-30px, -45px);
   transform: translate(-30px, -45px);
   opacity: 1;
 }
 
-.page-register .form-group .col-md-12 input:not([value=""]):not(:focus) ~ i {
+.page-register .form-group .col-md-12 input:not([value=""]):not(:focus) ~ i,
+.page-login .form-group .col-md-12 input:not([value=""]):not(:focus) ~ i {
   opacity: 1;
 }
 
-.page-register .form-group .help-block {
+.page-register .form-group .help-block,
+.page-login .form-group .help-block {
   margin-bottom: 0;
   padding-left: 15px;
 }
 
+.page-register .form-group .checkbox label,
+.page-login .form-group .checkbox label {
+  position: static;
+  opacity: 1;
+}
+
+.page-register .form-group .checkbox input,
+.page-login .form-group .checkbox input {
+  height: auto;
+}
+
+/*--------------------------------------------------------------
+# Login Page
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
@@ -11688,14 +11715,6 @@ input[type="email"]:-ms-input-placeholder {
   .navbar-offcanvas .user-settings {
     float: right;
   }
-}
-
-/*--------------------------------------------------------------
-# Login Page
---------------------------------------------------------------*/
-.page-login .main-content {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 /*--------------------------------------------------------------
@@ -12055,7 +12074,6 @@ input[type="email"]:-ms-input-placeholder {
   width: 100%;
   background-size: cover;
   box-shadow: inset 0 0 0 1000px rgba(3, 39, 63, 0.85);
-  background-image: url("../img/richie.jpg");
 }
 
 .athlete-info {

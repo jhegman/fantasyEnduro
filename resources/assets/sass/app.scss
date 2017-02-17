@@ -314,7 +314,8 @@ input[type="email"] {
 # Register Page
 --------------------------------------------------------------*/
 
-.page-register {
+.page-register,
+.page-login {
 	.main-content {
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -390,8 +391,22 @@ input[type="email"] {
 			margin-bottom: 0;
 			padding-left: 15px;
 		}
+
+		.checkbox {
+			label {
+				position: static;
+				opacity: 1;
+			}
+			input {
+				height: auto;
+			}
+		}
 	}
 }
+
+/*--------------------------------------------------------------
+# Login Page
+--------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 # Navigation
@@ -449,16 +464,6 @@ input[type="email"] {
 	}
 }
 
-/*--------------------------------------------------------------
-# Login Page
---------------------------------------------------------------*/
-
-.page-login {
-	.main-content {
-		padding-top: 50px;
-		padding-bottom: 50px;
-	}
-}
 
 /*--------------------------------------------------------------
 # Home Page
@@ -788,7 +793,6 @@ input[type="email"] {
     width: 100%;
     background-size: cover;
     box-shadow: inset 0 0 0 1000px rgba(03,39,63,.85);
-    background-image: url('../img/richie.jpg');
 }
 
 .athlete-info{

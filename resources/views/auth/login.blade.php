@@ -12,7 +12,7 @@
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus oninput="this.setAttribute('value', this.value);">
                                 <i class="fa fa-at" aria-hidden="true"></i>
                                 <label for="email" class="control-label">E-Mail Address</label>
                             </div><!-- /.col-md-12 -->
@@ -25,9 +25,9 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required oninput="this.setAttribute('value', this.value);">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label for="password" class="control-label">Password</label>
                             </div><!-- /.col-md-12 -->
                             @if ($errors->has('password'))
                                 <span class="help-block">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-12">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> Remember Me
