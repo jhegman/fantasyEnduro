@@ -11949,7 +11949,6 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   width: 100%;
   background-size: cover;
   box-shadow: inset 0 0 0 1000px rgba(3, 39, 63, 0.85);
-  background-image: url("../img/richie.jpg");
 }
 
 .athlete-info {
