@@ -11314,7 +11314,7 @@ body {
 .btn-primary {
   border-radius: 3px;
   box-shadow: none;
-  background-color: #21b8c6;
+  background-color: #147cd1;
   border: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -11324,7 +11324,7 @@ body {
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-color: #1a8f9a;
+  background-color: #1060a2;
   text-decoration: none;
 }
 
@@ -11667,7 +11667,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   justify-content: center;
   vertical-align: middle;
   border-radius: 50%;
-  background-color: #21b8c6;
+  background-color: #147cd1;
   color: #fff;
   margin-right: 25px;
   position: absolute;
@@ -11719,7 +11719,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 .available-racers .content-wrap .too-many-racers h3,
 .your-lineup .content-wrap .too-many-racers h3 {
-  color: #21b8c6;
+  color: #147cd1;
 }
 
 .available-racers h2,
@@ -11790,7 +11790,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 .stats {
   margin-bottom: -20px;
   margin-left: -20px;
-  margin-right: -20px;
+  margin-right: -21px;
   border-radius: 0 0 3px 3px;
   position: absolute;
   bottom: 20px;
@@ -11858,7 +11858,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 }
 
 .points-scored {
-  background-color: #21b8c6;
+  background-color: #147cd1;
   border-bottom-right-radius: 3px;
 }
 
@@ -12244,12 +12244,17 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # User Settings Page
 --------------------------------------------------------------*/
+.page-profile-settings .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: #21b8c6;
+  stroke: #147cd1;
   fill: none;
   -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
@@ -12265,7 +12270,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   stroke-width: 2;
   stroke: #fff;
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px #21b8c6;
+  box-shadow: inset 0px 0px 0px #147cd1;
   -webkit-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
@@ -12315,13 +12320,13 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 @-webkit-keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px #21b8c6;
+    box-shadow: inset 0px 0px 0px 30px #147cd1;
   }
 }
 
 @keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px #21b8c6;
+    box-shadow: inset 0px 0px 0px 30px #147cd1;
   }
 }
 

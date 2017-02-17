@@ -37,7 +37,7 @@ the file everytime it is saved
 
 $color-white: #fff;
 $color-black: #000;
-$color-turquoise: #21b8c6;
+$color-turquoise: #147cd1;
 $color-red: #DD3352;
 $color-purple: #9013EF;
 $color-grey: #e7ecf1;
@@ -541,7 +541,7 @@ input[type="number"] {
 .stats {
 	margin-bottom: -20px;
 	margin-left: -20px;
-	margin-right: -20px;
+	margin-right: -21px;
 	border-radius: 0 0 3px 3px;
 	position: absolute;
 	bottom: 20px;
@@ -978,6 +978,13 @@ input[type="number"] {
 /*--------------------------------------------------------------
 # User Settings Page
 --------------------------------------------------------------*/
+.page-profile-settings {
+	.main-content {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+}
+
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
