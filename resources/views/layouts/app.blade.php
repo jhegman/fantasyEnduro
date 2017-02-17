@@ -43,10 +43,6 @@
                 </div>
 
                 <div class="navbar-offcanvas navbar-offcanvas-touch clearfix" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav menu-items">

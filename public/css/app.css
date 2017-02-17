@@ -18,6 +18,7 @@ the file everytime it is saved
 # Typography
 # Reusable Components
 # Welcome Page
+# Register Page
 # Navigation
 # Login Page
 # Home Page
@@ -11314,7 +11315,7 @@ body {
 .btn-primary {
   border-radius: 3px;
   box-shadow: none;
-  background-color: #21b8c6;
+  background-color: #147cd1;
   border: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -11324,7 +11325,7 @@ body {
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-color: #1a8f9a;
+  background-color: #1060a2;
   text-decoration: none;
 }
 
@@ -11455,6 +11456,21 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   transform: scale(1.1);
 }
 
+.panel-default {
+  box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
+  border: 0;
+  border-radius: 5px;
+}
+
+.panel-default .panel-heading {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 700;
+  color: #475965;
+  border-bottom: 2px solid #147cd1;
+}
+
 /*--------------------------------------------------------------
 # Welcome Page
 --------------------------------------------------------------*/
@@ -11523,6 +11539,82 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+/*--------------------------------------------------------------
+# Register Page
+--------------------------------------------------------------*/
+.page-register .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.page-register .form-group {
+  margin-bottom: 30px;
+}
+
+.page-register .form-group:first-of-type {
+  margin-top: 30px;
+}
+
+.page-register .form-group .col-md-12 {
+  position: relative;
+}
+
+.page-register .form-group .col-md-12 i {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #727f8c;
+  font-size: 16px;
+  opacity: 0.3;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.page-register .form-group .col-md-12 label {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-top: 0;
+  color: #727f8c;
+  opacity: 0.3;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.page-register .form-group .col-md-12 input {
+  height: 40px;
+  padding-left: 50px;
+}
+
+.page-register .form-group .col-md-12 input:focus ~ label {
+  -webkit-transform: translate(-30px, -45px);
+  transform: translate(-30px, -45px);
+  opacity: 1;
+}
+
+.page-register .form-group .col-md-12 input:focus ~ i {
+  opacity: 1;
+}
+
+.page-register .form-group .col-md-12 input:not([value=""]):not(:focus) ~ label {
+  -webkit-transform: translate(-30px, -45px);
+  transform: translate(-30px, -45px);
+  opacity: 1;
+}
+
+.page-register .form-group .col-md-12 input:not([value=""]):not(:focus) ~ i {
+  opacity: 1;
+}
+
+.page-register .form-group .help-block {
+  margin-bottom: 0;
+  padding-left: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -11667,7 +11759,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   justify-content: center;
   vertical-align: middle;
   border-radius: 50%;
-  background-color: #21b8c6;
+  background-color: #147cd1;
   color: #fff;
   margin-right: 25px;
   position: absolute;
@@ -11719,7 +11811,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 .available-racers .content-wrap .too-many-racers h3,
 .your-lineup .content-wrap .too-many-racers h3 {
-  color: #21b8c6;
+  color: #147cd1;
 }
 
 .available-racers h2,
@@ -11790,7 +11882,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 .stats {
   margin-bottom: -20px;
   margin-left: -20px;
-  margin-right: -20px;
+  margin-right: -21px;
   border-radius: 0 0 3px 3px;
   position: absolute;
   bottom: 20px;
@@ -11858,7 +11950,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 }
 
 .points-scored {
-  background-color: #21b8c6;
+  background-color: #147cd1;
   border-bottom-right-radius: 3px;
 }
 
@@ -12243,12 +12335,17 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # User Settings Page
 --------------------------------------------------------------*/
+.page-profile-settings .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: #21b8c6;
+  stroke: #147cd1;
   fill: none;
   -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
@@ -12264,7 +12361,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   stroke-width: 2;
   stroke: #fff;
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px #21b8c6;
+  box-shadow: inset 0px 0px 0px #147cd1;
   -webkit-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
@@ -12314,13 +12411,13 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 @-webkit-keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px #21b8c6;
+    box-shadow: inset 0px 0px 0px 30px #147cd1;
   }
 }
 
 @keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px #21b8c6;
+    box-shadow: inset 0px 0px 0px 30px #147cd1;
   }
 }
 

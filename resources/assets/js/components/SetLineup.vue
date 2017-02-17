@@ -45,7 +45,7 @@
                     <h2>Your Lineup</h2>
                     <draggable 
                     :list="yourLineup" 
-                    class="dragArea" 
+                    class="dragArea"
                     :options="{group:'athletes'}"
                     >
                     <div class="racer" v-for="(athlete, index) in yourLineup" v-cloak>
@@ -135,11 +135,6 @@
                     this.disableLineup = true;
                 }
             },
-            onMove: function() {
-                if (this.yourLineup.length == this.lineupSize) {
-                    return false;
-                }
-            },
             closeNoty: function() {
                 this.showNoty = false;
             },
@@ -181,6 +176,15 @@
                     this.yourLineup = result.yourLineup;
                 });
             }
+        },
+        computed: {
+            onMove: function(evt, originalEvent) {
+                if (this.yourLineup.length == this.lineupSize) {
+                    return function() {
+                        return false;
+                    }
+                }
+            },
         },
         components: {
             draggable,
