@@ -11330,31 +11330,40 @@ body {
 }
 
 input[type="text"],
-input[type="password"] input[type="number"] {
+input[type="password"],
+input[type="number"],
+input[type="email"] {
   height: 40px;
-  border: 1px solid #f1f3f6;
   padding-left: 15px;
 }
 
 input[type="text"]::-webkit-input-placeholder,
-input[type="password"] input[type="number"]::-webkit-input-placeholder {
+input[type="password"]::-webkit-input-placeholder,
+input[type="number"]::-webkit-input-placeholder,
+input[type="email"]::-webkit-input-placeholder {
   color: #ced6dc;
 }
 
 input[type="text"]:-moz-placeholder,
-input[type="password"] input[type="number"]:-moz-placeholder {
+input[type="password"]:-moz-placeholder,
+input[type="number"]:-moz-placeholder,
+input[type="email"]:-moz-placeholder {
   /* Firefox 18- */
   color: #ced6dc;
 }
 
 input[type="text"]::-moz-placeholder,
-input[type="password"] input[type="number"]::-moz-placeholder {
+input[type="password"]::-moz-placeholder,
+input[type="number"]::-moz-placeholder,
+input[type="email"]::-moz-placeholder {
   /* Firefox 19+ */
   color: #ced6dc;
 }
 
 input[type="text"]:-ms-input-placeholder,
-input[type="password"] input[type="number"]:-ms-input-placeholder {
+input[type="password"]:-ms-input-placeholder,
+input[type="number"]:-ms-input-placeholder,
+input[type="email"]:-ms-input-placeholder {
   color: #ced6dc;
 }
 
@@ -11368,6 +11377,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 .search-wrap input {
   padding-left: 40px;
+  border: 1px solid #f1f3f6;
 }
 
 .search-wrap .fa-search {
@@ -11557,6 +11567,10 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
   margin-top: 30px;
 }
 
+.page-register .form-group:last-of-type .col-md-12 {
+  text-align: center;
+}
+
 .page-register .form-group .col-md-12 {
   position: relative;
 }
@@ -11589,7 +11603,7 @@ input[type="password"] input[type="number"]:-ms-input-placeholder {
 
 .page-register .form-group .col-md-12 input {
   height: 40px;
-  padding-left: 50px;
+  padding-left: 40px;
 }
 
 .page-register .form-group .col-md-12 input:focus ~ label {
