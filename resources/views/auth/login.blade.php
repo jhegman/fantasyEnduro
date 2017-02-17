@@ -25,7 +25,7 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control" name="password" required oninput="this.setAttribute('value', this.value);">
+                                <input id="password" type="password" class="form-control" name="password" required oninput="this.setAttribute('value', this.value);" value="">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
                                 <label for="password" class="control-label">Password</label>
                             </div><!-- /.col-md-12 -->
