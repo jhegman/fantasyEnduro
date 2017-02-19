@@ -3,31 +3,28 @@
 @section('content')
 <div class="container main-content">
     <div class="row">
-        <div class="col-md-2">
-            <div class="card-wrap">
-                <div class="profile_pic-wrap" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
+        <div class="col-md-12">
+            <div class="card-wrap card-wrap-user">
+                <div class="profile_pic-wrap user-profile-pic" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
                 </div>
                  <div class="info-wrap">
-                    <h1 class="user-name">{{ $user->name }}</h1>
+                    <h1 class="user-name user-name-user">{{ $user->name }}</h1>
+                    @if (Auth::user()->name == $user->name)
+                        <ul class="lineups">
+                            <li>
+                                <a href="{{url('/set-lineup/men')}}">
+                                    Set your men's team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/set-lineup/women')}}">
+                                    Set your women's team
+                                </a>
+                            </li>
+                        </ul>
+                    @endif
                 </div>
             </div>
-        </div>
-        <div class="col-md-10">
-            <h1>{{ $user->name }}</h1>
-            @if (Auth::user()->name == $user->name)
-                <ul class="lineups">
-                    <li>
-                        <a href="{{url('/set-lineup/men')}}">
-                            Set your men's team
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('/set-lineup/women')}}">
-                            Set your women's team
-                        </a>
-                    </li>
-                </ul>
-            @endif
         </div>
     </div>   
     <div class="row">

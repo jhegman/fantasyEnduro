@@ -12253,6 +12253,7 @@ input[type="email"]:-ms-input-placeholder {
 .lineups {
   list-style: none;
   padding-left: 0;
+  text-align: center;
 }
 
 .not-valid-user {
@@ -12530,6 +12531,21 @@ input[type="email"]:-ms-input-placeholder {
   overflow: hidden;
   background-position: 50% 50%;
   background-size: cover;
+}
+
+.user-profile-pic {
+  width: 150px;
+  height: 150px;
+  margin-left: -75px;
+  top: -75px;
+}
+
+.card-wrap-user {
+  border-top: 50px solid #147cd1;
+}
+
+.user-name-user {
+  margin-top: 75px !important;
 }
 
 .user-name {
