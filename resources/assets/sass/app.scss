@@ -635,8 +635,8 @@ input[type="email"] {
 
 //Lineup Modal
 .modal-head-shot {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	background-size: cover;
 	background-position: 50% 50%;
 	border-radius: 50%;
@@ -910,6 +910,7 @@ input[type="email"] {
 	padding-bottom: 4px;
     color: #ffffff;
     display: inline-table;
+    word-wrap: break-word;
 }
 
 .others-chats{
@@ -922,6 +923,7 @@ input[type="email"] {
 	padding-bottom: 4px;
 	color: #475965;
 	display: inline-table;
+	word-wrap: break-word;
 }
 
 .arrow-right{
@@ -975,8 +977,8 @@ input[type="email"] {
 .head-shot-user {
 		background-position: 50% 50%;
 		border-radius: 50%;
-		height: 150px;
-		width: 150px;
+		height: 100px;
+		width: 100px;
 		background-size: cover;
 		display: inline-block;
 		vertical-align: middle;
@@ -1171,4 +1173,58 @@ input[type="email"] {
 	display:table;
 	margin-left:auto;
 	margin-right:auto;
+}
+
+.settings-table{
+	display: block;
+    padding: 8px 12px;
+    background-color: #fff;
+    color: #66757f;
+    border: 1px solid #e1e8ed;
+    border-top: 0;
+}
+
+.settings-first{
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.settings-last{
+	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.card-wrap {
+  background:#fff;
+  position:relative;
+  padding-top:10px;
+  padding-bottom:5px;
+  border-radius:5px;
+  border-top:33.33333px solid $color-turquoise;
+}
+
+.profile_pic-wrap {
+  width:100px;
+  height:100px;
+  background:#fff;
+  top:0;
+  left:50%;
+  padding:5px;
+  position:absolute;
+  margin-left: -50px;
+  top: -50px;
+  border-radius:50%; 
+  overflow:hidden;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.user-name {
+  text-align:center;
+  margin-top:50px;
+  font-size: 24px;
+  word-wrap: break-word;
+}
+
+.user-title {
+  text-align:center;
 }

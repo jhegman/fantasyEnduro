@@ -31,6 +31,7 @@ const app = new Vue({
 		password: 'A',
 		seen: false,
 		result: true,
+		settings: [{show:true},{show:false},{show:false}],
 	},
 	methods: {
 		joinLeague: function(league){
@@ -58,7 +59,10 @@ const app = new Vue({
 		},
 		closeNoty: function() {
 			this.showNoty = false;
-		}
+		},
+		expand: function(index)	{
+			this.settings[index].show = !this.settings[index].show;
+		},
 	}
 });
 
