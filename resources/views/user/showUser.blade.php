@@ -4,7 +4,12 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-2">
-            <div class="head-shot-user" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
+            <div class="card-wrap">
+                <div class="profile_pic-wrap" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
+                </div>
+                 <div class="info-wrap">
+                    <h1 class="user-name">{{ $user->name }}</h1>
+                </div>
             </div>
         </div>
         <div class="col-md-10">

@@ -5,7 +5,7 @@
     <div class="row">
         <div class=col-md-2>
             <div class="card-wrap">
-                <div class="profile_pic-wrap head-shot-user" style="background-image: url('uploads/avatar/{{$user->avatar}}')">
+                <div class="profile_pic-wrap" style="background-image: url('uploads/avatar/{{$user->avatar}}')">
                 </div>
                 <div class="info-wrap">
                     <h1 class="user-name">{{$user->name}}</h1>
