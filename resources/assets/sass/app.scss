@@ -239,6 +239,133 @@ input[type="email"] {
 	}
 }
 
+.flex-row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+//Cards
+.card {
+    display: flex;
+    align-items: stretch;
+	margin-top: 50px;
+
+	@media screen and (min-width: $screen-sm) {
+		&:nth-child(-n+2) {
+			margin-top: 0;
+		}
+	}
+
+	@media screen and (min-width: $screen-md) {
+		&:nth-child(-n+3) {
+			margin-top: 0;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+
+    .card-wrap {
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.13);
+        display: block;
+        transition: 0.3s;
+        position: relative;
+        width: 100%;
+        background-color: $color-white;
+
+        &:hover,
+        &:focus {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+            transform: translateY(-3px);
+        }
+    }
+
+    .card-title {
+    	background-color: $color-turquoise;
+    	padding: 5px 0;
+
+    	h3 {
+			margin-top: 0;
+			font-size: 18px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			line-height: 29px;
+			text-align: center;
+			text-transform: uppercase;
+			text-decoration: none;
+			color: $color-white;
+			margin-bottom: 0;
+    	}
+    }
+
+    .card-content {
+        background-color: $color-white;
+        padding: 35px 20px 35px 20px;
+        position: relative;
+
+        .top-three {
+        	li {
+        		list-style: none;
+
+        		&:not(:first-of-type) {
+					margin-top: 10px;
+        		}
+        	}
+        }
+
+        .head-shot {
+        	background-position: 50% 50%;
+        	border-radius: 50%;
+        	height: 50px;
+        	width: 50px;
+        	background-size: cover;
+        	display: inline-block;
+        	vertical-align: middle;
+        	margin-right: 10px;
+        }
+
+        .racer-name {
+        	color: $color-nav-text;
+        	font-size: 16px;
+        }
+
+        .race-location {
+        	text-align: center;
+
+        	i,
+        	h4 {
+        		display: inline-block;
+        		vertical-align: middle;
+        	}
+
+        	h4 {
+        		color: $color-turquoise;
+        		font-size: 16px;
+        	}
+
+        	i {
+        		font-size: 20px;
+        		margin-right: 10px;
+        		color: $color-turquoise;
+        	}
+        }
+    }
+
+    .card-btn {
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        font-weight: 700;
+        white-space: nowrap;
+    }
+}
+
 /*--------------------------------------------------------------
 # Welcome Page
 --------------------------------------------------------------*/
@@ -1195,13 +1322,15 @@ input[type="email"] {
     border-bottom-right-radius: 5px;
 }
 
-.card-wrap {
-  background:#fff;
-  position:relative;
-  padding-top:10px;
-  padding-bottom:5px;
-  border-radius:5px;
-  border-top:33.33333px solid $color-turquoise;
+.page-profile-settings {
+	.card-wrap {
+	  background:#fff;
+	  position:relative;
+	  padding-top:10px;
+	  padding-bottom:5px;
+	  border-radius:5px;
+	  border-top:33.33333px solid $color-turquoise;
+	}
 }
 
 .profile_pic-wrap {
