@@ -12,20 +12,20 @@
     				</div><!-- /.card-title -->
     				<div class="card-content">
     					@php
-    						$racers = $race->racers()->get();
+    						$racers = $race->racers()->take(3)->get();
     					@endphp
     					@if (count($racers) !== 0)
     						<ul class="top-three">
-    							@for ($i = 0; $i < 3; $i++)
+    							@foreach ($racers as $racer)
     								<li>
-    									@if ($racers[$i]->photo_url !== null)
-    										<div class="head-shot" style="background-image: url({{$racers[$i]->photo_url}})"></div><!-- /.headshot -->
+    									@if ($racer->photo_url !== null)
+    										<div class="head-shot" style="background-image: url({{$racer->photo_url}})"></div><!-- /.headshot -->
     									@else
     										<div class="head-shot" style="background-image: url({{asset('img/placeholder_athlete.jpg')}})"></div><!-- /.headshot -->
     									@endif
-    									<span class="racer-name">{{$racers[$i]->name}}</span>
+    									<span class="racer-name">{{$racer->name}}</span>
     								</li>
-    							@endfor
+    							@endforeach
     						</ul>
     					@endif
     				</div><!-- /.card-content -->
