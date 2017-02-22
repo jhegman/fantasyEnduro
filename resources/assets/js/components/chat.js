@@ -16,6 +16,12 @@ module.exports = {
         }
     },
     mounted: function () {
+        var count = 0;
+        //Reset notifications on click
+        $( "#clear-noty" ).click(function() {
+            count = 0;
+            $('#notify').text(null);
+        });
         //Get league ID from url
         var path = window.location.pathname;
         //gets every character after '/leagues/'
@@ -23,13 +29,15 @@ module.exports = {
         league_id = league_id[1];
         Echo.channel('publicLeague.'+league_id)
             .listen('ChatMessageWasReceived', (data) => {
-                // Push ata to posts list.
+                // Push data to posts list.
                 this.posts.push({
                     message: data.chatMessage.message,
                     username: data.user.name,
                     avatar: data.user.avatar,
                 });
                 this.scrollDown();
+                count++;
+                this.notify(count);
             })
             //scroll down to bottom when page is loaded
             this.scrollDownStart();
@@ -37,6 +45,7 @@ module.exports = {
         const icon      = document.getElementById('emoji-icon');
         const container = document.getElementById('input-wrap');
         const editable  = document.getElementById('chat-input');
+
 
         this.picker.listenOn(icon, container, editable);
     },
@@ -62,8 +71,15 @@ module.exports = {
         scrollDownStart(){
         var elem = document.getElementById('chatArea');
         elem.scrollTop = elem.scrollHeight + 1;
+        },
+
+        notify(count){
+        if (!$('.chat-off-canvas').hasClass('visible')){
+            $('#notify').text(count);
         }
-        
+
+        },
+
     }
 
 };

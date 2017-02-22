@@ -31,6 +31,7 @@ const app = new Vue({
 		password: 'A',
 		seen: false,
 		result: true,
+		show: false,
 		settings: [{show:true},{show:false},{show:false}],
 	},
 	methods: {

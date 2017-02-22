@@ -956,6 +956,29 @@ input[type="email"] {
 	}
 }
 
+.chat-off-canvas{
+	background-color: #f9f7f6;
+    bottom: 0;
+    box-shadow: -6px 0px 7px -2px rgba(0,0,0,0.3);
+    overflow: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    position: fixed;
+    right: 0;
+    width:50%;
+    padding-bottom: 25px;
+    transform: translateX(100%);
+	transition: .3s;
+	opacity:0;
+}
+
+.visible{
+	opacity:1;
+	transform: none ;
+	transition: .3s;
+}
+
 /*--------------------------------------------------------------
 # User Pages
 --------------------------------------------------------------*/

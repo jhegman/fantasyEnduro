@@ -5,13 +5,15 @@
    	<transition name="fade">
 			<div style= "position:fixed;" class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
 	</transition>
-   		<span>Create New League</span>
-   			<span class="dropdown" v-if="seen" v-on:click="seen = !seen" v-cloak>
-   				<i class="fa fa-minus-square-o" aria-hidden="true"></i>
-   			</span>
-   				<span class="dropdown" v-if="!seen" v-on:click="seen = !seen" v-cloak>
-   					<i class="fa fa-plus-square-o" aria-hidden="true"></i>
-   				</span>
+   		<span v-on:click="seen = !seen" style="cursor: pointer;">
+            Create New League
+        </span>
+		<span class="dropdown" v-if="seen" v-on:click="seen = !seen" v-cloak>
+			<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+		</span>
+		<span class="dropdown" v-if="!seen" v-on:click="seen = !seen" v-cloak>
+			<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+		</span>
    		<div class="newLeague" v-if="seen" v-cloak>
    			{!! Form::open(['url' => 'leagues/created']) !!}
             <div class="form-group {{$errors->has('new_league') ? 'has-error' : ''}}">

@@ -20,7 +20,9 @@
                 <span class="dropdown" v-else @click="expand(0)" v-cloak>
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                 </span>
+                <span @click="expand(0)" style="cursor: pointer;">   
                     Edit Username
+                </span>
                 <div v-if="settings[0].show" v-cloak>
                     {!! Form::open(['url' => 'change-username/complete']) !!}
                         <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
@@ -41,7 +43,9 @@
                 <span class="dropdown" v-else @click="expand(1)" v-cloak>
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                 </span>
+                <span @click="expand(1)" style="cursor: pointer;">
                     Change profile picture
+                </span>
                 <div v-if="settings[1].show" v-cloak>
                     {!! Form::open(['url' => 'profile-settings', 'files' => true]) !!}
                         <!-- <input type="file" name="avatar"> -->
@@ -57,7 +61,9 @@
                 <span class="dropdown" v-else @click="expand(2)" v-cloak>
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                 </span>
+                <span @click="expand(2)" style="cursor: pointer;">
                     Email Preferences
+                </span>
                 <div v-if="settings[2].show" v-cloak>
                     <form enctype="multipart/form-data" action="/unsubscribe" method="POST">
                         <label>Subscribe to reminder emails?</label>
