@@ -12663,7 +12663,7 @@ input[type="email"]:-ms-input-placeholder {
   border-bottom-right-radius: 5px;
 }
 
-.page-profile-settings .card-wrap {
+.page-profile-settings .card-wrap, .page-username .card-wrap {
   background: #fff;
   position: relative;
   padding-top: 10px;
