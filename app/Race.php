@@ -22,7 +22,8 @@ class Race extends Model
         	'stage_5_place',
         	'stage_6_time',
         	'stage_6_place',
-            'points'
+            'points',
+            'week'
     	);
     }
 }
