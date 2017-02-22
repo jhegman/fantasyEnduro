@@ -12304,6 +12304,12 @@ input[type="email"]:-ms-input-placeholder {
   padding-bottom: 50px;
 }
 
+.page-leagues .cover-athlete,
+.page-leaguesid .cover-athlete {
+  position: relative;
+  box-shadow: inset 0 0 0 1000px rgba(3, 39, 63, 0.3);
+}
+
 #chatArea {
   overflow: auto;
   height: 300px;
@@ -12387,6 +12393,19 @@ input[type="email"]:-ms-input-placeholder {
   -webkit-transition: .3s;
   transition: .3s;
   opacity: 0;
+  top: 110px;
+}
+
+@media (max-width: 768px) {
+  .chat-off-canvas {
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .chat-off-canvas {
+    top: 100px;
+  }
 }
 
 .visible {
@@ -12395,6 +12414,66 @@ input[type="email"]:-ms-input-placeholder {
   transform: none;
   -webkit-transition: .3s;
   transition: .3s;
+}
+
+#clear-noty {
+  height: 50px;
+  width: 50px;
+  display: block;
+  cursor: pointer;
+}
+
+.chat-wrap {
+  width: 60px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.notify-style {
+  width: 25px;
+  height: 25px;
+  background-color: #db4437;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.leave {
+  float: right;
+  color: white;
+}
+
+.cancel {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  cursor: pointer;
+}
+
+.league-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 5px;
+  font-size: 50px;
+}
+
+.go-back {
+  color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.go-back a {
+  color: white;
 }
 
 /*--------------------------------------------------------------

@@ -21,6 +21,7 @@ module.exports = {
         $( "#clear-noty" ).click(function() {
             count = 0;
             $('#notify').text(null);
+            $('#notify').removeClass('notify-style');
         });
         //Get league ID from url
         var path = window.location.pathname;
@@ -76,6 +77,7 @@ module.exports = {
         notify(count){
         if (!$('.chat-off-canvas').hasClass('visible')){
             $('#notify').text(count);
+            $('#notify').addClass('notify-style');
         }
 
         },
