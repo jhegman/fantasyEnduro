@@ -26,45 +26,47 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-hover table-responsive">
-               <thead>
-                    <tr>
-                        <th> User </th>
-                        <th> Overall Score </th>
-                        @if($points[0]->currentPage() == 1)
-                            @for($i = 1;$i < 5;$i++)
-                                <th> Week {{$i}} Score</th>
-                                <th> Week {{$i}} Rank</th>
-                            @endfor
-                        @else
-                            @for($i = 4;$i < 9;$i++)
-                                <th> Week {{$i}} Score</th>
-                                <th> Week {{$i}} Rank</th>
-                            @endfor
-                        @endif
-                    </tr>
-                </thead>
-               <tbody>
-               @foreach($users as $key=> $user)
-                   <tr>
-                        <td>
-                            <a href="{{ url('/user',$user->name) }}">{{$user->name}}</a>
-                        </td>
-                        <td>
-                            {{$user->points}}
-                        </td>
-                        @foreach($points[$key] as $point)
+            <div class="table-responsive">
+                <table class="table table-hover">
+                   <thead>
+                        <tr>
+                            <th> User </th>
+                            <th> Overall Score </th>
+                            @if($points[0]->currentPage() == 1)
+                                @for($i = 1;$i < 5;$i++)
+                                    <th> Week {{$i}} Score</th>
+                                    <th> Week {{$i}} Rank</th>
+                                @endfor
+                            @else
+                                @for($i = 4;$i < 9;$i++)
+                                    <th> Week {{$i}} Score</th>
+                                    <th> Week {{$i}} Rank</th>
+                                @endfor
+                            @endif
+                        </tr>
+                    </thead>
+                   <tbody>
+                   @foreach($users as $key=> $user)
+                       <tr>
                             <td>
-                                {{$point->points}}
+                                <a href="{{ url('/user',$user->name) }}">{{$user->name}}</a>
                             </td>
                             <td>
-                                {{$point->rank}}
+                                {{$user->points}}
                             </td>
-                        @endforeach
-                     </tr>
-               @endforeach
-               </tbody>
-            </table>
+                            @foreach($points[$key] as $point)
+                                <td>
+                                    {{$point->points}}
+                                </td>
+                                <td>
+                                    {{$point->rank}}
+                                </td>
+                            @endforeach
+                         </tr>
+                   @endforeach
+                   </tbody>
+                </table>
+            </div>
             {{$points[0]->links()}}
         </div>
     </div>
