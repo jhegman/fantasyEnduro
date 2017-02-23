@@ -12396,6 +12396,10 @@ input[type="email"]:-ms-input-placeholder {
   top: 110px;
 }
 
+.chat-off-canvas h3 {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .chat-off-canvas {
     width: 100%;
@@ -12403,6 +12407,8 @@ input[type="email"]:-ms-input-placeholder {
     z-index: 1001;
     top: 0 !important;
     padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   #chatArea {
     height: 250px;
