@@ -51,7 +51,7 @@ class User extends Authenticatable
     */
     public function points()
     {
-        return $this->hasMany('App\Point')->withTimestamps();
+        return $this->hasMany('App\Point');
     }
 
     /**

@@ -12402,6 +12402,7 @@ input[type="email"]:-ms-input-placeholder {
     height: 100%;
     z-index: 1001;
     top: 0 !important;
+    padding-bottom: 0px;
   }
   #chatArea {
     height: 250px;

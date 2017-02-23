@@ -26,20 +26,46 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-12">
-            <table>
+            <table class="table table-hover table-responsive">
+               <thead>
+                    <tr>
+                        <th> User </th>
+                        <th> Overall Score </th>
+                        @if($points[0]->currentPage() == 1)
+                            @for($i = 1;$i < 5;$i++)
+                                <th> Week {{$i}} Score</th>
+                                <th> Week {{$i}} Rank</th>
+                            @endfor
+                        @else
+                            @for($i = 4;$i < 9;$i++)
+                                <th> Week {{$i}} Score</th>
+                                <th> Week {{$i}} Rank</th>
+                            @endfor
+                        @endif
+                    </tr>
+                </thead>
                <tbody>
-               @foreach($users as $user)
+               @foreach($users as $key=> $user)
                    <tr>
                         <td>
                             <a href="{{ url('/user',$user->name) }}">{{$user->name}}</a>
                         </td>
                         <td>
-                            Score: {{$user->points}}
+                            {{$user->points}}
                         </td>
-                   </tr>
+                        @foreach($points[$key] as $point)
+                            <td>
+                                {{$point->points}}
+                            </td>
+                            <td>
+                                {{$point->rank}}
+                            </td>
+                        @endforeach
+                     </tr>
                @endforeach
                </tbody>
             </table>
+            {{$points[0]->links()}}
         </div>
     </div>
         @if($userInLeagueCheck > 0)    

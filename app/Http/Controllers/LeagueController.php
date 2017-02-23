@@ -37,6 +37,10 @@ class LeagueController extends Controller
         $league = League::findOrFail($id);
     	$users = $league->users;
         $users = $users->sortByDesc('points');
+        
+        foreach ($users as $key => $user) {
+            $points[$key] = $user->points()->paginate(4);
+        }
 
         $messages = ChatMessage::where('league_id', $id)
         ->orderBy('id','desc')
@@ -52,8 +56,8 @@ class LeagueController extends Controller
         }
         //Check if current user is in league for Leave League button
         $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());
-
-    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','user'));
+        
+    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','user','points'));
     }
 
     //Create New League form

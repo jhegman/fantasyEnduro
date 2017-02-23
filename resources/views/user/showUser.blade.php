@@ -78,7 +78,9 @@
         <div class="col-md-12">
             <h1>Rankings</h1>
                 @foreach($rankings as $ranking)
-                    Week: {{$ranking->week}} Score: {{$ranking->points}} Rank: {{$ranking->rank}}/{{count(Auth::user()::all())}}
+                    <div>
+                        Week: {{$ranking->week}} | Score: {{$ranking->points}} | Rank: {{$ranking->rank}}/{{count(Auth::user()::all())}}
+                    </div>
                 @endforeach
         </div>
     </div>
