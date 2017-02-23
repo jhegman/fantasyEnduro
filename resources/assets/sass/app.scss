@@ -1104,12 +1104,19 @@ input[type="email"] {
 @media (max-width: 768px){
 	.chat-off-canvas{
 		width:100%;
+		height:100%;
+		z-index:1001;
+		top:0 !important;
+	}
+
+	#chatArea{
+		height:250px;
 	}
 }
 
 @media (max-width: 992px){
 	.chat-off-canvas{
-		top:100px;
+		top: 100px;
 	}
 }
 
