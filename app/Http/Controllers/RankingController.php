@@ -46,4 +46,51 @@ class RankingController extends Controller
 
 		return view('result.rankings',compact('overallRankings','topMen','topWomen'));
 	}
+
+	public function weeklyRanking($id){
+		$week = $id;
+		if($id >= 1 && $id < 9){
+
+		//Weekly Rank and Points
+		$weekRankings = Point::where('week', $id)
+		->orderBy('points', 'DESC')
+		->get();
+
+		//User associated with the ranking
+		foreach ($weekRankings as $key => $ranking) {
+			$users[$key] = User::find($ranking->user_id);
+		}
+
+		//Top Men
+		$menRace = Race::where('race_week',$id)
+		->where('gender','Men')
+		->first();
+		
+		$topMen = collect();
+		$topWomen = collect();
+
+		if($menRace != null){
+		$topMen = $menRace->racers()
+		->take(100)
+		->get();
+		}
+
+		//Top Women
+		$womenRace = Race::where('race_week',$id)
+		->where('gender','Women')
+		->first();
+		
+		if($womenRace != null){
+		$topWomen = $womenRace->racers()
+		->take(100)
+		->get();
+		}
+		
+		}
+		else{
+			abort(404);
+		}
+
+		return view('result.weekRankings',compact('weekRankings','users','topMen', 'topWomen','week'));
+	}
 }

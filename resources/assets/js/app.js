@@ -64,6 +64,15 @@ const app = new Vue({
 		expand: function(index)	{
 			this.settings[index].show = !this.settings[index].show;
 		},
+		showRankings: function() {
+			if (!$('.ranking-drop-down').hasClass('show')) {
+    			$('.ranking-drop-down').addClass('show');
+    			$('.select-week').addClass('active-style');
+    		} else {
+    			$('.ranking-drop-down').removeClass('show');
+    			$('.select-week').removeClass('active-style');
+    		}
+		}
 	}
 });
 

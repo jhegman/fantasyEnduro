@@ -3,6 +3,28 @@
 @section('content')
 <div class="container main-content">
 	<div class="row">
+		<div class="select-week" @click="showRankings">
+			Overall Rankings
+			<span>
+				<i class="fa fa-caret-down" aria-hidden="true"></i>
+			</span>
+		</div>
+		<div class="ranking-drop-down">
+			<ul>
+				<li>
+					<a href="{{url('/rankings')}}">Overall Rankings</a>
+				</li>
+				@for($i=1;$i < 9;$i++)
+				<li>
+					<a href="{{url('/rankings',$i)}}">
+						Week {{$i}} Rankings
+					</a>
+				</li>
+				@endfor
+			</ul>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4">
 			<h2> Top Players </h2>
 				<div class="rider-container">

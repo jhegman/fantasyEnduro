@@ -80,7 +80,9 @@ Route::get('/score-race','ScoreRaceController@score');
 Route::post('/score-race','ScoreRaceController@scoreRace');
 
 //Rankings Page
-Route::get('/rankings','RankingController@ranking');
+Route::get('/rankings/','RankingController@ranking');
+//Weekly Rankings Page
+Route::get('/rankings/{id}','RankingController@weeklyRanking');
 
 //Set Time to close lineup selection
 Route::get('/close-lineups','UploadAthleteController@uploadTimes');

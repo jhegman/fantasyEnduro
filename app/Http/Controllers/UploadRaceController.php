@@ -86,6 +86,7 @@ class UploadRaceController extends Controller
             $race->name = $request->race_name;
             $race->location = $request->race_location;
             $race->gender = $request->gender;
+            $race->race_week = $request->week;
             $race->save();
             //Loop through uploaded results
             foreach ($results as $key => $result) {

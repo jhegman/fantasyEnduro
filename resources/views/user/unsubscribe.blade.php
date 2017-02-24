@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container main-content">
-    <div class="row">
+    <div class="row check-mark-done">
     	<div class="col-md-12">
     		<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
     			<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
