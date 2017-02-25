@@ -90,10 +90,14 @@ Route::get('/close-lineups','UploadAthleteController@uploadTimes');
 //Submit route close lineups
 Route::post('/close-lineups','UploadAthleteController@storeTimes');
 
-
 //post route to unsubsribe from emails
 Route::post('/unsubscribe','UserSettingsController@unsubscribe');
 
 //User Verification
 Route::get('/email-verification/user-verified', 'UserController@userVerified');
 Route::post('/email-verification/resend-verification', 'UserController@resendVerification');
+
+//Privacy Policy
+Route::get('/terms-and-privacy', function() {
+	return view('misc.terms-and-privacy');
+});

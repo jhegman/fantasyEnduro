@@ -11,7 +11,7 @@
 
         <link href="/css/app.css" rel="stylesheet">
     </head>
-    <body>
+    <body class="welcome-page">
         <div class="landing-bg-image flex-center position-ref full-height">
             <div class="cover"></div><!-- /.cover -->
             @if (Route::has('login'))
@@ -43,6 +43,12 @@
                     @endif
                 </div>
             </div>
+            <footer class="site-footer">
+                <div class="content-wrap flex-container">
+                    <span class="copywrite">&copy; {{ date("Y") }} Fantasy Enduro</span><!-- /.copywrite -->
+                    <a class="terms-and-privacy" href="{{ url('/terms-and-privacy') }}">Terms of Service and Privacy Policy</a>
+                </div><!-- /.content-wrap -->
+            </footer>
         </div>
     </body>
 </html>

@@ -47,11 +47,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav menu-items">
                         <!-- Authentication Links -->
-                        <li><a href="{{ url('/athletes') }}">Athletes</a></li>
-                        <li><a href="{{ url('/set-lineup') }}">Set Lineup</a></li>
-                        <li><a href="{{ url('/leagues') }}">Leagues</a></li>
-                        <li><a href="{{ url('/results') }}">Results</a></li>
-                        <li><a href="{{ url('/rankings') }}">Rankings</a></li>
+                        @if (Auth::check())
+                            <li><a href="{{ url('/athletes') }}">Athletes</a></li>
+                            <li><a href="{{ url('/set-lineup') }}">Set Lineup</a></li>
+                            <li><a href="{{ url('/leagues') }}">Leagues</a></li>
+                            <li><a href="{{ url('/results') }}">Results</a></li>
+                            <li><a href="{{ url('/rankings') }}">Rankings</a></li>
+                        @endif
                     </ul>
                     <ul class="nav navbar-nav user-settings">
                         @if (Auth::guest())
@@ -99,6 +101,13 @@
         </nav>
 
         @yield('content')
+
+        <footer class="site-footer">
+            <div class="content-wrap flex-container">
+                <span class="copywrite">&copy; {{ date("Y") }} Fantasy Enduro</span><!-- /.copywrite -->
+                <a class="terms-and-privacy" href="{{ url('/terms-and-privacy') }}">Terms of Service and Privacy Policy</a>
+            </div><!-- /.content-wrap -->
+        </footer>
     </div>
     <!-- Scripts -->
     <script src="/js/app.js"></script>
