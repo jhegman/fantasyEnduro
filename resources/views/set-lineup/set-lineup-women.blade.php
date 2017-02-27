@@ -22,21 +22,21 @@
         <h2>How Scoring Works</h2>
         <p>Selects 5 men and 5 women each week in the order you think they will finish. After each weekend of racing the races will be scored and racers will be assigned point values as follows:</p>
         <ul>
-        	<li>1st - 500</li>
-        	<li>2nd - 450</li>
-        	<li>3rd - 420</li>
-        	<li>4th - 400</li>
-        	<li>5th - 390</li>
-        	<li>6th - 380</li>
-        	<li>7th - 370</li>
-        	<li>8th - 360</li>
-        	<li>9th - 350</li>
-        	<li>10th - 340</li>
+        	<li>1st - 400</li>
+        	<li>2nd - 350</li>
+        	<li>3rd - 320</li>
+        	<li>4th - 300</li>
+        	<li>5th - 290</li>
+        	<li>6th - 280</li>
+        	<li>7th - 270</li>
+        	<li>8th - 260</li>
+        	<li>9th - 250</li>
+        	<li>10th - 240</li>
         	<li>etc...</li>
         	<a href="{{ url('/scoring-tables') }}">Full list of point values</a>
         </ul>
         <h3>Bonus Points</h3>
-		<p>If you guess the correct order of the podium you get <strong>250 Bonus Points</strong></p>
+		<p>If you guess the correct order of the podium you get <strong>200 Bonus Points</strong></p>
     </div>
 </modal>
 @endsection
