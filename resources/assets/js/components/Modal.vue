@@ -12,6 +12,7 @@
 </template>
 <script>
     export default {
+        props: ['modalClass'],
         methods: {
             closeModal(event) {
                 this.$emit('modal-closed', false);

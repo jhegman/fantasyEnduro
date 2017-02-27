@@ -52,12 +52,13 @@ class SetLineupController extends Controller
         $now = Carbon::now();
         $period = SelectionPeriod::where('week',$week)->first();
         $closed = Carbon::parse($period->closed);
+        $closedEST = Carbon::parse($period->closed)->tz('EST')->format('l, n/j/y \\a\\t g:i A e');
         $reopen = Carbon::parse($period->reopen);
         //If between two times then selection is closed
         if($now->gt($closed) && $now->lt($reopen)){
             $isOpen = false;
         }
-        return view('set-lineup.set-lineup-men',compact('isOpen'));
+        return view('set-lineup.set-lineup-men',compact('isOpen', 'closedEST'));
     }
 
     /**
@@ -72,12 +73,13 @@ class SetLineupController extends Controller
         $now = Carbon::now();
         $period = SelectionPeriod::where('week',$week)->first();
         $closed = Carbon::parse($period->closed);
+        $closedEST = Carbon::parse($period->closed)->tz('EST')->format('l, n/j/y \\a\\t g:i A e');
         $reopen = Carbon::parse($period->reopen);
         //If between two times then selection is closed
         if($now->gt($closed) && $now->lt($reopen)){
             $isOpen = false;
         }
-        return view('set-lineup.set-lineup-women',compact('isOpen'));
+        return view('set-lineup.set-lineup-women',compact('isOpen', 'closedEST'));
     }
 
     /**
