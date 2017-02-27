@@ -15,12 +15,20 @@
         <i class="fa fa-arrow-left" aria-hidden="true"></i>
         <a href="{{ url('/leagues')}}"> Back to Leagues Page</a>
     </div>
-    <div class="chat-wrap">
-        <img @click="show = !show" id="clear-noty" src="../img/chat.svg"/>
-        <div id="notify">
-
+    @if($userInLeagueCheck > 0)
+        <div id="clear-noty" @click="updateLastSeen({{$league->id}})" class="chat-wrap">
+            <img @click="show = !show" src="../img/chat.svg"/>
+                @if($messageCount > 0)
+                    <div id="notify" @click="show = !show" class="notify-style">
+                        {{$messageCount}}
+                    </div>
+                @else
+                    <div id="notify" @click="show = !show">
+                        
+                    </div>
+                @endif
         </div>
-    </div>
+    @endif
         <h1 class="league-name">{{ $league->name }}</h1>
 </div>
 <div class="container main-content">
@@ -57,7 +65,7 @@
                                         {{$user->points}}
                                     </a>
                                 </td>
-                                @foreach($points[$key] as $week => $point)
+                                @foreach($points[$key] as $point)
                                     <td>
                                         <a href="{{url('/rankings',$point->week)}}">
                                             {{$point->points}}

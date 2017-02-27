@@ -9,7 +9,7 @@
     		    <h2>Men</h2>
     		    <div class="search-wrap lineup-search">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    <input class="search" type="text" v-model="searchString" placeholder="Search">
+                    <input class="search" type="text" placeholder="Search">
                 </div><!-- /.search-wrap -->
     		<table class="table table-hover">
 				<thead>
@@ -47,7 +47,7 @@
     		<h2>Women</h2>
     		<div class="search-wrap lineup-search">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input class="search" type="text" v-model="searchString" placeholder="Search">
+                <input class="search" type="text" placeholder="Search">
             </div><!-- /.search-wrap -->
     		<table class="table table-hover">
 			<thead>

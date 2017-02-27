@@ -16,7 +16,11 @@ module.exports = {
         }
     },
     mounted: function () {
-        var count = 0;
+        var countString = $('#notify').text();
+        var count = parseInt(countString);
+        if(isNaN()){
+            count = 0;
+        }
         //Reset notifications on click
         $( "#clear-noty" ).click(function() {
             count = 0;

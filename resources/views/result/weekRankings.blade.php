@@ -89,7 +89,7 @@
 									</span>
 									<a href="{{ url('/athletes',$men->id) }}">{{$men->name}}</a> 
 									<span class="score">
-										Score: {{$men->points}}
+										Score: {{$men->pivot->points}}
 									</span>
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 									</span>
 									<a href="{{ url('/athletes',$women->id) }}">{{$women->name}}</a> 
 									<span class="score">
-										Score: {{$women->points}}
+										Score: {{$women->pivot->points}}
 									</span>
 								</div>
 							</div>

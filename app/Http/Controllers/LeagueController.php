@@ -9,6 +9,8 @@ use App\Racer;
 use App\League;
 use App\User;
 use App\ChatMessage;
+use App\MessageSeen;
+use Carbon\Carbon;
 use Auth;
 
 class LeagueController extends Controller
@@ -33,8 +35,12 @@ class LeagueController extends Controller
 
     //Display individual league pages
     public function showLeague($id){
-    	$user = Auth::user();
+    	$currentUser = Auth::user();
         $league = League::findOrFail($id);
+        $unread = MessageSeen::where('user_id',$currentUser->id)
+        ->where('league_id',$league->id)
+        ->first();
+
     	$users = $league->users;
         $users = $users->sortByDesc('points');
         
@@ -50,14 +56,23 @@ class LeagueController extends Controller
 
         $ids = [];
         $names = [];
+        $messageCount =  0;
         foreach ($messages as $key => $message) {
             $ids[$key] = $message->user_id;
             $names[$key] = User::findOrFail($ids[$key]);
+            if($unread!=null){
+            if($unread->last_viewed < $message->created_at){
+                if($message->user_id != $currentUser->id){
+                    $messageCount++;
+                }
+            }
         }
+    }
+
         //Check if current user is in league for Leave League button
-        $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());
+        $userInLeagueCheck = count($league->users()->where('id',$currentUser->id)->get());
         
-    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','user','points'));
+    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','currentUser','points','messageCount'));
     }
 
     //Create New League form
@@ -76,6 +91,11 @@ class LeagueController extends Controller
         }
         $newLeague->save();
         $newLeague->users()->attach($user->id);
+        $messageSeen = MessageSeen::create([
+            'user_id' => $user->id,
+            'league_id' => $newLeague->id,
+            'last_viewed'=>Carbon::now()
+        ]);
 
         return view('league.league-created',compact('newLeague'));
 
@@ -94,6 +114,11 @@ class LeagueController extends Controller
         if($league->password == null){
             $league->users()->attach($user->id);
             $league->save();
+            $messageSeen = MessageSeen::create([
+            'user_id' => $user->id,
+            'league_id' => $league->id,
+            'last_viewed'=>Carbon::now()
+        ]);
         }
 
         //Password verification
@@ -110,6 +135,11 @@ class LeagueController extends Controller
             if(count($userInLeagueCheck) == 0 && $password == decrypt($league->password)){
             $league->users()->attach($user->id);
             $league->save();
+            $messageSeen = MessageSeen::create([
+            'user_id' => $user->id,
+            'league_id' => $league->id,
+            'last_viewed'=>Carbon::now()
+            ]);
             }
         }
         
@@ -133,12 +163,35 @@ class LeagueController extends Controller
     public function leaveLeague(Request $request){
         $user = Auth::user();
         $id = $request->league;
+
+        //find message seen row and delete
+        $deleteRow = MessageSeen::where('user_id',$user->id)
+        ->where('league_id',$id)
+        ->first()
+        ->delete();
+
         $league = League::find($id);
         $league->users()->detach($user->id);
         $league->save();
+
         return json_encode(array(
                 'status'    =>  true,
                 'message'   =>  'League Left'
             ));
+    }
+
+    //Update MessageSent time
+    public function messageSeen(Request $request){
+        $user_id = Auth::user()->id;
+        $league_id = $request->league_id;
+        $update = MessageSeen::where('user_id',$user_id)
+        ->where('league_id',$league_id)
+        ->first();
+
+        $update->last_viewed = Carbon::now();
+        $update->save();
+
+        return response()->json(['response' => 'This is post method']);
+
     }
 }

@@ -72,8 +72,22 @@ const app = new Vue({
     			$('.ranking-drop-down').removeClass('show');
     			$('.select-week').removeClass('active-style');
     		}
-		}
+		},
+		updateLastSeen(league_id){
+            this.$http.post('/messageSeen', {league_id: league_id})
+                .then((response) => {
+                
+                });
+        }
 	}
+});
+
+//click outside of drop down
+$('.page-rankings, .page-rankingsid').click(function(event) { 
+   if(!$(event.target).closest('.ranking-drop-down, .select-week').length) {
+    		$('.ranking-drop-down').removeClass('show');
+    		$('.select-week').removeClass('active-style');
+        }    
 });
 
 var options = {

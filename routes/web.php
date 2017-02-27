@@ -64,6 +64,9 @@ Route::post('/join-league', 'LeagueController@joinLeague');
 //ajax route for leaving a league
 Route::post('/leave-league', 'LeagueController@leaveLeague');
 
+//ajax route for updating message seen table
+Route::post('/messageSeen','LeagueController@messageSeen');
+
 // Send a message by Javascript.
 Route::post('/message', 'HomeController@message');
 
