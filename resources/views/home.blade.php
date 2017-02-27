@@ -22,10 +22,13 @@
                 </div>
                 <div class="panel-body">
                     My Leagues: 
-                    @foreach ($user->leagues as $league)
-                        <p>
+                    @foreach ($user->leagues as $key => $league)
+                        <div>
                         <a href="{{ url('/leagues')}}/{{$league->id}}">{{$league->name}}</a>
-                        </p>
+                        @if($leagueMessages[$key] > 0)
+                            <span style="color:#db4437;">{{$leagueMessages[$key]}} new messages</span>
+                        @endif
+                        </div>
                     @endforeach
                 </div>
             </div>

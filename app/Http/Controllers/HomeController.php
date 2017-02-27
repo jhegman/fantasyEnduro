@@ -12,6 +12,7 @@ use Image;
 use Auth;
 use Log;
 use Route;
+use App\MessageSeen;
 use App\SuperAdminOption;
 use App\Lineup;
 use App\ChatMessage;
@@ -37,7 +38,32 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('home')->with('user',$user);
+        $leagueMessages = [];
+        $messageCount = 0;
+
+        foreach ($user->leagues as $key => $league) {
+        $unread = MessageSeen::where('user_id',$user->id)
+        ->where('league_id',$league->id)
+        ->first();
+
+        $messages = ChatMessage::where('league_id', $league->id)
+        ->orderBy('id','desc')
+        ->take(50)
+        ->get()
+        ->reverse();
+        
+        foreach ($messages as $message) {
+        if($unread!=null){
+            if($unread->last_viewed < $message->created_at){
+                if($message->user_id != $user->id){
+                    $messageCount++;
+                    }
+                }
+            }
+        }//inner for loop
+        $leagueMessages[$key] = $messageCount;
+    }//outer for loop
+        return view('home')->with('user',$user)->with('leagueMessages',$leagueMessages);
     }
 
     public function message(Request $request)
