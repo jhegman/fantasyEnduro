@@ -1,9 +1,14 @@
 <template>
     <div class="container main-content">
-        <div class="search-wrap lineup-search">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <input type="text" v-model="searchString" placeholder="Search">
-        </div><!-- /.search-wrap -->
+        <div class="wrap">
+            <div class="search-wrap lineup-search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" v-model="searchString" placeholder="Search">
+            </div><!-- /.search-wrap -->
+            <div class="save-lineup-top">
+                <button class="btn-primary save-lineup-btn" @click="onSave">Save Lineup</button>
+            </div><!-- /.save-lineup-top -->
+        </div><!-- /.row -->
         <transition name="fade">
             <div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert">{{saveMessage}}</div>
         </transition>

@@ -11426,6 +11426,17 @@ input[type="email"]:-ms-input-placeholder {
   transition: all .3s ease;
 }
 
+.modal-container > div {
+  overflow: auto;
+  max-height: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .modal-container > div {
+    max-height: 90vh;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .modal-container {
     position: relative;
@@ -11435,6 +11446,7 @@ input[type="email"]:-ms-input-placeholder {
     right: initial;
     width: 450px;
     margin: 0 auto;
+    max-height: 100vh;
   }
 }
 
@@ -12047,7 +12059,7 @@ input[type="email"]:-ms-input-placeholder {
 
 .page-set-lineupmen .main-content,
 .page-set-lineupwomen .main-content {
-  padding-top: 50px;
+  padding-top: 25px;
   padding-bottom: 50px;
 }
 
@@ -12065,6 +12077,51 @@ input[type="email"]:-ms-input-placeholder {
   .page-set-lineupmen .modal-container,
   .page-set-lineupwomen .modal-container {
     display: block;
+  }
+}
+
+.page-set-lineupmen .set-lineup-header,
+.page-set-lineupwomen .set-lineup-header {
+  padding-top: 50px;
+}
+
+@media screen and (min-width: 992px) {
+  .page-set-lineupmen .set-lineup-header > .row,
+  .page-set-lineupwomen .set-lineup-header > .row {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .page-set-lineupmen .how-scoring-works,
+  .page-set-lineupwomen .how-scoring-works {
+    text-align: right;
+  }
+}
+
+.page-set-lineupmen .wrap,
+.page-set-lineupwomen .wrap {
+  position: relative;
+}
+
+.page-set-lineupmen .wrap .save-lineup-top,
+.page-set-lineupwomen .wrap .save-lineup-top {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+@media screen and (min-width: 992px) {
+  .page-set-lineupmen .wrap .save-lineup-top,
+  .page-set-lineupwomen .wrap .save-lineup-top {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-bottom: 0;
   }
 }
 
@@ -12926,6 +12983,11 @@ input[type="email"]:-ms-input-placeholder {
 # Misc Pages
 --------------------------------------------------------------*/
 .page-terms-and-privacy .main-content {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.page-scoring-tables .main-content {
   padding-top: 30px;
   padding-bottom: 50px;
 }

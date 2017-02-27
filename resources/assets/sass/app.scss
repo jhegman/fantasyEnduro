@@ -184,6 +184,15 @@ input[type="email"] {
 	box-shadow: 0 2px 2px 0 rgba(2, 2, 2, 0.1);
 	transition: all .3s ease;
 
+	> div {
+		overflow: auto;
+		max-height: 100%;
+
+		@media screen and (min-width: $screen-md) {
+			max-height: 90vh;
+		}
+	}
+
 	@media screen and (min-width: $screen-sm) {
 		position: relative;
 		top: initial;
@@ -192,6 +201,7 @@ input[type="email"] {
 		right: initial;
 		width: 450px;
 		margin: 0 auto;
+		max-height: 100vh;
 	}
 
 	.fa-times {
@@ -773,7 +783,7 @@ input[type="email"] {
 .page-set-lineupmen,
 .page-set-lineupwomen {
 	.main-content {
-		padding-top: 50px;
+		padding-top: 25px;
 		padding-bottom: 50px;
 	}
 	.modal-container {
@@ -783,6 +793,40 @@ input[type="email"] {
 
 		@media screen and (min-width: $screen-sm) {
 			display: block;
+		}
+	}
+
+	.set-lineup-header {
+		padding-top: 50px;
+
+		> .row {
+			@media screen and (min-width: $screen-md) {
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+
+	.how-scoring-works {
+		@media screen and (min-width: $screen-md) {
+			text-align: right;
+		}
+	}
+
+	.wrap {
+		position: relative;
+
+		.save-lineup-top {
+			text-align: center;
+			margin-bottom: 25px;
+
+			@media screen and (min-width: $screen-md) {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				margin-bottom: 0;
+			}
 		}
 	}
 }
@@ -1598,6 +1642,13 @@ input[type="email"] {
 --------------------------------------------------------------*/
 
 .page-terms-and-privacy {
+	.main-content {
+		padding-top: 30px;
+		padding-bottom: 50px;
+	}
+}
+
+.page-scoring-tables {
 	.main-content {
 		padding-top: 30px;
 		padding-bottom: 50px;

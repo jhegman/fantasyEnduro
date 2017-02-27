@@ -101,3 +101,8 @@ Route::post('/email-verification/resend-verification', 'UserController@resendVer
 Route::get('/terms-and-privacy', function() {
 	return view('misc.terms-and-privacy');
 });
+
+//How it works page
+Route::get('/scoring-tables', function() {
+	return view('misc.scoring-tables');
+});

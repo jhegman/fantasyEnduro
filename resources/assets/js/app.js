@@ -18,6 +18,7 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel;
 
 Vue.component('chat', require('./components/chat'));
 Vue.component('set-lineup', require('./components/SetLineup.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
 
 const app = new Vue({
 	el: '#app',
@@ -33,6 +34,7 @@ const app = new Vue({
 		result: true,
 		show: false,
 		settings: [{show:true},{show:false},{show:false}],
+		showModal: false
 	},
 	methods: {
 		joinLeague: function(league){
