@@ -18,7 +18,7 @@
 <set-lineup></set-lineup>
 @endif
 <modal v-if="showModal" @modal-closed="showModal = false" v-cloak>
-    <div slot="body">
+    <div class="how-scoring-works-wrap" slot="body">
         <h2>How Scoring Works</h2>
         <p>Selects 5 men and 5 women each week in the order you think they will finish. After each weekend of racing the races will be scored and racers will be assigned point values as follows:</p>
         <ul>
