@@ -39,9 +39,9 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $leagueMessages = [];
-        $messageCount = 0;
 
         foreach ($user->leagues as $key => $league) {
+        $messageCount = 0;
         $unread = MessageSeen::where('user_id',$user->id)
         ->where('league_id',$league->id)
         ->first();
