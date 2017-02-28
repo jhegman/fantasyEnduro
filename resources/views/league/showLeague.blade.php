@@ -58,7 +58,11 @@
                        @foreach($users as $key=> $user)
                            <tr>
                                 <td>
-                                    <a href="{{ url('/user',$user->name) }}">{{$user->name}}</a>
+                                    <a href="{{ url('/user',$user->name) }}">
+                                        <span class="li-image" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})"> 
+                                        </span>
+                                        {{$user->name}}
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="{{url('/rankings')}}">
