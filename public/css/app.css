@@ -13042,4 +13042,9 @@ input[type="email"]:-ms-input-placeholder {
   background-color: transparent;
 }
 
+.page-email-verificationuser-verified .main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 /*# sourceMappingURL=app.css.map */
