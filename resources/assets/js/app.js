@@ -50,6 +50,7 @@ const app = new Vue({
 			});
 		},
 		leaveLeague: function(league){
+			if(confirm('Are you sure you want to leave this league?')){
 			this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
 				return response.json();
 			}).then(result => {
@@ -59,6 +60,7 @@ const app = new Vue({
 				this.showLeagueLeft[league] = true;
 				setTimeout(this.closeNoty, 5000);
 			});
+			}
 		},
 		closeNoty: function() {
 			this.showNoty = false;
