@@ -32,6 +32,7 @@ const app = new Vue({
 		timeOut: {},
 		password: 'A',
 		result: true,
+		show: false,
 		settings: [{show:true},{show:false},{show:false}],
 		showModal: false
 	},
