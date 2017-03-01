@@ -19,6 +19,7 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel;
 Vue.component('chat', require('./components/chat'));
 Vue.component('set-lineup', require('./components/SetLineup.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('accordion', require('./components/Accordion.vue'));
 
 const app = new Vue({
 	el: '#app',
@@ -30,9 +31,7 @@ const app = new Vue({
 		showLeagueLeft: [],
 		timeOut: {},
 		password: 'A',
-		seen: false,
 		result: true,
-		show: false,
 		settings: [{show:true},{show:false},{show:false}],
 		showModal: false
 	},
@@ -64,9 +63,6 @@ const app = new Vue({
 		},
 		closeNoty: function() {
 			this.showNoty = false;
-		},
-		expand: function(index)	{
-			this.settings[index].show = !this.settings[index].show;
 		},
 		showRankings: function() {
 			if (!$('.ranking-drop-down').hasClass('show')) {

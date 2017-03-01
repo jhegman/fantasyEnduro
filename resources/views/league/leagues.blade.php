@@ -1,39 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container main-content">
+<div class="container main-content" v-on:onload="seen = true">
    	<transition name="fade">
 			<div style= "position:fixed;" class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
 	</transition>
-   		<span v-on:click="seen = !seen" style="cursor: pointer;">
-            Create New League
-        </span>
-		<span class="dropdown" v-if="seen" v-on:click="seen = !seen" v-cloak>
-			<i class="fa fa-minus-square-o" aria-hidden="true"></i>
-		</span>
-		<span class="dropdown" v-if="!seen" v-on:click="seen = !seen" v-cloak>
-			<i class="fa fa-plus-square-o" aria-hidden="true"></i>
-		</span>
-   		<div class="newLeague" v-if="seen" v-cloak>
-   			{!! Form::open(['url' => 'leagues/created']) !!}
-            <div class="form-group {{$errors->has('new_league') ? 'has-error' : ''}}">
-                {{ Form::label('new_league', 'League name:', ['class' => 'control-label']) }}
-                {{ Form::text('new_league', null, ['class' => 'form-control']) }}
-                @if ($errors->first('new_league'))
-                    <span class="errors">{{ $errors->first('new_league') }}</span>
-                @endif
-            </div><!-- /.form-group -->
+        @if ($errors->any())
+            @php
+                $errorCheck = 'true';
+            @endphp
+        @else 
+            @php
+                $errorCheck = 'false';
+            @endphp
+        @endif
+        <accordion :errors="{{ $errorCheck }}">
+            <span slot="title">Create New League</span>
+            <div slot="form" v-cloak>
+                {!! Form::open(['url' => 'leagues/created']) !!}
+                    <div class="form-group {{$errors->has('new_league') ? 'has-error' : ''}}">
+                        {{ Form::label('new_league', 'League name:', ['class' => 'control-label']) }}
+                        {{ Form::text('new_league', null, ['class' => 'form-control']) }}
+                        @if ($errors->first('new_league'))
+                            <span class="errors">{{ $errors->first('new_league') }}</span>
+                        @endif
+                    </div><!-- /.form-group -->
 
-            <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
-                {{ Form::label('password', 'Password (optional)', ['class' => 'control-label']) }}
-                {{ Form::password('password', ['class' => 'form-control']) }}
-                @if ($errors->first('password'))
-                    <span class="errors">{{ $errors->first('new_league') }}</span>
-                @endif
-            </div><!-- /.form-group -->
-            {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-        {!! Form::close() !!}
-    	</div>
+                    <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
+                        {{ Form::label('password', 'Password (optional)', ['class' => 'control-label']) }}
+                        {{ Form::password('password', ['class' => 'form-control']) }}
+                        @if ($errors->first('password'))
+                            <span class="errors">{{ $errors->first('new_league') }}</span>
+                        @endif
+                    </div><!-- /.form-group -->
+                    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+                {!! Form::close() !!}
+            </div>
+        </accordion>
     	<h1>Leagues</h1>
     	<div id="league-sort" class="table-responsive">
     		<div class="search-wrap lineup-search">
