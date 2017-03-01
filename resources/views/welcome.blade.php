@@ -8,7 +8,8 @@
         <meta name="robots" content="nofollow" />
 
         <title>Fantasy Enduro</title>
-
+        
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
         <link href="/css/app.css" rel="stylesheet">
     </head>
     <body class="welcome-page">
