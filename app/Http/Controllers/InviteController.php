@@ -46,7 +46,7 @@ class InviteController extends Controller
     		$temp = Invitation::where('email','=',$email)
             ->where('league_id', $id)
             ->first();
-            Mail::send('invite.invite-email', [ 'email' => $email, 'invite' => $temp, 'league' => $league], function ($m) use ($email) {
+            Mail::send('Invite.invite-email', [ 'email' => $email, 'invite' => $temp, 'league' => $league], function ($m) use ($email) {
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
     	}else{
@@ -68,7 +68,7 @@ class InviteController extends Controller
 
         //only send if their invite has expired
         if(Invitation::status($invi->code,$invi->email) == 'expired'){
-        Mail::send('invite.invite-email', [ 'email' => $email, 'invite' => $invitation, 'league' => $league], function ($m) use ($email) {
+        Mail::send('Invite.invite-email', [ 'email' => $email, 'invite' => $invitation, 'league' => $league], function ($m) use ($email) {
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
         //Set invitation to unexpire in 2 days
