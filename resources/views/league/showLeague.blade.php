@@ -6,10 +6,14 @@
        </transition>
 <div class="cover-athlete" style="background-image: url(../img/league-cover.jpg)">
     @if($userInLeagueCheck > 0)
-        <button class="btn-primary leave" @click="leaveLeague({{$league->id}})" v-if="showLeagueLeft[{{$league->id}}] === undefined">Leave league</button>
-        <span v-if="showLeagueLeft[{{$league->id}}] === true" v-cloak>
+        @if($leagueAdmin)
+            <a class="btn-primary leave" href="{{url('/invite',$league->id)}}"> Invite Members!</a>
+        @else
+            <button class="btn-primary leave" @click="leaveLeague({{$league->id}})" v-if="showLeagueLeft[{{$league->id}}] === undefined">Leave league</button>
+            <span v-if="showLeagueLeft[{{$league->id}}] === true" v-cloak>
             <a class="leave" href="{{ url('/leagues')}}"> Back to Leagues Page</a>
-        </span>
+            </span>
+        @endif
     @endif
     <div class="go-back">
         <i class="fa fa-arrow-left" aria-hidden="true"></i>

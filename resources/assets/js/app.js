@@ -30,7 +30,6 @@ const app = new Vue({
 		showLeagueSave: [],
 		showLeagueLeft: [],
 		timeOut: {},
-		password: 'A',
 		result: true,
 		show: false,
 		settings: [{show:true},{show:false},{show:false}],
@@ -38,7 +37,7 @@ const app = new Vue({
 	},
 	methods: {
 		joinLeague: function(league){
-			this.$http.post('/join-league', {password: this.password, league: league, path: window.location.pathname}).then((response) => {
+			this.$http.post('/join-league', {league: league, path: window.location.pathname}).then((response) => {
 				return response.json();
 			}).then(result => {
 				window.clearTimeout(this.timeOut);

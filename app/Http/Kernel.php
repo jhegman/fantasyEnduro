@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'super' =>\App\Http\Middleware\CheckSuperAdmin::class,
         'isVerified' => \Jrean\UserVerification\Middleware\IsVerified::class,
+        'league-admin' =>\App\Http\Middleware\CheckLeagueAdmin::class,
     ];
 }

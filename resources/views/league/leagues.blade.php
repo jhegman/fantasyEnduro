@@ -27,11 +27,9 @@
                     </div><!-- /.form-group -->
 
                     <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
-                        {{ Form::label('password', 'Password (optional)', ['class' => 'control-label']) }}
-                        {{ Form::password('password', ['class' => 'form-control']) }}
-                        @if ($errors->first('password'))
-                            <span class="errors">{{ $errors->first('new_league') }}</span>
-                        @endif
+                        <label>Private League?</label>
+                        {{ Form::checkbox('private', 'yes') }}
+                        <span class="errors"> If the league is private than only the creator of the league can add users to their league.</span>
                     </div><!-- /.form-group -->
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                 {!! Form::close() !!}
@@ -49,7 +47,6 @@
 							<th></th>
 							<th> League Name</th>
 							<th> Number of Members</th>
-							<th> Password</th>
 						</tr>
 					</thead>
 				<tbody class="list">
@@ -60,8 +57,12 @@
 							<tr>
     							<td>
     								@if(count($userInLeagueCheck) == 0)
-    									<button class="btn-primary" @click="joinLeague({{$league->id}})" v-if="showLeagueSave[{{$league->id}}] === undefined">Join League</button>
-    									<span v-if="showLeagueSave[{{$league->id}}] === true" v-cloak>Joined</span>   	
+    									@if($league->private)
+                                            <i class="fa fa-lock" aria-hidden="true"></i> Private
+                                        @else
+                                            <button class="btn-primary" @click="joinLeague({{$league->id}})" v-if="showLeagueSave[{{$league->id}}] === undefined">Join League</button>
+    									   <span v-if="showLeagueSave[{{$league->id}}] === true" v-cloak>Joined</span>
+                                        @endif   	
     								@else
     									<span>Joined</span>
     								@endif
@@ -71,11 +72,6 @@
     							</td>
    			 					<td>
 									{{count($league->users)}}
-								</td>
-								<td>
-									@if(($league->password != null) and (count($userInLeagueCheck) == 0))
-										<input type="password" v-on:keyup="$data.password = $event.target.value">
-									@endif
 								</td>
 							</tr>
 					@endforeach

@@ -58,6 +58,17 @@ Route::get('/leagues/{id}','LeagueController@showLeague');
 //League Created Page
 Route::post('/leagues/created','LeagueController@createNewLeague')->name('league-created');
 
+//Route for adding members to private league
+Route::get('/invite/{id}','InviteController@showInvite')->name('invite')->middleware('league-admin','auth');
+
+//Post route for inviting people to league
+Route::post('/invite/{id}','InviteController@addEmails')->middleware('league-admin','auth');
+
+//Route to resend email
+Route::get('/resend/{id}/{invite}','InviteController@resend')->name('resend')->middleware('league-admin','auth');
+
+Route::get('/accept/{code}','InviteController@accept')->middleware('auth');
+
 //ajax route for joining a league
 Route::post('/join-league', 'LeagueController@joinLeague');
 

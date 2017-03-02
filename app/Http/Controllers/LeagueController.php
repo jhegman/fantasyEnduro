@@ -8,6 +8,7 @@ use App\Race;
 use App\Racer;
 use App\League;
 use App\User;
+use App\invitation;
 use App\ChatMessage;
 use App\MessageSeen;
 use Carbon\Carbon;
@@ -71,8 +72,14 @@ class LeagueController extends Controller
 
         //Check if current user is in league for Leave League button
         $userInLeagueCheck = count($league->users()->where('id',$currentUser->id)->get());
+
+        //check if admin and if private league
+        $leagueAdmin = false;
+        if($league->admin_id == $currentUser->id && $league->private){
+            $leagueAdmin = true;
+        }
         
-    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','currentUser','points','messageCount'));
+    	return view('league.showLeague',compact('league','users','userInLeagueCheck','messages','names','currentUser','points','messageCount','leagueAdmin'));
     }
 
     //Create New League form
@@ -82,13 +89,15 @@ class LeagueController extends Controller
         $this->validate($request, [
             'new_league' => 'required|min:3|unique:leagues,name',
         ]);
+
         $user = Auth::user();
         $newLeague = new League();
         $newLeague->name = $request->new_league;
         $password = $request->password;
-        if($password != ""){
-            $newLeague->password = encrypt($password);
+        if($request->private =='yes'){
+            $newLeague->private = true;
         }
+        $newLeague->admin_id = $user->id;
         $newLeague->save();
         $newLeague->users()->attach($user->id);
         $messageSeen = MessageSeen::create([
@@ -106,42 +115,18 @@ class LeagueController extends Controller
     {
         $user = Auth::user();
         $id = $request->league;
-        $password = $request->password;
         $league = League::find($id);
         $userInLeagueCheck = $league->users()->where('id',$user->id)->get();
         
-        //If there is no league password, skip password verification
-        if($league->password == null){
-            $league->users()->attach($user->id);
-            $league->save();
-            $messageSeen = MessageSeen::create([
-            'user_id' => $user->id,
-            'league_id' => $league->id,
-            'last_viewed'=>Carbon::now()
+        //add user to league
+        $league->users()->attach($user->id);
+        $league->save();
+        $messageSeen = MessageSeen::create([
+        'user_id' => $user->id,
+        'league_id' => $league->id,
+        'last_viewed'=>Carbon::now()
         ]);
-        }
 
-        //Password verification
-        else{
-        //If password is incorrect
-        if ($password != decrypt($league->password)){
-        return json_encode(array(
-                'status'    =>  false,
-                'message'   =>  'Incorrect Password!'
-            ));
-        }
-        
-            //If not in league and password is correct, add to league
-            if(count($userInLeagueCheck) == 0 && $password == decrypt($league->password)){
-            $league->users()->attach($user->id);
-            $league->save();
-            $messageSeen = MessageSeen::create([
-            'user_id' => $user->id,
-            'league_id' => $league->id,
-            'last_viewed'=>Carbon::now()
-            ]);
-            }
-        }
         
         if(count($userInLeagueCheck) == 0){
         return json_encode(array(
@@ -170,10 +155,21 @@ class LeagueController extends Controller
         ->first()
         ->delete();
 
+        //delete their invitation when they leave
+        $invitation = Invitation::where('user_id',$user->id)
+        ->where('league_id',$id)
+        ->first();
+
+        //remove member from league
         $league = League::find($id);
         $league->users()->detach($user->id);
         $league->save();
 
+        //if invitation exists
+        if($invitation !=null){
+            $invitation->delete();
+        }
+        
         return json_encode(array(
                 'status'    =>  true,
                 'message'   =>  'League Left'
