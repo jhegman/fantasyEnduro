@@ -21,7 +21,7 @@ class InviteController extends Controller
     	$alreadySent = false;
     	$league = League::findOrFail($id);
     	$invitations = Invitation::where('league_id',$league->id)->get();
-    	return view('invite.showInvite',compact('invitations','league','alreadySent'));
+    	return view('Invite.showInvite',compact('invitations','league','alreadySent'));
     }
 
 
@@ -53,7 +53,7 @@ class InviteController extends Controller
 			$alreadySent = true;
     	}
     	$invitations = Invitation::where('league_id',$league->id)->get();
-    	return view('invite.showInvite',compact('invitations','league','alreadySent'));
+    	return view('Invite.showInvite',compact('invitations','league','alreadySent'));
     }
 
     /**
@@ -110,6 +110,6 @@ class InviteController extends Controller
             'last_viewed'=>Carbon::now()
         ]);
 
-        return view('invite.accept',compact('league'));
+        return view('Invite.accept',compact('league'));
     }
 }
