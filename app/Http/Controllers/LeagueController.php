@@ -8,7 +8,7 @@ use App\Race;
 use App\Racer;
 use App\League;
 use App\User;
-use App\invitation;
+use App\Invitation;
 use App\ChatMessage;
 use App\MessageSeen;
 use Carbon\Carbon;
