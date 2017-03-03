@@ -28,14 +28,16 @@ class LeagueController extends Controller
     }
 
     //Display table of leagues
-    public function displayLeagues(){
+    public function displayLeagues()
+    {
     	$user = Auth::user();
         $leagues = League::all();
    		return view('league.leagues',compact('leagues','user'));
     }
 
     //Display individual league pages
-    public function showLeague($id){
+    public function showLeague($id)
+    {
     	$currentUser = Auth::user();
         $league = League::findOrFail($id);
         $unread = MessageSeen::where('user_id',$currentUser->id)
@@ -145,7 +147,8 @@ class LeagueController extends Controller
     }
 
     //Allow user to leave a league
-    public function leaveLeague(Request $request){
+    public function leaveLeague(Request $request)
+    {
         $user = Auth::user();
         $id = $request->league;
 
@@ -177,7 +180,8 @@ class LeagueController extends Controller
     }
 
     //Update MessageSent time
-    public function messageSeen(Request $request){
+    public function messageSeen(Request $request)
+    {
         $user_id = Auth::user()->id;
         $league_id = $request->league_id;
         $update = MessageSeen::where('user_id',$user_id)

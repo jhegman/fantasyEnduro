@@ -209,23 +209,9 @@ class SetLineupController extends Controller
     {
         $id = $request->id;
         $athleteObject = Racer::find($id);
-        $athleteRaces = $athleteObject->races()->where('overall_place', 1)->get();
-        $racesWon = count($athleteRaces);
-
-        $stageWins = 0;
-        for ($i=1; $i < 8 ; $i++) { 
-            $stageData = $athleteObject
-            ->races()
-            ->where('stage_' . $i . '_place', 1)
-            ->get();
-            $stageWins += count($stageData);
-        }
-
-        $results = Racer::find($id)->races()->get();
-        $pointsScored = 0;
-        foreach ($results as $key => $result) {
-            $pointsScored += $result->pivot->points;
-        }
+        $racesWon = $athleteObject->racesWon();
+        $stageWins = $athleteObject->stageWins();
+        $pointsScored = $athleteObject->pointsScored();
 
         $returnArray = [
             'athleteObject' =>  $athleteObject,

@@ -10,6 +10,11 @@
 			<button class="btn-primary" @click="showModal = true">How Scoring Works?</button>
 		</div><!-- /.col-md-6 -->
 	</div><!-- /.row -->
+    <div class="panel panel-default short-instructions">
+        <div class="panel-body">
+            <p>Use the plus/minus buttons or drag and drop to set your lineup. Drag and drop to set the order you think the racers will finish. Bonus points are rewarded for guessing the podium!</p>
+        </div>
+    </div>
 </div><!-- /.container -->
 @if($isOpen == false)
 <p>Closed!</p>

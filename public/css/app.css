@@ -12102,6 +12102,16 @@ input[type="email"]:-ms-input-placeholder {
   }
 }
 
+.page-set-lineupmen .short-instructions,
+.page-set-lineupwomen .short-instructions {
+  margin-top: 25px;
+}
+
+.page-set-lineupmen .short-instructions p,
+.page-set-lineupwomen .short-instructions p {
+  margin-bottom: 0;
+}
+
 .page-set-lineupmen .wrap,
 .page-set-lineupwomen .wrap {
   position: relative;
