@@ -99,7 +99,11 @@ class InviteController extends Controller
         Invitation::used($code,$invite->email);
         Invitation::unexpire($code,$invite->email,$invite->expiration);
 
-        //Add user to the league
+        //Check if user is already in the league
+        $userInLeagueCheck = count($league->users()->where('id',$user->id)->get());
+        
+        //if they arent in the league, add them
+        if($userInLeagueCheck == 0){
         $league->users()->attach($user->id);
         $league->save();
 
@@ -109,6 +113,7 @@ class InviteController extends Controller
             'league_id' => $league->id,
             'last_viewed'=>Carbon::now()
         ]);
+    }
 
         return view('Invite.accept',compact('league'));
     }
