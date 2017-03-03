@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('email:send')
                  ->daily();
-        //$schedule->exec('composer update')
-                 ->daily();
+        // $schedule->exec('composer update')
+        //          ->daily();
     }
 
     /**
