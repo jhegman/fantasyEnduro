@@ -25,7 +25,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('email:send')
-                 ->everyMinute();
+                 ->daily();
+        //$schedule->exec('composer update')
+                 ->daily();
     }
 
     /**

@@ -29,7 +29,7 @@
                     <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
                         <label>Private League?</label>
                         {{ Form::checkbox('private', 'yes') }}
-                        <span class="errors"> If the league is private than only the creator of the league can add users to their league.</span>
+                        <span class="errors"> If the league is private then only the creator of the league can add users to their league.</span>
                     </div><!-- /.form-group -->
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                 {!! Form::close() !!}
