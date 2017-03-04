@@ -187,6 +187,7 @@ input[type="email"] {
 	> .how-scoring-works-wrap {
 		overflow: auto;
 		max-height: 100%;
+		-webkit-overflow-scrolling: touch;
 
 		@media screen and (min-width: $screen-md) {
 			max-height: 90vh;
@@ -666,6 +667,7 @@ input[type="email"] {
 .dragArea {
 	height: 400px;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 
 	.racer {
 		padding-top: 15px;
@@ -1116,7 +1118,7 @@ input[type="email"] {
 #chatArea {
 	overflow: auto;
 	height: 300px;
-
+	-webkit-overflow-scrolling: touch;
 }
 
 .dropdown {
@@ -1195,6 +1197,7 @@ input[type="email"] {
 	transition: .3s;
 	opacity:0;
 	top:110px;
+	-webkit-overflow-scrolling: touch;
 }
 
 .chat-off-canvas h3{
@@ -1331,6 +1334,7 @@ input[type="email"] {
 .overflow {
 	overflow: auto;
 	height: 300px;
+	-webkit-overflow-scrolling: touch;
 }
 
 .rankings, .rankings-first{
