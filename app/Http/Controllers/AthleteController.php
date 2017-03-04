@@ -21,34 +21,27 @@ class AthleteController extends Controller
     }
     
     //Display Table of Athlete
-    public function index(){
+    public function index()
+    {
     	$athletes = Racer::all();
    		return view('athlete.athletes',compact('athletes'));
     }
 
 	//Make Athletes Clickable
-	public function showAthletes($id){
+	public function showAthletes($id)
+	{
 		$banner_photos = array('../img/richie.jpg','../img/richie1.jpg','../img/cecile2.jpg');
 		$photo = $banner_photos[rand(0,2)];
 
 		$athlete = Racer::findOrFail($id);
+		//Stats
+		$racesWon = $athlete->racesWon();
+		$stageWins = $athlete->stageWins();
+		$points = $athlete->pointsScored();
 		$athleteData = Racer::find($id)->races()->where('overall_place', 1)->get();
-		$racesWon = count($athleteData);
-		$result = Racer::find($id)->races()->get();
-		$points = 0;
-		foreach ($result as $key => $race) {
-			$points += $race->pivot->points;
-		}
-		
-		$stageWins = 0;
-		for ($i=1; $i < 8 ; $i++) { 
-			$stageData = Racer::find($id)
-			->races()
-			->where('stage_' . $i . '_place', 1)
-			->get();
-			$stageWins += count($stageData);
 
-		}
+		//Results
+		$result = Racer::find($id)->races()->get();
 		
 		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData','result','points','photo'));
 	}

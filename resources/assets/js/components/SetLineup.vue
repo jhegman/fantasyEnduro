@@ -19,7 +19,7 @@
                     <draggable 
                     :list="athletes" 
                     class="dragArea" 
-                    :options="{group:'athletes'}"
+                    :options="availableRacersOptions"
                     :move="onMove"
                     @start="checkLineupSize"
                     @end="disableLineup = false"
@@ -109,6 +109,7 @@
 <script>
     var draggable = require('vuedraggable');
     var modal = require('./Modal.vue');
+    import {isMobile} from './isMobile.js';
     export default {
         data: function() {
             return {
@@ -116,12 +117,14 @@
                 yourLineup: [],
                 lineupSize: 5,
                 disableLineup: false,
+                availableRacersOptions: {group:'athletes', disabled: false},
                 showNoty: false,
                 saveStatus: false,
                 saveMessage: null,
                 searchString: '',
                 showModal: false,
-                modalData: {}
+                modalData: {},
+                isMobile: false
             };
         },
         methods: {
@@ -180,6 +183,11 @@
                     this.athletes = result.athletes;
                     this.yourLineup = result.yourLineup;
                 });
+                
+
+                if (isMobile() === true) {
+                    this.availableRacersOptions = {group:'athletes', disabled: true};
+                }
             }
         },
         computed: {

@@ -80,6 +80,15 @@ $offcanvas-media: 991px;
 --------------------------------------------------------------*/
 body {
     font-family: 'Raleway', sans-serif;
+	padding-top: 100px;
+
+	@media screen and (min-width: $grid-float-breakpoint) {
+		padding-top: 110px;
+	}
+}
+
+body.welcome-page {
+	padding-top: 0;
 }
 
 /*--------------------------------------------------------------
@@ -187,6 +196,7 @@ input[type="email"] {
 	> .how-scoring-works-wrap {
 		overflow: auto;
 		max-height: 100%;
+		-webkit-overflow-scrolling: touch;
 
 		@media screen and (min-width: $screen-md) {
 			max-height: 90vh;
@@ -576,6 +586,31 @@ input[type="email"] {
 # Navigation
 --------------------------------------------------------------*/
 
+body.is-scrolled {
+	
+	.navbar-brand {
+		padding: 15px;
+		position: relative;
+		z-index: 5;
+		height: 80px;
+
+		.logo {
+			width: 90px;
+		}
+	}
+
+	.navbar-nav li a {
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}
+
+	.navbar-toggle {
+		margin-top: 22px;
+	    margin-bottom: 20px;
+	}
+
+}
+
 .navbar-brand {
 	padding: 15px;
 	position: relative;
@@ -583,12 +618,23 @@ input[type="email"] {
 
 	.logo {
 		width: 150px;
+		transition: 0.3s;
 	}
+}
+
+.navbar-nav li a {
+	transition: 0.3s;
 }
 
 .navbar-default {
 	border-bottom: 0;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	min-height: initial;
+	transition: 0.3s;
 }
 
 .navbar-offcanvas {
@@ -656,7 +702,7 @@ input[type="email"] {
 }
 
 .set-linup-noty {
-	position: absolute;
+	position: fixed;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
@@ -666,6 +712,7 @@ input[type="email"] {
 .dragArea {
 	height: 400px;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 
 	.racer {
 		padding-top: 15px;
@@ -763,6 +810,27 @@ input[type="email"] {
 	}
 }
 
+.available-racers {
+	.dragArea {
+
+		@media screen and (max-width: $screen-sm-max) {
+			height: 300px;
+		}
+
+		@media screen and (max-width: $screen-xs-max) {
+			height: 200px;
+		}
+	}
+}
+
+.your-lineup {
+	margin-top: 25px;
+
+	@media screen and (min-width: $screen-md) {
+		margin-top: 0;
+	}
+}
+
 .save-lineup {
 	text-align: center;
 
@@ -810,6 +878,14 @@ input[type="email"] {
 	.how-scoring-works {
 		@media screen and (min-width: $screen-md) {
 			text-align: right;
+		}
+	}
+
+	.short-instructions {
+		margin-top: 25px;
+
+		p {
+			margin-bottom: 0;
 		}
 	}
 
@@ -1100,7 +1176,7 @@ input[type="email"] {
 #chatArea {
 	overflow: auto;
 	height: 300px;
-
+	-webkit-overflow-scrolling: touch;
 }
 
 .dropdown {
@@ -1167,7 +1243,6 @@ input[type="email"] {
 	background-color: #f9f7f6;
     bottom: 0;
     box-shadow: -6px 0px 7px -2px rgba(0,0,0,0.3);
-    overflow: auto;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 50px;
@@ -1179,6 +1254,12 @@ input[type="email"] {
 	transition: .3s;
 	opacity:0;
 	top:110px;
+}
+
+body.is-scrolled {
+	.chat-off-canvas{
+		top:82px;
+	}
 }
 
 .chat-off-canvas h3{
@@ -1315,6 +1396,7 @@ input[type="email"] {
 .overflow {
 	overflow: auto;
 	height: 300px;
+	-webkit-overflow-scrolling: touch;
 }
 
 .rankings, .rankings-first{
@@ -1667,8 +1749,12 @@ input[type="email"] {
 //Sticky Footer
 #app {
 	display: flex;
-	min-height: 100vh;
+	min-height: calc(100vh - 100px);
 	flex-direction: column;
+
+	@media screen and (min-width: $grid-float-breakpoint) {
+		min-height: calc(100vh - 110px);
+	}
 }
 
 .main-content {

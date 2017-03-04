@@ -31,23 +31,17 @@ class RankingController extends Controller
         $this->middleware(['auth', 'isVerified']);
     }
 
-	public function ranking(){
+	public function ranking()
+	{
 		$overallRankings = User::orderBy('points','DESC')->get();
-		
-		$topMen = Racer::where('gender', 'Men')
-		->orderBy('points', 'DESC')
-		->take(100)
-		->get();
-
-		$topWomen = Racer::where('gender', 'Women')
-		->orderBy('points', 'DESC')
-		->take(100)
-		->get();
+		$topMen = Racer::topMen(100);
+		$topWomen = Racer::topWomen(100);
 
 		return view('result.rankings',compact('overallRankings','topMen','topWomen'));
 	}
 
-	public function weeklyRanking($id){
+	public function weeklyRanking($id)
+	{
 		$week = $id;
 		if($id >= 1 && $id < 9){
 
