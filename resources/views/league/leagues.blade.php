@@ -35,7 +35,34 @@
                 {!! Form::close() !!}
             </div>
         </accordion>
-    	<h1>Leagues</h1>
+        <div class="row">
+            <div class="col-md-12" class="table-responsive">
+                <h1> My Leagues </h1>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th> League Name </th>
+                                <th> Number of Members </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($myLeagues as $myLeague)
+                                <tr>
+                                    <td> 
+                                        @if($myLeague->private)
+                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                        @endif
+                                        <a href="{{ url('/leagues',$myLeague->id) }}">{{$myLeague->name}}
+                                        </a>
+                                    </td>
+                                    <td> {{count($myLeague->users)}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    	<h1>Public Leagues</h1>
     	<div id="league-sort" class="table-responsive">
     		<div class="search-wrap lineup-search">
             	<i class="fa fa-search" aria-hidden="true"></i>
@@ -57,12 +84,8 @@
 							<tr>
     							<td>
     								@if(count($userInLeagueCheck) == 0)
-    									@if($league->private)
-                                            <i class="fa fa-lock" aria-hidden="true"></i> Private
-                                        @else
-                                            <button class="btn-primary" @click="joinLeague({{$league->id}})" v-if="showLeagueSave[{{$league->id}}] === undefined">Join League</button>
-    									   <span v-if="showLeagueSave[{{$league->id}}] === true" v-cloak>Joined</span>
-                                        @endif   	
+                                        <button class="btn-primary" @click="joinLeague({{$league->id}})" v-if="showLeagueSave[{{$league->id}}] === undefined">Join League</button>
+									   <span v-if="showLeagueSave[{{$league->id}}] === true" v-cloak>Joined</span>  	
     								@else
     									<span>Joined</span>
     								@endif

@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>   
+    @if(!$isOpen || (Auth::user()->name == $user->name))
     <div class="row">
         <div class="col-md-6">
             <h2> Men's Lineup</h2>
@@ -74,6 +75,9 @@
                 </table>
         </div>
     </div>
+    @else
+        <h1> User's team is hidden while the selection period is open </h1>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <h1>Rankings</h1>

@@ -30,8 +30,9 @@ class LeagueController extends Controller
     //Display table of leagues
     public function displayLeagues(){
     	$user = Auth::user();
-        $leagues = League::all();
-   		return view('league.leagues',compact('leagues','user'));
+        $myLeagues = $user->leagues;
+        $leagues = League::where('private',false)->get();
+   		return view('league.leagues',compact('leagues','user','myLeagues'));
     }
 
     //Display individual league pages

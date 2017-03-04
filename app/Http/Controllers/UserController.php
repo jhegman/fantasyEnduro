@@ -14,6 +14,7 @@ use Image;
 use Auth;
 use Log;
 use Route;
+use App\SelectionPeriod;
 use App\SuperAdminOption;
 use App\Lineup;
 use App\ChatMessage;
@@ -59,7 +60,9 @@ class UserController extends Controller
             $women[$key] = $userLineup->racer()->first();
         }
 
-		return view('user.showUser',compact('user','men','women','rankings'));
+        $isOpen = SelectionPeriod::open($week);
+
+		return view('user.showUser',compact('user','men','women','rankings','isOpen'));
 	}
 
     public function userVerified(FormBuilder $formBuilder)
