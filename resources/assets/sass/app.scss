@@ -810,6 +810,19 @@ body.is-scrolled {
 	}
 }
 
+.available-racers {
+	.dragArea {
+
+		@media screen and (max-width: $screen-sm-max) {
+			height: 300px;
+		}
+
+		@media screen and (max-width: $screen-xs-max) {
+			height: 200px;
+		}
+	}
+}
+
 .your-lineup {
 	margin-top: 25px;
 

@@ -12088,6 +12088,18 @@ body.is-scrolled .navbar-toggle {
   border-bottom: 1px solid #f1f3f6;
 }
 
+@media screen and (max-width: 991px) {
+  .available-racers .dragArea {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .available-racers .dragArea {
+    height: 200px;
+  }
+}
+
 .your-lineup {
   margin-top: 25px;
 }
