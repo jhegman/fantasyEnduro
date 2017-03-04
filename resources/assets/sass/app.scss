@@ -656,7 +656,7 @@ input[type="email"] {
 }
 
 .set-linup-noty {
-	position: absolute;
+	position: fixed;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
@@ -760,6 +760,14 @@ input[type="email"] {
 		&:not(:last-of-type) {
 			border-bottom: 1px solid $color-light-grey;
 		}
+	}
+}
+
+.your-lineup {
+	margin-top: 25px;
+
+	@media screen and (min-width: $screen-md) {
+		margin-top: 0;
 	}
 }
 

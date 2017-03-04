@@ -11919,7 +11919,7 @@ input[type="email"]:-ms-input-placeholder {
 }
 
 .set-linup-noty {
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -12038,6 +12038,16 @@ input[type="email"]:-ms-input-placeholder {
 .available-racers .racer:not(:last-of-type),
 .your-lineup .racer:not(:last-of-type) {
   border-bottom: 1px solid #f1f3f6;
+}
+
+.your-lineup {
+  margin-top: 25px;
+}
+
+@media screen and (min-width: 992px) {
+  .your-lineup {
+    margin-top: 0;
+  }
 }
 
 .save-lineup {
