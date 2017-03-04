@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('list.js');
 require('offcanvas-bootstrap/dist/js/bootstrap.offcanvas.js');
+import {NavIsScrolled} from './components/NavIsScrolled.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -82,12 +83,23 @@ const app = new Vue({
 	}
 });
 
-//click outside of drop down
-$('.page-rankings, .page-rankingsid').click(function(event) { 
-   if(!$(event.target).closest('.ranking-drop-down, .select-week').length) {
-    		$('.ranking-drop-down').removeClass('show');
-    		$('.select-week').removeClass('active-style');
-        }    
+jQuery(document).ready(function($) {
+	//Update Nav Position 
+    NavIsScrolled();
+
+    //click outside of drop down
+    $('.page-rankings, .page-rankingsid').click(function(event) { 
+       if(!$(event.target).closest('.ranking-drop-down, .select-week').length) {
+        		$('.ranking-drop-down').removeClass('show');
+        		$('.select-week').removeClass('active-style');
+            }    
+    });
+});
+
+//Check scroll position on scroll
+$(window).scroll(function() {
+	//Update Nav Position 
+    NavIsScrolled();
 });
 
 var options = {

@@ -11309,6 +11309,13 @@ span.emoji-inner {
 --------------------------------------------------------------*/
 body {
   font-family: 'Raleway', sans-serif;
+  padding-top: 100px;
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    padding-top: 110px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -11839,6 +11846,27 @@ input[type="email"]:-ms-input-placeholder {
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
+body.is-scrolled .navbar-brand {
+  padding: 15px;
+  position: relative;
+  z-index: 5;
+  height: 80px;
+}
+
+body.is-scrolled .navbar-brand .logo {
+  width: 90px;
+}
+
+body.is-scrolled .navbar-nav li a {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+body.is-scrolled .navbar-toggle {
+  margin-top: 22px;
+  margin-bottom: 20px;
+}
+
 .navbar-brand {
   padding: 15px;
   position: relative;
@@ -11847,11 +11875,25 @@ input[type="email"]:-ms-input-placeholder {
 
 .navbar-brand .logo {
   width: 150px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.navbar-nav li a {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .navbar-default {
   border-bottom: 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: initial;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 @media screen and (min-width: 992px) {
@@ -12503,7 +12545,6 @@ input[type="email"]:-ms-input-placeholder {
   background-color: #f9f7f6;
   bottom: 0;
   box-shadow: -6px 0px 7px -2px rgba(0, 0, 0, 0.3);
-  overflow: auto;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 50px;
@@ -12517,7 +12558,10 @@ input[type="email"]:-ms-input-placeholder {
   transition: .3s;
   opacity: 0;
   top: 110px;
-  -webkit-overflow-scrolling: touch;
+}
+
+body.is-scrolled .chat-off-canvas {
+  top: 82px;
 }
 
 .chat-off-canvas h3 {
@@ -13029,10 +13073,16 @@ input[type="email"]:-ms-input-placeholder {
 #app {
   display: -webkit-box;
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
+}
+
+@media screen and (min-width: 992px) {
+  #app {
+    min-height: calc(100vh - 110px);
+  }
 }
 
 .main-content {
