@@ -95,7 +95,7 @@
         @if($userInLeagueCheck > 0)    
                 <div class="chat-off-canvas" v-bind:class="{ visible: show }" v-cloak>
                 <img src="../img/cancel.svg" class="cancel" @click="show = false">
-                <chat inline-template>
+                <chat inline-template :league-id="{{$league->id}}">
                     <div><!-- start of chat area-->
                         <h3>Messages</h3>
                             <div id="chatArea">
@@ -140,10 +140,11 @@
                                         </div>
                                     </ul>
                             </div>
-                        <hr>
-                        <hr>
+                            <div>
+                                <hr>
+                            </div>
                 <div id="input-wrap" class="input-wrap">
-                    <i id="emoji-icon" class="fa fa-smile-o choose-emoji-btn" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" v-if="isMobile" @click="press({{$league->id}})" v-cloak></i>
                     <input type="text" id="chat-input" class="form-control" placeholder="Type your message" required="required" v-model="newMsg" @keyup.enter="press({{$league->id}})">
                 </div><!-- /.input-wrap -->
             </div> <!-- end of chat off canvas-->

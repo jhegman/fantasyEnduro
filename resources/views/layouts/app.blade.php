@@ -15,6 +15,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/emojionearea.min.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
