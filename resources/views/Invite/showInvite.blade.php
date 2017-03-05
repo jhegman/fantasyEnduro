@@ -4,6 +4,12 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default short-instructions">
+                <div class="panel-body">
+                    <b> Invite other users to join your private league.  Invited users will
+                    recieve an email where they can accept your invite.</b>
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">Pending invitations</div>
                     <div class="panel-body">
@@ -33,22 +39,37 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">Invite members to {{$league->name}}</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal" method="post" action="/invite/{{$league->id}}">
-                            {!! csrf_field() !!}
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-                            <div class="col-md-6">
-                                <input type="email" name="email">
-                                @if ($errors->first('email'))
-                                    <div class="errors">{{ $errors->first('email') }}</div>
-                                @elseif($alreadySent)
-                                    <div class="errors">Invitation already sent to this address</div>
-                                @endif
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope-o"></i>Invite to league
-                                </button>
-                            </div>
-                        </form>
+                    <div id="user-sort" class="panel-body">
+                        <div class="search-wrap lineup-search">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input class="search" type="text" placeholder="Search">
+                        </div><!-- /.search-wrap -->
+                        <div class="overflow-invite">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Send</th>
+                                </tr>
+                                </thead>
+                                <tbody class="list">
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td class="name">{{$user->name}}</td>
+                                        <td>
+                                            <form class="form-horizontal" method="post" action="/invite/{{$league->id}}">
+                                                {!! csrf_field() !!}
+                                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                <button type="submit" class="btn btn-sm btn-default">
+                                                    <i class="fa fa-btn fa-envelope-o"></i>Invite to league
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
             </div>
         </div>

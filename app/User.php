@@ -35,6 +35,16 @@ class User extends Authenticatable
     }
 
     /**
+    * Get the invitations assoicated with each user
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    */
+    public function invitations()
+    {
+        return $this->hasMany('App\Invitation');
+    }
+
+    /**
     * Get the leagues associated with each user
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
