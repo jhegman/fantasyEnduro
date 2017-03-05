@@ -846,7 +846,8 @@ body.is-scrolled {
 }
 
 .page-set-lineupmen,
-.page-set-lineupwomen {
+.page-set-lineupwomen,
+.page-inviteid {
 	.main-content {
 		padding-top: 25px;
 		padding-bottom: 50px;
@@ -1739,6 +1740,11 @@ body.is-scrolled {
 		padding-top: 30px;
 		padding-bottom: 50px;
 	}
+}
+
+.overflow-invite{
+	height:300px;
+	overflow:auto;
 }
 
 /*--------------------------------------------------------------

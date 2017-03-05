@@ -9,6 +9,7 @@ use App\League;
 use Auth;
 use App\MessageSeen;
 use Carbon\Carbon;
+use App\User;
 
 class InviteController extends Controller
 {
@@ -18,10 +19,15 @@ class InviteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showInvite($id){
-    	$alreadySent = false;
-    	$league = League::findOrFail($id);
+        $league = League::findOrFail($id);
+        //Get all users that dont have invite and aren't league admin
+        $users = User::where('id','!=',$league->admin_id)
+        ->whereDoesntHave('invitations',function ($query) use ($league) {
+            $query->where('league_id',$league->id);
+        })->get();
+        //All invitations
     	$invitations = Invitation::where('league_id',$league->id)->get();
-    	return view('Invite.showInvite',compact('invitations','league','alreadySent'));
+    	return view('Invite.showInvite',compact('invitations','league','users','alreadySent'));
     }
 
 
@@ -31,16 +37,11 @@ class InviteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addEmails($id, Request $request){
-    	$this->validate($request, [
-            'email' => 'required|email'
-
-            ]);
-
-    	$email = $request->email;
+    
+        $user = User::find($request->user_id);
+    	$email = $user->email;
     	$league = League::findOrFail($id);
     	
-    	//for checking if invitation already exists
-    	$alreadySent = false;
     	//Check if invitation already exists
     	if(Invitation::generate($email,"2 day",True,$id)){
     		$temp = Invitation::where('email','=',$email)
@@ -49,11 +50,12 @@ class InviteController extends Controller
             Mail::send('Invite.invite-email', [ 'email' => $email, 'invite' => $temp, 'league' => $league], function ($m) use ($email) {
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
-    	}else{
-			$alreadySent = true;
+            //assign user to invitation
+            $temp->user_id = $user->id;
+            $temp->save();
     	}
-    	$invitations = Invitation::where('league_id',$league->id)->get();
-    	return view('Invite.showInvite',compact('invitations','league','alreadySent'));
+    	
+        return redirect(route('invite', $league->id));
     }
 
     /**
@@ -67,7 +69,7 @@ class InviteController extends Controller
         $email = $invitation->email;
 
         //only send if their invite has expired
-        if(Invitation::status($invi->code,$invi->email) == 'expired'){
+        if(Invitation::status($invitation->code,$invitation->email) == 'expired'){
         Mail::send('Invite.invite-email', [ 'email' => $email, 'invite' => $invitation, 'league' => $league], function ($m) use ($email) {
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
@@ -90,9 +92,6 @@ class InviteController extends Controller
         $invite = Invitation::where('code',$code)
         ->where('used',0)
         ->firstOrFail();
-
-        $invite->user_id = $user->id;
-        $invite->save();
 
         $league = League::find($invite->league_id);
 

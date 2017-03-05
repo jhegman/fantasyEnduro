@@ -46,18 +46,14 @@ class SetLineupController extends Controller
      */
     public function setLineupMen()
     {
-        $isOpen = true;
+        //get week
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
-        //get current time
-        $now = Carbon::now();
+        //get current selection period
         $period = SelectionPeriod::where('week',$week)->first();
-        $closed = Carbon::parse($period->closed);
+        //time in EST
         $closedEST = Carbon::parse($period->closed)->tz('EST')->format('l, n/j/y \\a\\t g:i A e');
-        $reopen = Carbon::parse($period->reopen);
-        //If between two times then selection is closed
-        if($now->gt($closed) && $now->lt($reopen)){
-            $isOpen = false;
-        }
+        //Check if open
+        $isOpen = SelectionPeriod::open($week);
         return view('set-lineup.set-lineup-men',compact('isOpen', 'closedEST'));
     }
 
@@ -67,18 +63,14 @@ class SetLineupController extends Controller
      */
     public function setLineupWomen()
     {
-        $isOpen = true;
+        //get week
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
-        //get current time
-        $now = Carbon::now();
+        //get current selection period
         $period = SelectionPeriod::where('week',$week)->first();
-        $closed = Carbon::parse($period->closed);
+        //time in EST
         $closedEST = Carbon::parse($period->closed)->tz('EST')->format('l, n/j/y \\a\\t g:i A e');
-        $reopen = Carbon::parse($period->reopen);
-        //If between two times then selection is closed
-        if($now->gt($closed) && $now->lt($reopen)){
-            $isOpen = false;
-        }
+        //Check if open
+        $isOpen = SelectionPeriod::open($week);
         return view('set-lineup.set-lineup-women',compact('isOpen', 'closedEST'));
     }
 
@@ -146,12 +138,8 @@ class SetLineupController extends Controller
     {
         //Check to see if selection is open
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
-        //get current time
-        $now = Carbon::now();
-        $period = SelectionPeriod::where('week',$week)->first();
-        $closed = Carbon::parse($period->closed);
-        $reopen = Carbon::parse($period->reopen);
-        if($now->gt($closed) && $now->lt($reopen)){
+        
+        if(!SelectionPeriod::open($week)){
             return json_encode(array(
                 'status'    =>  false,
                 'message'   =>  'Selection Period Closed!'
