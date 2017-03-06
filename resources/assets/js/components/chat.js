@@ -19,6 +19,7 @@ module.exports = {
             });
             this.emojiInput[0].emojioneArea.on("keydown", function(btn, event, emojiInput) {
                 if(event.which == 13) {
+                    event.preventDefault();
                     this.newMsg = this.emojiInput[0].emojioneArea.getText();
                     this.press(this.leagueId);
                 }

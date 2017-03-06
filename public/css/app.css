@@ -12122,10 +12122,8 @@ body.is-scrolled .navbar-toggle {
 
 .input-wrap .fa-arrow-circle-up {
   position: absolute;
-  top: 50%;
+  top: 10px;
   right: 15px;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
   font-size: 26px;
   color: #147cd1;
 }
@@ -12158,6 +12156,20 @@ body.is-scrolled .navbar-toggle {
   height: 100%;
   -webkit-box-pack: justify;
   justify-content: space-between;
+}
+
+.chat-off-canvas textarea {
+  min-height: 80px;
+  padding-right: 40px;
+}
+
+.chat-off-canvas .emojionearea .emojionearea-editor {
+  min-height: 40px;
+  padding-top: 12px;
+}
+
+.chat-off-canvas .emojionearea .emojionearea-button {
+  top: 8px;
 }
 
 body.is-scrolled .chat-off-canvas {
