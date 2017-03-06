@@ -17,7 +17,7 @@
     </div>
 </div><!-- /.container -->
 @if($isOpen == false)
-<p>Closed!</p>
+    <h1 class="errors" style="text-align: center;">Selection Closed!</h1>
 @else
 <!--This is a Vue js Component. It lives in resources/assets/js/components-->
 <set-lineup></set-lineup>

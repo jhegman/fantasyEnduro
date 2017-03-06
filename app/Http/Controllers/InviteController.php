@@ -43,7 +43,7 @@ class InviteController extends Controller
     	$league = League::findOrFail($id);
     	
     	//Check if invitation already exists
-    	if(Invitation::generate($email,"2 day",True,$id)){
+    	if(Invitation::generate($email,"1 day",True,$id)){
     		$temp = Invitation::where('email','=',$email)
             ->where('league_id', $id)
             ->first();
@@ -74,7 +74,7 @@ class InviteController extends Controller
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
         //Set invitation to unexpire in 2 days
-        Invitation::unexpire($invitation->code,$invitation->email,"2 day");
+        Invitation::unexpire($invitation->code,$invitation->email,"1 day");
         }
         return redirect(route('invite', $league->id));
     }

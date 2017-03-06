@@ -111,8 +111,10 @@
                                         </ul>
                                     @else
                                         <ul>
-                                            <span class="li-image" style="background-image: url({{ url('/uploads/avatar',$names[$key]->avatar) }})"> 
-                                            </span>
+                                            <a href="{{url('/user',$names[$key]->name)}}">
+                                                <span class="li-image" style="background-image: url({{ url('/uploads/avatar',$names[$key]->avatar) }})"> 
+                                                </span>
+                                            </a>
                                                 <b>{{$names[$key]->name}}:</b> 
                                             <span class="others-chats">
                                                 {{$message->message}}
@@ -131,8 +133,10 @@
                                         </div>
                                     <!-- Other users chats -->
                                         <div class="message-wrap" v-else v-cloak>
-                                            <span class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
-                                            </span>
+                                            <a :href="'/user/' + post.username">
+                                                <span class="li-image" :style="{ backgroundImage: 'url('+'/uploads/avatar/' + post.avatar + ')' }">
+                                                </span>
+                                            </a>
                                                 <b> @{{ post.username }}:</b> 
                                             <span class="others-chats">
                                                 @{{ post.message }}</li>
