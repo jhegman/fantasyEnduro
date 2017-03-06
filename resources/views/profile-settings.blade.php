@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-@if ($errors->any())
+@if ($errors->first('name'))
     @php
-        $errorCheck = 'true';
+        $errorCheckName = 'true';
+        $errorCheckPic = 'false';
     @endphp
-@else 
+@elseif ($errors->first('image'))
     @php
-        $errorCheck = 'false';
+        $errorCheckName = 'false';
+        $errorCheckPic = 'true';
+    @endphp
+@else
+    @php
+        $errorCheckName = 'false';
+        $errorCheckPic = 'false';
     @endphp
 @endif
 <div class="container main-content">
@@ -23,7 +30,7 @@
         </div>
         <div class=col-md-10>
             <div class="settings-table settings-first">
-                <accordion :errors="{{ $errorCheck }}">
+                <accordion :errors="{{ $errorCheckName }}">
                     <span slot="title">Edit Username</span>
                     <div slot="form" v-cloak>
                         {!! Form::open(['url' => 'change-username/complete']) !!}
@@ -40,13 +47,16 @@
                 </accordion>
             </div>
             <div class="settings-table">
-                <accordion>
+                <accordion :errors="{{ $errorCheckPic }}">
                     <span slot="title">Change profile picture</span>
                     <div slot="form" v-cloak>
                         {!! Form::open(['url' => 'profile-settings', 'files' => true]) !!}
                             <!-- <input type="file" name="avatar"> -->
                             {{ Form::file('image') }}
                             {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+                            @if ($errors->first('image'))
+                                    <span class="errors">{{ $errors->first('image') }}</span>
+                            @endif
                         {!! Form::close() !!}
                     </div>
                 </accordion>

@@ -40,7 +40,7 @@ class UserSettingsController extends Controller
         if ($request->hasFile('image')){
 
             $this->validate($request, [
-            'image' =>'mimetypes:image/jpeg,image/png,image/gif',
+            'image' =>'mimes:jpeg,jpg,png,gif',
 
             ]);
 

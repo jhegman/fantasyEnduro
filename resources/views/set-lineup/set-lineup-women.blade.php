@@ -1,13 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container set-lineup-header">
+<div class="container set-lineup-header main-content">
 	<div class="row">
 		<div class="col-md-6">
-			<h3 class="closes">Closes: {{ $closedEST }}</h3>
+            <div class="set-lineup-link">
+                <i class="fa fa-male" aria-hidden="true"></i>
+                <a href="{{url('set-lineup/men')}}"> Set Men's Lineup </a>
+            </div>
+            <h3 class="closes">Closes: {{ $closedEST }}</h3>
 		</div><!-- /.col-md-6 -->
 		<div class="col-md-6 how-scoring-works">
-			<button class="btn-primary" @click="showModal = true">How Scoring Works?</button>
+            <button class="btn-primary" @click="showModal = true">How Scoring Works?</button>
 		</div><!-- /.col-md-6 -->
 	</div><!-- /.row -->
     <div class="panel panel-default short-instructions">
@@ -15,13 +19,13 @@
             <p>Use the plus/minus buttons or drag and drop to set your lineup. Drag and drop to set the order you think the racers will finish. Bonus points are rewarded for guessing the podium!</p>
         </div>
     </div>
+    @if($isOpen == false)
+        <h1 class="errors" style="text-align: center;">Selection Closed!</h1>
+    @else
+        <!--This is a Vue js Component. It lives in resources/assets/js/components-->
+    <set-lineup></set-lineup>
+    @endif
 </div><!-- /.container -->
-@if($isOpen == false)
-    <h1 class="errors" style="text-align: center;">Selection Closed!</h1>
-@else
-<!--This is a Vue js Component. It lives in resources/assets/js/components-->
-<set-lineup></set-lineup>
-@endif
 <modal v-if="showModal" @modal-closed="showModal = false" v-cloak>
     <div class="how-scoring-works-wrap" slot="body">
         <h2>How Scoring Works</h2>
