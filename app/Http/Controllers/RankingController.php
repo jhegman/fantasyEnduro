@@ -50,11 +50,6 @@ class RankingController extends Controller
 		->orderBy('points', 'DESC')
 		->get();
 
-		//User associated with the ranking
-		foreach ($weekRankings as $key => $ranking) {
-			$users[$key] = User::find($ranking->user_id);
-		}
-
 		//Top Men
 		$menRace = Race::where('race_week',$id)
 		->where('gender','Men')

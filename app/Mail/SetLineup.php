@@ -34,6 +34,6 @@ class SetLineup extends Mailable
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
         $period = SelectionPeriod::where('week',$week)->first();
         $period = Carbon::parse($period->closed)->toDayDateTimeString();
-        return $this->view('set-lineup.set-lineup-email',compact('period'));
+        return $this->view('emails.set-lineup-email',compact('period'));
     }
 }

@@ -47,9 +47,9 @@
 								</div>
 								<div class="rider">
 									<span>
-										<img src = "{{ url('/uploads/avatar',$users[$key]->avatar) }}" class="img-circle" height="20px" width="20px">
+										<img src = "{{ url('/uploads/avatar',$ranking->user->avatar) }}" class="img-circle" height="20px" width="20px">
 									</span>
-									<a href="{{ url('/user',$users[$key]->name) }}">{{$users[$key]->name}}</a> 
+									<a href="{{ url('/user',$ranking->user->name) }}">{{$ranking->user->name}}</a> 
 									<span class="score">
 										Score: {{$ranking->points}}
 									</span>

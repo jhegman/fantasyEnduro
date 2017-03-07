@@ -16,8 +16,7 @@ use Route;
 use App\Point;
 use App\SuperAdminOption;
 use App\Lineup;
-use App\ChatMessage;
-use App\Events\ChatMessageWasReceived;
+use App\Events\ScoreRace;
 
 class ScoreRaceController extends Controller
 {
@@ -112,6 +111,11 @@ class ScoreRaceController extends Controller
 		}
 
 		$points = Point::all();
+		
+		//Email users results
+		$race_event = Race::find($race_id_men);
+		event(new ScoreRace($race_event));
+		
 		return view('upload-tools.score-race',compact('points'));
 
 	}

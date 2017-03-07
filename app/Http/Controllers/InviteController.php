@@ -27,7 +27,7 @@ class InviteController extends Controller
         })->get();
         //All invitations
     	$invitations = Invitation::where('league_id',$league->id)->get();
-    	return view('Invite.showInvite',compact('invitations','league','users','alreadySent'));
+    	return view('emails.showInvite',compact('invitations','league','users','alreadySent'));
     }
 
 
@@ -47,7 +47,7 @@ class InviteController extends Controller
     		$temp = Invitation::where('email','=',$email)
             ->where('league_id', $id)
             ->first();
-            Mail::send('Invite.invite-email', [ 'email' => $email, 'invite' => $temp, 'league' => $league], function ($m) use ($email) {
+            Mail::send('emails.invite-email', [ 'email' => $email, 'invite' => $temp, 'league' => $league], function ($m) use ($email) {
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
             //assign user to invitation
