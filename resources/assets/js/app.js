@@ -104,6 +104,7 @@ jQuery(document).ready(function($) {
     var sortMen = new List('men-sort', options);
     var sortWomen = new List('women-sort', options);
     var sortUser = new List('user-sort', options);
+
 });
 
 //Check scroll position on scroll
