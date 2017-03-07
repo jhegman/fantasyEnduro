@@ -171,6 +171,7 @@ return [
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Torann\GeoIP\GeoIPServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
         //'Form' => Collective\Html\FormFacade::class,
         //'Html' => Collective\Html\HtmlFacade::class,
 

@@ -50,10 +50,15 @@ class SetLineupController extends Controller
         $week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
         //get current selection period
         $period = SelectionPeriod::where('week',$week)->first();
+
+        //Get Users location
+        $location = geoip()->getLocation();
+
         //time in EST
-        $closedEST = Carbon::parse($period->closed)->tz('EST')->format('l, n/j/y \\a\\t g:i A e');
+        $closedEST = Carbon::parse($period->closed)->tz($location->timezone)->format('l, n/j/y \\a\\t g:i A T');
         //Check if open
         $isOpen = SelectionPeriod::open($week);
+
         return view('set-lineup.set-lineup-men',compact('isOpen', 'closedEST'));
     }
 
