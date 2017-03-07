@@ -12617,6 +12617,18 @@ body.is-scrolled .chat-off-canvas {
   border-top-right-radius: 5px;
 }
 
+@media screen and (max-width: 991px) {
+  .settings-first {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: 1px solid #e1e8ed;
+  }
+  .card-wrap {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+  }
+}
+
 .settings-last {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
