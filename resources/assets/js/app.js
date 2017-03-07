@@ -84,16 +84,26 @@ const app = new Vue({
 });
 
 jQuery(document).ready(function($) {
-	//Update Nav Position 
+    //Update Nav Position 
     NavIsScrolled();
 
     //click outside of drop down
     $('.page-rankings, .page-rankingsid').click(function(event) { 
        if(!$(event.target).closest('.ranking-drop-down, .select-week').length) {
-        		$('.ranking-drop-down').removeClass('show');
-        		$('.select-week').removeClass('active-style');
+                $('.ranking-drop-down').removeClass('show');
+                $('.select-week').removeClass('active-style');
             }    
     });
+
+    var options = {
+      valueNames: [ 'name']
+    };
+
+    //Sort tables
+    var sortLeague = new List('league-sort', options);
+    var sortMen = new List('men-sort', options);
+    var sortWomen = new List('women-sort', options);
+    var sortUser = new List('user-sort', options);
 });
 
 //Check scroll position on scroll
@@ -101,13 +111,3 @@ $(window).scroll(function() {
 	//Update Nav Position 
     NavIsScrolled();
 });
-
-var options = {
-  valueNames: [ 'name']
-};
-
-//Sort tables
-var sortLeague = new List('league-sort', options);
-var sortMen = new List('men-sort', options);
-var sortWomen = new List('women-sort', options);
-var sortUser = new List('user-sort', options);

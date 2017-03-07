@@ -41,7 +41,7 @@ class EmailScores implements ShouldQueue
         $rank = $user->points()->where('week',$race->race_week)->first();
         Mail::send('emails.race-scored-email', [ 'email' => $email, 'user' => $user, 'race' => $race, 'rank' => $rank, 'top10' => $topUsers], 
         function ($m) use ($email) {
-                    $m->to($email)->subject('This weekend\'s races has been scored!');
+                    $m->to($email)->subject('This weekend\'s race has been scored!');
                 });
         }
     }
