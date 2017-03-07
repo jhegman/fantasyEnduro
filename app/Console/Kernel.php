@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         '\App\Console\Commands\SendEmails',
+        '\App\Console\Commands\DailyStats'
     ];
 
     /**
@@ -26,8 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('email:send')
                  ->daily();
-        // $schedule->exec('composer update')
-        //          ->daily();
+        $schedule->command('stats:send')
+                 ->daily();
     }
 
     /**

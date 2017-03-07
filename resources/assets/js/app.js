@@ -84,14 +84,14 @@ const app = new Vue({
 });
 
 jQuery(document).ready(function($) {
-	//Update Nav Position 
+    //Update Nav Position 
     NavIsScrolled();
 
     //click outside of drop down
     $('.page-rankings, .page-rankingsid').click(function(event) { 
        if(!$(event.target).closest('.ranking-drop-down, .select-week').length) {
-        		$('.ranking-drop-down').removeClass('show');
-        		$('.select-week').removeClass('active-style');
+                $('.ranking-drop-down').removeClass('show');
+                $('.select-week').removeClass('active-style');
             }    
     });
 
