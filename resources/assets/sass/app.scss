@@ -978,10 +978,14 @@ body.is-scrolled {
 .lineup-cta {
 	align-items: center;
 	display: flex;
-	height: calc(100vh - 100px);
 	justify-content: center;
 	position: relative;
 	overflow: hidden;
+	height: calc(50vh - 50px);
+
+	@media screen and (min-width: $screen-md) {
+		height: calc(100vh - 100px);
+	}
 
 	&:hover,
 	&:focus {
