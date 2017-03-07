@@ -12670,6 +12670,7 @@ body.is-scrolled .chat-off-canvas {
   height: 150px;
   margin-left: -75px;
   top: -75px;
+  cursor: pointer;
 }
 
 .card-wrap-user {

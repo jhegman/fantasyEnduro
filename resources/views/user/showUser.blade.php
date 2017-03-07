@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-wrap card-wrap-user">
-                <div class="profile_pic-wrap user-profile-pic" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
+                <div class="profile_pic-wrap user-profile-pic" @click="showModal = true" style="background-image: url({{ url('/uploads/avatar',$user->avatar) }})">
                 </div>
                  <div class="info-wrap">
                     <h1 class="user-name user-name-user">{{ $user->name }}</h1>
@@ -88,5 +88,10 @@
                 @endforeach
         </div>
     </div>
-</div>
+</div><!-- /.container -->
+<modal v-if="showModal" @modal-closed="showModal = false" v-cloak>
+    <div class="how-scoring-works-wrap" slot="body">
+        <img src="{{url('/uploads/avatar',$user->avatar)}}">
+    </div>
+</modal>
 @endsection
