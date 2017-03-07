@@ -94,6 +94,17 @@ jQuery(document).ready(function($) {
         		$('.select-week').removeClass('active-style');
             }    
     });
+
+    var options = {
+      valueNames: [ 'name']
+    };
+
+    //Sort tables
+    var sortLeague = new List('league-sort', options);
+    var sortMen = new List('men-sort', options);
+    var sortWomen = new List('women-sort', options);
+    var sortUser = new List('user-sort', options);
+
 });
 
 //Check scroll position on scroll
@@ -101,13 +112,3 @@ $(window).scroll(function() {
 	//Update Nav Position 
     NavIsScrolled();
 });
-
-var options = {
-  valueNames: [ 'name']
-};
-
-//Sort tables
-var sortLeague = new List('league-sort', options);
-var sortMen = new List('men-sort', options);
-var sortWomen = new List('women-sort', options);
-var sortUser = new List('user-sort', options);
