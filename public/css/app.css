@@ -12290,6 +12290,17 @@ body.is-scrolled .chat-off-canvas {
   padding-top: 50px;
 }
 
+.page-username .modal-container {
+  display: table;
+  width: 0;
+  padding: 15px;
+}
+
+.page-username .fa-times {
+  top: 0px;
+  right: 0px;
+}
+
 .lineups {
   list-style: none;
   padding-left: 0;
