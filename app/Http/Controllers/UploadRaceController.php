@@ -34,13 +34,9 @@ class UploadRaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function uploadRace(FormBuilder $formBuilder)
+    public function uploadRace()
     {
-        $form = $formBuilder->create(\App\Forms\UploadForm::class, [
-            'method' => 'POST',
-            'url' => route('upload-race-complete')
-        ]);
-        return view('upload-tools.upload-race')->with('form', $form);
+        return view('upload-tools.upload-race');
     }
 
     /**
@@ -96,6 +92,17 @@ class UploadRaceController extends Controller
                 //Remove any weird charcters from front and back
                 $racerName = trim($racerName, "\xA0\xC2");
                 $existingRacerCheck = Racer::where('name', 'LIKE', '%' . $racerName . '%')->first();
+                
+                //Build Result Array
+                $resultArray = [];
+                $resultArray['overall_place'] = intval(trim($result->overall_place, '()'));
+                $resultArray['week'] = $request->week;
+                $resultArray['points'] = intval($pointslist[intval($result->overall_place)-1]->points);
+                for ($i=1; $i < $request->number_stages + 1; $i++) { 
+                    $resultArray['stage_' . $i . '_time'] = $result->{'stage_' . $i . '_time'};
+                    $resultArray['stage_' . $i . '_place'] = intval(trim($result->{'stage_' . $i . '_place'}, '()'));
+                }
+
                 //If Racer doesn't already exist in the database add them, else add results to race_racers table
                 if ($existingRacerCheck == null) {
                     $racer = new Racer;
@@ -103,42 +110,10 @@ class UploadRaceController extends Controller
                     $racer->gender = $request->gender;
                     $racer->points = intval($pointslist[intval($result->overall_place)-1]->points) +    $racer->points;
                     $racer->save();
-                    $racer->races()->attach($race->id, [
-                        'overall_place' =>  intval(trim($result->overall_place, '()')),
-                        'stage_1_time'  =>  $result->stage_1_time,
-                        'stage_1_place' =>  intval(trim($result->stage_1_place, '()')),
-                        'stage_2_time'  =>  $result->stage_2_time,
-                        'stage_2_place' =>  intval(trim($result->stage_2_place, '()')),
-                        'stage_3_time'  =>  $result->stage_3_time,
-                        'stage_3_place' =>  intval(trim($result->stage_3_place, '()')),
-                        'stage_4_time'  =>  $result->stage_4_time,
-                        'stage_4_place' =>  intval(trim($result->stage_4_place, '()')),
-                        'stage_5_time'  =>  $result->stage_5_time,
-                        'stage_5_place' =>  intval(trim($result->stage_5_place, '()')),
-                        'stage_6_time'  =>  $result->stage_6_time,
-                        'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
-                        'points' => intval($pointslist[intval($result->overall_place)-1]->points),
-                        'week' => $request->week,
-                    ]);
+                    $racer->races()->attach($race->id, $resultArray);
                     
                 } else {
-                    $existingRacerCheck->races()->attach($race->id, [
-                        'overall_place' =>  intval(trim($result->overall_place, '()')),
-                        'stage_1_time'  =>  $result->stage_1_time,
-                        'stage_1_place' =>  intval(trim($result->stage_1_place, '()')),
-                        'stage_2_time'  =>  $result->stage_2_time,
-                        'stage_2_place' =>  intval(trim($result->stage_2_place, '()')),
-                        'stage_3_time'  =>  $result->stage_3_time,
-                        'stage_3_place' =>  intval(trim($result->stage_3_place, '()')),
-                        'stage_4_time'  =>  $result->stage_4_time,
-                        'stage_4_place' =>  intval(trim($result->stage_4_place, '()')),
-                        'stage_5_time'  =>  $result->stage_5_time,
-                        'stage_5_place' =>  intval(trim($result->stage_5_place, '()')),
-                        'stage_6_time'  =>  $result->stage_6_time,
-                        'stage_6_place' =>  intval(trim($result->stage_6_place, '()')),
-                        'points' => intval($pointslist[intval($result->overall_place)-1]->points),
-                         'week' => $request->week,
-                    ]);
+                    $existingRacerCheck->races()->attach($race->id, $resultArray);
                     $existingRacerCheck->points = intval($pointslist[intval($result->overall_place)-1]->points);
                     $existingRacerCheck->save();
                 }
