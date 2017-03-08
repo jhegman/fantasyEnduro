@@ -75,6 +75,9 @@ Route::post('/join-league', 'LeagueController@joinLeague');
 //ajax route for leaving a league
 Route::post('/leave-league', 'LeagueController@leaveLeague');
 
+//ajax route for live search
+Route::post('/live-search','LeagueController@liveSearch');
+
 //ajax route for updating message seen table
 Route::post('/messageSeen','LeagueController@messageSeen');
 
