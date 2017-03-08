@@ -32,7 +32,7 @@ class LeagueController extends Controller
     {
     	$user = Auth::user();
         $myLeagues = $user->leagues;
-        $leagues = League::where('private',false)->get();
+        $leagues = League::where('private',false)->paginate(2);
    		return view('league.leagues',compact('leagues','user','myLeagues'));
     }
 
@@ -194,5 +194,14 @@ class LeagueController extends Controller
 
         return response()->json(['response' => 'This is post method']);
 
+    }
+
+    public function liveSearch(Request $request){
+        $search = $request->input;
+        $leagues = League::where('name', 'LIKE', '%'.$search.'%')
+        ->where('private',0)
+        ->get();
+        
+        return json_encode($leagues);
     }
 }

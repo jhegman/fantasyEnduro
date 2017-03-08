@@ -66,9 +66,9 @@
     	<div id="league-sort" class="table-responsive">
     		<div class="search-wrap lineup-search">
             	<i class="fa fa-search" aria-hidden="true"></i>
-            	<input class="search" type="text" placeholder="Search">
+            	<input v-model="leagueSearch" class="search" type="text" placeholder="Search" @input="leagueLiveSearch">
         	</div><!-- /.search-wrap -->
-    			<table class="table table-hover">
+    			<table class="table table-hover" v-if="leagueSearch == '' ">
 					<thead>
 						<tr>
 							<th></th>
@@ -100,6 +100,23 @@
 					@endforeach
 				</tbody>
 				</table>
+                {{$leagues->links()}}
+                <table class="table table-hover" v-if="leagueSearch != '' ">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th> League Name</th>
+                            <th> Number of Members</th>
+                        </tr>
+                    </thead>
+                <tbody class="list" v-for="league in leagues">
+                    <tr>
+                        <td>
+                            @{{league.name}}
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
 		</div>
 </div>
 @endsection

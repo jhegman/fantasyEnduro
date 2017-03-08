@@ -34,7 +34,9 @@ const app = new Vue({
 		result: true,
 		show: false,
 		settings: [{show:true},{show:false},{show:false}],
-		showModal: false
+		showModal: false,
+		leagueSearch: '',
+		leagues: []
 	},
 	methods: {
 		joinLeague: function(league){
@@ -79,9 +81,16 @@ const app = new Vue({
                 .then((response) => {
                 
                 });
-        }
-	}
-});
+        },
+        leagueLiveSearch(){
+        	this.$http.post('/live-search',{input: this.leagueSearch}).then((response) => {
+				return response.json();
+			}).then(result => {
+				this.leagues = result;
+        	});
+			}
+		}
+	});
 
 jQuery(document).ready(function($) {
     //Update Nav Position 
