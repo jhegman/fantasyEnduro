@@ -21,6 +21,8 @@ Vue.component('chat', require('./components/chat'));
 Vue.component('set-lineup', require('./components/SetLineup.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('accordion', require('./components/Accordion.vue'));
+Vue.component('league', require('./components/League.vue'));
+Vue.component('noty', require('./components/Noty.vue'));
 
 const app = new Vue({
 	el: '#app',
@@ -87,6 +89,7 @@ const app = new Vue({
 				return response.json();
 			}).then(result => {
 				this.leagues = result;
+				console.log(result);
         	});
 			}
 		}

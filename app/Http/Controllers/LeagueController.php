@@ -198,10 +198,19 @@ class LeagueController extends Controller
 
     public function liveSearch(Request $request){
         $search = $request->input;
+        $user_id = Auth::user()->id;
         $leagues = League::where('name', 'LIKE', '%'.$search.'%')
         ->where('private',0)
         ->get();
+
+        //Loop through leagues and add some extra info (users in league and league count)
+        $returnArray = [];
+        foreach ($leagues as $key => $league) {
+            $returnArray[$key]['league'] = $league;
+            $returnArray[$key]['leagueCount'] = count($league->users);
+            $returnArray[$key]['userInLeague'] = ($league->users()->where('id',$user_id)->first() != null ? true : false);
+        }
         
-        return json_encode($leagues);
+        return json_encode($returnArray);
     }
 }

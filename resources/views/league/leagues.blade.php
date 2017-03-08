@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container main-content" v-on:onload="seen = true">
-   	<transition name="fade">
-			<div style= "position:fixed;" class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
-	</transition>
+    <noty></noty>
         @if ($errors->any())
             @php
                 $errorCheck = 'true';
@@ -79,29 +77,18 @@
 				<tbody class="list">
 					@foreach($leagues as $league)
 						@php
-							$userInLeagueCheck = $league->users()->where('id',$user->id)->get();
+							$userInLeagueCheck = ($league->users()->where('id',$user->id)->first() != null ? 'true' : 'false');
 						@endphp
-							<tr>
-    							<td>
-    								@if(count($userInLeagueCheck) == 0)
-                                        <button class="btn-primary" @click="joinLeague({{$league->id}})" v-if="showLeagueSave[{{$league->id}}] === undefined">Join League</button>
-									   <span v-if="showLeagueSave[{{$league->id}}] === true" v-cloak>Joined</span>  	
-    								@else
-    									<span>Joined</span>
-    								@endif
-    							</td>
-    							<td class="name">
-    								<a href="{{ url('/leagues',$league->id) }}">{{$league->name}}</a>
-    							</td>
-   			 					<td>
-									{{count($league->users)}}
-								</td>
-							</tr>
+						<tr is="league" :user-in-league="{{ $userInLeagueCheck }}" league-count="{{count($league->users)}}" league-id="{{$league->id}}">
+                            <td slot="league-name">
+                                <a href="{{ url('/leagues',$league->id) }}">{{$league->name}}</a>
+                            </td>
+                        </tr>
 					@endforeach
 				</tbody>
 				</table>
                 {{$leagues->links()}}
-                <table class="table table-hover" v-if="leagueSearch != '' ">
+                <table class="table table-hover" v-if="leagueSearch != '' " v-cloak>
                     <thead>
                         <tr>
                             <th></th>
@@ -112,7 +99,11 @@
                 <tbody class="list" v-for="league in leagues">
                     <tr>
                         <td>
-                            @{{league.name}}
+                            <tr is="league" :user-in-league="league.userInLeague" :league-count="league.leagueCount" :league-id="league.league.id">
+                                <td slot="league-name">
+                                    <a :href="'/leagues/' + league.id">@{{league.league.name}}</a>
+                                </td>
+                            </tr>
                         </td>
                     </tr>
                 </tbody>
