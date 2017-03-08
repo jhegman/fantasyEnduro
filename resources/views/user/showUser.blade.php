@@ -90,7 +90,7 @@
     </div>
 </div><!-- /.container -->
 <modal v-if="showModal" @modal-closed="showModal = false" v-cloak>
-    <div class="how-scoring-works-wrap" slot="body">
+    <div slot="body">
         <img src="{{url('/uploads/avatar',$user->avatar)}}">
     </div>
 </modal>

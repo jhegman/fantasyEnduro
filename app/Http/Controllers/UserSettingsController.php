@@ -47,7 +47,7 @@ class UserSettingsController extends Controller
             $avatar = $request->file('image');
             
             $fileName = time(). '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save( public_path('uploads/avatar/' . $fileName));
+            Image::make($avatar)->fit(400)->save( public_path('uploads/avatar/' . $fileName));
 
             $user = Auth::user();
             $user->avatar = $fileName;
