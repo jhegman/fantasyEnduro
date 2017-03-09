@@ -31,6 +31,7 @@ the file everytime it is saved
 # User Settings
 # Misc Pages
 # Footer
+# 404 Page
 
 --------------------------------------------------------------*/
 
@@ -91,6 +92,10 @@ body.welcome-page {
 /*--------------------------------------------------------------
 # Reusable Components
 --------------------------------------------------------------*/
+
+[v-cloak] {
+  display: none;
+}
 
 .btn-primary {
 	border-radius: 3px;
@@ -687,10 +692,6 @@ body.is-scrolled {
 # Set Lineup
 --------------------------------------------------------------*/
 
-[v-cloak] {
-  display: none;
-}
-
 .fade-enter-active, .fade-leave-active {
  	transition: opacity .8s
 }
@@ -1173,6 +1174,7 @@ body.is-scrolled {
 /*--------------------------------------------------------------
 # League Pages
 --------------------------------------------------------------*/
+
 .page-leagues,
 .page-leaguesid,
 .page-inviteid {
@@ -1873,5 +1875,50 @@ body.is-scrolled {
 	.main-content {
 		padding-top: 50px;
 		padding-bottom: 50px;
+	}
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+body.page- {
+	padding-top: 100px;
+}
+
+.bg-image-404 {
+	background-image: url(../img/404-bg-image.jpg);
+	background-size: cover;
+	background-position: 65% 65%;
+	height: calc(100vh - 184px);
+
+	@media screen and (min-width: $screen-sm) {
+		height: calc(100vh - 162px);
+	}
+
+	.cover {
+		background: linear-gradient(to right, rgba(0, 0, 0, .5) 0%, transparent 100%);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	.content {
+		position: relative;
+		z-index: 5;
+
+		h1 {
+			font-size: 75px;
+		}
+
+		h2 {
+			margin-bottom: 25px;
+		}
+
+		h1,
+		h2 {
+			color: $color-white;
+		}
 	}
 }

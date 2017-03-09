@@ -6,9 +6,9 @@
  */
 
 require('./bootstrap');
-require('list.js');
 require('offcanvas-bootstrap/dist/js/bootstrap.offcanvas.js');
 import {NavIsScrolled} from './components/NavIsScrolled.js';
+import { EventBus } from './components/EventBus.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -23,51 +23,31 @@ Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('accordion', require('./components/Accordion.vue'));
 Vue.component('league', require('./components/League.vue'));
 Vue.component('noty', require('./components/Noty.vue'));
+Vue.component('athlete', require('./components/Athlete.vue'));
 
 const app = new Vue({
 	el: '#app',
 	data: {
-		showNoty: false,
-		saveStatus: false,
-		saveMessage: null,
-		showLeagueSave: [],
 		showLeagueLeft: [],
-		timeOut: {},
 		result: true,
 		show: false,
 		settings: [{show:true},{show:false},{show:false}],
 		showModal: false,
 		leagueSearch: '',
+		athleteSearchMen: '',
+		athleteSearchWomen: '',
 		leagues: []
 	},
 	methods: {
-		joinLeague: function(league){
-			this.$http.post('/join-league', {league: league, path: window.location.pathname}).then((response) => {
-				return response.json();
-			}).then(result => {
-				window.clearTimeout(this.timeOut);
-				this.saveStatus = result.status;
-				this.showNoty = true;
-				this.saveMessage = result.message;
-				this.showLeagueSave[league] = result.leagueSave;
-				this.timeOut = setTimeout(this.closeNoty, 5000);
-			});
-		},
 		leaveLeague: function(league){
-			if(confirm('Are you sure you want to leave this league?')){
-			this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
-				return response.json();
-			}).then(result => {
-				this.saveStatus = result.status;
-				this.showNoty = true;
-				this.saveMessage = result.message;
-				this.showLeagueLeft[league] = true;
-				setTimeout(this.closeNoty, 5000);
-			});
+			if (confirm('Are you sure you want to leave this league?')){
+				this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
+					return response.json();
+				}).then(result => {
+					EventBus.$emit('notyOpened', result.status, result.message);
+					this.showLeagueLeft[league] = true;
+				});
 			}
-		},
-		closeNoty: function() {
-			this.showNoty = false;
 		},
 		showRankings: function() {
 			if (!$('.ranking-drop-down').hasClass('show')) {
@@ -106,16 +86,6 @@ jQuery(document).ready(function($) {
                 $('.select-week').removeClass('active-style');
             }    
     });
-
-    var options = {
-      valueNames: [ 'name']
-    };
-
-    //Sort tables
-    var sortLeague = new List('league-sort', options);
-    var sortMen = new List('men-sort', options);
-    var sortWomen = new List('women-sort', options);
-    var sortUser = new List('user-sort', options);
 
 });
 

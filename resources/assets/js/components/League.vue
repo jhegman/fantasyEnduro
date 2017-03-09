@@ -1,14 +1,14 @@
 <template>
     <tr>
         <td>
-            <button class="btn-primary" v-if="!userInLeagueComputed" @click="joinLeague()">Join League</button>
-            <span v-else>Joined</span>
+            <button class="btn-primary" v-if="!userInLeagueData" @click="joinLeague()" v-cloak>Join League</button>
+            <span v-else v-cloak>Joined</span>
         </td>
         <slot name="league-name">
             
         </slot>
         <td>
-            {{leagueCountComputed}}
+            {{leagueCountData}}
         </td>
     </tr>
 </template>
@@ -16,34 +16,40 @@
     // Import the EventBus we just created.
     import { EventBus } from './EventBus.js';
     export default {
+        data: function() {
+            return {
+                userInLeagueData: this.userInLeague,
+                leagueCountData: this.leagueCount
+            }
+        },
         props: {
             userInLeague: {
                 type: Boolean,
                 required: true
             },
             leagueCount: {
+                type: Number,
                 required: true
             },
             leagueId: {
+                type: Number,
                 required: true
             }
         },
-        computed: {
-            userInLeagueComputed: {
-                get: function() {
-                    return this.userInLeague;
-                },
-                set: function(newValue) {
-                    this.userInLeague = newValue;
+        mounted: function() {
+            EventBus.$on('leagueJoined', leagueId => {
+                if (leagueId == this.leagueId) {
+                    this.userInLeagueData = true;
+                    this.leagueCountData++;
                 }
+            });
+        },
+        watch: {
+            userInLeague: function() {
+                this.userInLeagueData = this.userInLeague;
             },
-            leagueCountComputed: {
-                get: function() {
-                    return this.leagueCount;
-                },
-                set: function(newValue) {
-                    this.leagueCount = newValue;
-                }
+            leagueCount: function() {
+                this.leagueCountData = this.leagueCount;
             }
         },
         methods: {
@@ -51,9 +57,8 @@
                 this.$http.post('/join-league', {league: this.leagueId, path: window.location.pathname}).then((response) => {
                     return response.json();
                 }).then(result => {
-                    this.leagueCountComputed++;
-                    this.userInLeagueComputed = true;
                     EventBus.$emit('notyOpened', result.status, result.message);
+                    EventBus.$emit('leagueJoined', this.leagueId);
                 });
             }
         }

@@ -31,6 +31,7 @@ the file everytime it is saved
 # User Settings
 # Misc Pages
 # Footer
+# 404 Page
 
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
@@ -10888,6 +10889,10 @@ body.welcome-page {
 /*--------------------------------------------------------------
 # Reusable Components
 --------------------------------------------------------------*/
+[v-cloak] {
+  display: none;
+}
+
 .btn-primary {
   border-radius: 3px;
   box-shadow: none;
@@ -11515,10 +11520,6 @@ body.is-scrolled .navbar-toggle {
 /*--------------------------------------------------------------
 # Set Lineup
 --------------------------------------------------------------*/
-[v-cloak] {
-  display: none;
-}
-
 .fade-enter-active, .fade-leave-active {
   -webkit-transition: opacity .8s;
   transition: opacity .8s;
@@ -12797,6 +12798,54 @@ body.is-scrolled .chat-off-canvas {
 .page-email-verificationuser-verified .main-content {
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+body.page- {
+  padding-top: 100px;
+}
+
+.bg-image-404 {
+  background-image: url(../img/404-bg-image.jpg);
+  background-size: cover;
+  background-position: 65% 65%;
+  height: calc(100vh - 184px);
+}
+
+@media screen and (min-width: 768px) {
+  .bg-image-404 {
+    height: calc(100vh - 162px);
+  }
+}
+
+.bg-image-404 .cover {
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bg-image-404 .content {
+  position: relative;
+  z-index: 5;
+}
+
+.bg-image-404 .content h1 {
+  font-size: 75px;
+}
+
+.bg-image-404 .content h2 {
+  margin-bottom: 25px;
+}
+
+.bg-image-404 .content h1,
+.bg-image-404 .content h2 {
+  color: #fff;
 }
 
 /*# sourceMappingURL=app.css.map */

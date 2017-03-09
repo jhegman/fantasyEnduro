@@ -66,7 +66,7 @@
             	<i class="fa fa-search" aria-hidden="true"></i>
             	<input v-model="leagueSearch" class="search" type="text" placeholder="Search" @input="leagueLiveSearch">
         	</div><!-- /.search-wrap -->
-    			<table class="table table-hover" v-if="leagueSearch == '' ">
+    			<table class="table table-hover" v-show="leagueSearch == '' ">
 					<thead>
 						<tr>
 							<th></th>
@@ -79,7 +79,7 @@
 						@php
 							$userInLeagueCheck = ($league->users()->where('id',$user->id)->first() != null ? 'true' : 'false');
 						@endphp
-						<tr is="league" :user-in-league="{{ $userInLeagueCheck }}" league-count="{{count($league->users)}}" league-id="{{$league->id}}">
+						<tr is="league" :user-in-league="{{ $userInLeagueCheck }}" :league-count="{{count($league->users)}}" :league-id="{{$league->id}}" v-cloak>
                             <td slot="league-name">
                                 <a href="{{ url('/leagues',$league->id) }}">{{$league->name}}</a>
                             </td>
@@ -96,14 +96,10 @@
                             <th> Number of Members</th>
                         </tr>
                     </thead>
-                <tbody class="list" v-for="league in leagues">
-                    <tr>
-                        <td>
-                            <tr is="league" :user-in-league="league.userInLeague" :league-count="league.leagueCount" :league-id="league.league.id">
-                                <td slot="league-name">
-                                    <a :href="'/leagues/' + league.id">@{{league.league.name}}</a>
-                                </td>
-                            </tr>
+                <tbody class="list">
+                    <tr v-for="league in leagues" is="league" :user-in-league="league.userInLeague" :league-count="league.leagueCount" :league-id="league.league.id">
+                        <td slot="league-name">
+                            <a :href="'/leagues/' + league.league.id">@{{league.league.name}}</a>
                         </td>
                     </tr>
                 </tbody>

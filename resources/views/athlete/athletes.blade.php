@@ -9,7 +9,7 @@
     		    <h2>Men</h2>
     		    <div class="search-wrap lineup-search">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    <input class="search" type="text" placeholder="Search">
+                    <input class="search" v-model="athleteSearchMen" type="text" placeholder="Search">
                 </div><!-- /.search-wrap -->
     		<table class="table table-hover">
 				<thead>
@@ -21,19 +21,19 @@
 				<tbody class="list">	
 					@foreach ($athletes as $athlete)
 					@if ($athlete->gender == 'Men')
-						<tr>
-    						<td class="name">
+                        <tr is="athlete" athlete-name="{{$athlete->name}}" :athlete-search="athleteSearchMen">
+    						<td class="name" slot="athlete-name">
     						    @if ($athlete->photo_url != null)	
     						        <img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
     						    @else
     						        <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
     						    @endif
-    						    <a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}
+    						    <a href="{{ url('/athletes',$athlete->id) }}">{{$athlete->name}}
     						    </a>
     						</td>
-   				 			<td>{{ $athlete->gender }}
+   				 			<td slot="gender">{{ $athlete->gender }}
                             </td>
-						</tr>
+                        </tr>
 					@endif
 					@endforeach
 				</tbody>
@@ -47,7 +47,7 @@
     		<h2>Women</h2>
     		<div class="search-wrap lineup-search">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input class="search" type="text" placeholder="Search">
+                <input class="search" v-model="athleteSearchWomen" type="text" placeholder="Search">
             </div><!-- /.search-wrap -->
     		<table class="table table-hover">
 			<thead>
@@ -59,19 +59,19 @@
 			<tbody class="list">
 				@foreach ($athletes as $athlete)
 				@if ($athlete->gender == 'Women')
-					<tr>
-    				    <td class="name">
-    				        @if ($athlete->photo_url != null)	
-    				            <img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
-    				        @else
-    				            <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
-    				        @endif
-    				        <a href="{{ url('/athletes',$athlete->id) }}">{{ $athlete->name}}</a>
-    				    </td>
-   				 	    <td>
-                        {{ $athlete->gender }}
+					<tr is="athlete" athlete-name="{{$athlete->name}}" :athlete-search="athleteSearchWomen">
+                        <td class="name" slot="athlete-name">
+                            @if ($athlete->photo_url != null)   
+                                <img src="{{$athlete->photo_url}}" class="img-circle" height="50px" width="50px">
+                            @else
+                                <img src = "/img/placeholder_athlete.jpg" alt="placeholder" class="img-circle" height="50px" width="50px">
+                            @endif
+                            <a href="{{ url('/athletes',$athlete->id) }}">{{$athlete->name}}
+                            </a>
                         </td>
-					</tr>
+                        <td slot="gender">{{ $athlete->gender }}
+                        </td>
+                    </tr>
 				@endif
 				@endforeach
 				</tbody>
