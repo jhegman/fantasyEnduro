@@ -24,7 +24,7 @@
     </script>
 
 </head>
-<body class="page-{{str_slug(Route::current()->getPath(), '-')}}">
+<body class="page-{{(Route::current() ? str_slug(Route::current()->getPath(), '-') : '')}}">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container nav-container">
