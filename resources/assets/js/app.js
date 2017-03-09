@@ -36,7 +36,9 @@ const app = new Vue({
 		leagueSearch: '',
 		athleteSearchMen: '',
 		athleteSearchWomen: '',
-		leagues: []
+		leagues: [],
+		users: [],
+		userSearch: ''
 	},
 	methods: {
 		leaveLeague: function(league){
@@ -69,6 +71,14 @@ const app = new Vue({
 				return response.json();
 			}).then(result => {
 				this.leagues = result;
+				console.log(result);
+        	});
+			},
+		userLiveSearch(league){
+        	this.$http.post('/live-search-user',{input: this.userSearch, league: league}).then((response) => {
+				return response.json();
+			}).then(result => {
+				this.users = result;
 				console.log(result);
         	});
 			}

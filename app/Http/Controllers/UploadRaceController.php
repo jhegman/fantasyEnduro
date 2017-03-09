@@ -108,13 +108,13 @@ class UploadRaceController extends Controller
                     $racer = new Racer;
                     $racer->name = $result->name;
                     $racer->gender = $request->gender;
-                    $racer->points = intval($pointslist[intval($result->overall_place)-1]->points) +    $racer->points;
+                    $racer->points = intval($pointslist[intval($result->overall_place)-1]->points);
                     $racer->save();
                     $racer->races()->attach($race->id, $resultArray);
                     
                 } else {
                     $existingRacerCheck->races()->attach($race->id, $resultArray);
-                    $existingRacerCheck->points = intval($pointslist[intval($result->overall_place)-1]->points);
+                    $existingRacerCheck->points = intval($pointslist[intval($result->overall_place)-1]->points) + $existingRacerCheck->points;
                     $existingRacerCheck->save();
                 }
             }

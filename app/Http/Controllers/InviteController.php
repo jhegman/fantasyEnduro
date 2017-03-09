@@ -24,10 +24,10 @@ class InviteController extends Controller
         $users = User::where('id','!=',$league->admin_id)
         ->whereDoesntHave('invitations',function ($query) use ($league) {
             $query->where('league_id',$league->id);
-        })->get();
+        })->paginate(10);
         //All invitations
     	$invitations = Invitation::where('league_id',$league->id)->get();
-    	return view('emails.showInvite',compact('invitations','league','users','alreadySent'));
+    	return view('Invite.showInvite',compact('invitations','league','users','alreadySent'));
     }
 
 
@@ -115,5 +115,19 @@ class InviteController extends Controller
     }
 
         return view('Invite.accept',compact('league'));
+    }
+
+    public function search(Request $request){
+        $search = $request->input;
+        $league = League::find($request->league);
+        
+        $users = User::where('id','!=',$league->admin_id)
+        ->where('name', 'LIKE', '%'.$search.'%')
+        ->whereDoesntHave('invitations',function ($query) use ($league) {
+            $query->where('league_id',$league->id);
+        })->get();
+
+        
+        return json_encode($users);
     }
 }

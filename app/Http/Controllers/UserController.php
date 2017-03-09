@@ -35,7 +35,7 @@ class UserController extends Controller
 
 	public function showUser($name)
     {
-		$user = User::where('name',$name)->first();
+		$user = User::where('name',$name)->firstOrFail();
 		$week = SuperAdminOption::where('option_name', 'week')->first()->option_value;
 
         //Display users athletes

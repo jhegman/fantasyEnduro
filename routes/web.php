@@ -67,6 +67,8 @@ Route::post('/invite/{id}','InviteController@addEmails')->middleware('league-adm
 //Route to resend email
 Route::get('/resend/{id}/{invite}','InviteController@resend')->name('resend')->middleware('league-admin','auth');
 
+Route::post('/live-search-user','InviteController@search');
+
 Route::get('/accept/{code}','InviteController@accept')->middleware('auth');
 
 //ajax route for joining a league

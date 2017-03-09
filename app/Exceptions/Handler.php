@@ -49,6 +49,9 @@ class Handler extends ExceptionHandler
         if ($exception instanceof UserNotVerifiedException) {
             return response()->view('vendor.laravel-user-verification.user-verification', [], 500);
         }
+        if ($exception instanceof ModelNotFoundException){
+            abort(404);
+        }
         return parent::render($request, $exception);
     }
 
