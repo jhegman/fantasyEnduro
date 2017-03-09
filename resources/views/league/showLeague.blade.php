@@ -21,7 +21,7 @@
     </div>
     @if($userInLeagueCheck > 0)
         <div id="clear-noty" @click="updateLastSeen({{$league->id}})" class="chat-wrap">
-            <img @click="show = !show" src="../img/chat.svg"/>
+            <img class="chat-img" @click="show = !show" src="../img/chat.svg"/>
                 @if($messageCount > 0)
                     <div id="notify" @click="show = !show" class="notify-style">
                         {{$messageCount}}
