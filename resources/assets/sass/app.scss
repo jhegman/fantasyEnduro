@@ -92,6 +92,10 @@ body.welcome-page {
 # Reusable Components
 --------------------------------------------------------------*/
 
+[v-cloak] {
+  display: none;
+}
+
 .btn-primary {
 	border-radius: 3px;
 	box-shadow: none;
@@ -687,10 +691,6 @@ body.is-scrolled {
 # Set Lineup
 --------------------------------------------------------------*/
 
-[v-cloak] {
-  display: none;
-}
-
 .fade-enter-active, .fade-leave-active {
  	transition: opacity .8s
 }
@@ -1173,6 +1173,7 @@ body.is-scrolled {
 /*--------------------------------------------------------------
 # League Pages
 --------------------------------------------------------------*/
+
 .page-leagues,
 .page-leaguesid,
 .page-inviteid {

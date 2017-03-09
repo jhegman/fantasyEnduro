@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<noty></noty>
 <div class="container set-lineup-header main-content">
 	<div class="row">
 		<div class="col-md-6">

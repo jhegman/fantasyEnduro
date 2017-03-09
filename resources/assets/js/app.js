@@ -9,6 +9,7 @@ require('./bootstrap');
 require('list.js');
 require('offcanvas-bootstrap/dist/js/bootstrap.offcanvas.js');
 import {NavIsScrolled} from './components/NavIsScrolled.js';
+import { EventBus } from './components/EventBus.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,12 +28,7 @@ Vue.component('noty', require('./components/Noty.vue'));
 const app = new Vue({
 	el: '#app',
 	data: {
-		showNoty: false,
-		saveStatus: false,
-		saveMessage: null,
-		showLeagueSave: [],
 		showLeagueLeft: [],
-		timeOut: {},
 		result: true,
 		show: false,
 		settings: [{show:true},{show:false},{show:false}],
@@ -41,33 +37,15 @@ const app = new Vue({
 		leagues: []
 	},
 	methods: {
-		joinLeague: function(league){
-			this.$http.post('/join-league', {league: league, path: window.location.pathname}).then((response) => {
-				return response.json();
-			}).then(result => {
-				window.clearTimeout(this.timeOut);
-				this.saveStatus = result.status;
-				this.showNoty = true;
-				this.saveMessage = result.message;
-				this.showLeagueSave[league] = result.leagueSave;
-				this.timeOut = setTimeout(this.closeNoty, 5000);
-			});
-		},
 		leaveLeague: function(league){
-			if(confirm('Are you sure you want to leave this league?')){
-			this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
-				return response.json();
-			}).then(result => {
-				this.saveStatus = result.status;
-				this.showNoty = true;
-				this.saveMessage = result.message;
-				this.showLeagueLeft[league] = true;
-				setTimeout(this.closeNoty, 5000);
-			});
+			if (confirm('Are you sure you want to leave this league?')){
+				this.$http.post('/leave-league', {league: league, path: window.location.pathname}).then((response) => {
+					return response.json();
+				}).then(result => {
+					EventBus.$emit('notyOpened', result.status, result.message);
+					this.showLeagueLeft[league] = true;
+				});
 			}
-		},
-		closeNoty: function() {
-			this.showNoty = false;
 		},
 		showRankings: function() {
 			if (!$('.ranking-drop-down').hasClass('show')) {

@@ -9,9 +9,7 @@
                 <button class="btn-primary save-lineup-btn" @click="onSave">Save Lineup</button>
             </div><!-- /.save-lineup-top -->
         </div><!-- /.row -->
-        <transition name="fade">
-            <div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert">{{saveMessage}}</div>
-        </transition>
+        
         <div class="row">
             <div class="col-md-6 available-racers">
                 <div class="content-wrap">
@@ -107,6 +105,7 @@
     </div>
 </template>
 <script>
+    import { EventBus } from './EventBus.js';
     var draggable = require('vuedraggable');
     var modal = require('./Modal.vue');
     import {isMobile} from './isMobile.js';
@@ -118,9 +117,6 @@
                 lineupSize: 5,
                 disableLineup: false,
                 availableRacersOptions: {group:'athletes', disabled: false},
-                showNoty: false,
-                saveStatus: false,
-                saveMessage: null,
                 searchString: '',
                 showModal: false,
                 modalData: {},
@@ -132,10 +128,7 @@
                 this.$http.post('/save-users-lineup', {lineup: this.yourLineup, path: window.location.pathname}).then((response) => {
                     return response.json();
                 }).then(result => {
-                    this.saveStatus = result.status;
-                    this.showNoty = true;
-                    this.saveMessage = result.message;
-                    setTimeout(this.closeNoty, 5000);
+                    EventBus.$emit('notyOpened', result.status, result.message);
                 });
             },
             checkLineupSize: function() {

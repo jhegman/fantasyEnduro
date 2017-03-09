@@ -1,8 +1,8 @@
 <template>
     <tr>
         <td>
-            <button class="btn-primary" v-if="!userInLeagueData" @click="joinLeague()">Join League</button>
-            <span v-else>Joined</span>
+            <button class="btn-primary" v-if="!userInLeagueData" @click="joinLeague()" v-cloak>Join League</button>
+            <span v-else v-cloak>Joined</span>
         </td>
         <slot name="league-name">
             
@@ -28,11 +28,21 @@
                 required: true
             },
             leagueCount: {
+                type: Number,
                 required: true
             },
             leagueId: {
+                type: Number,
                 required: true
             }
+        },
+        mounted: function() {
+            EventBus.$on('leagueJoined', leagueId => {
+                if (leagueId == this.leagueId) {
+                    this.userInLeagueData = true;
+                    this.leagueCountData++;
+                }
+            });
         },
         watch: {
             userInLeague: function() {
@@ -47,9 +57,8 @@
                 this.$http.post('/join-league', {league: this.leagueId, path: window.location.pathname}).then((response) => {
                     return response.json();
                 }).then(result => {
-                    this.leagueCountData++;
-                    this.userInLeagueData = true;
                     EventBus.$emit('notyOpened', result.status, result.message);
+                    EventBus.$emit('leagueJoined', this.leagueId);
                 });
             }
         }

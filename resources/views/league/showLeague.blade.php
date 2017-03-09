@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <transition name="fade">
-            <div class="alert container set-linup-noty" :save-message="saveMessage" v-bind:class="[saveStatus ? 'alert-success' : 'alert-danger']" @click="closeNoty" v-if="showNoty" role="alert" v-cloak>@{{saveMessage}}</div>
-       </transition>
+        <noty></noty>
 <div class="cover-athlete" style="background-image: url(../img/league-cover.jpg)">
     @if($userInLeagueCheck > 0)
         @if($leagueAdmin)
