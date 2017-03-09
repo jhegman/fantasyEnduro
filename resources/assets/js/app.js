@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-require('list.js');
 require('offcanvas-bootstrap/dist/js/bootstrap.offcanvas.js');
 import {NavIsScrolled} from './components/NavIsScrolled.js';
 import { EventBus } from './components/EventBus.js';
@@ -24,6 +23,7 @@ Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('accordion', require('./components/Accordion.vue'));
 Vue.component('league', require('./components/League.vue'));
 Vue.component('noty', require('./components/Noty.vue'));
+Vue.component('athlete', require('./components/Athlete.vue'));
 
 const app = new Vue({
 	el: '#app',
@@ -34,6 +34,8 @@ const app = new Vue({
 		settings: [{show:true},{show:false},{show:false}],
 		showModal: false,
 		leagueSearch: '',
+		athleteSearchMen: '',
+		athleteSearchWomen: '',
 		leagues: []
 	},
 	methods: {
@@ -84,16 +86,6 @@ jQuery(document).ready(function($) {
                 $('.select-week').removeClass('active-style');
             }    
     });
-
-    var options = {
-      valueNames: [ 'name']
-    };
-
-    //Sort tables
-    var sortLeague = new List('league-sort', options);
-    var sortMen = new List('men-sort', options);
-    var sortWomen = new List('women-sort', options);
-    var sortUser = new List('user-sort', options);
 
 });
 
