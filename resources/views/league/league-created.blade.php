@@ -13,7 +13,7 @@
     		@if ($newLeague->password != null)
             <h2 class="newUser">League Password: {{decrypt($newLeague->password)}}</h2>
             @endif
-    		<a class="btn-primary btn-home" href="{{url('/leagues')}}"> Back to leagues page</a>
+    		<a class="btn-primary btn-home" href="{{url('/leagues',$newLeague->id)}}"> View your new league</a>
     	</div>
     </div>
 </div>

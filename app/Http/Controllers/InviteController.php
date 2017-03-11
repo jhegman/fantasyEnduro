@@ -54,7 +54,9 @@ class InviteController extends Controller
             $temp->user_id = $user->id;
             $temp->save();
     	}
-    	
+        
+        \Session::flash('flash_message', $user->name . ' has been sent an invitation.');
+
         return redirect(route('invite', $league->id));
     }
 
@@ -67,15 +69,19 @@ class InviteController extends Controller
         $invitation = Invitation::findOrFail($invite);
         $league = League::findOrFail($invitation->league_id);
         $email = $invitation->email;
+        $user = User::find($invitation->user_id);
 
         //only send if their invite has expired
         if(Invitation::status($invitation->code,$invitation->email) == 'expired'){
-        Mail::send('Invite.invite-email', [ 'email' => $email, 'invite' => $invitation, 'league' => $league], function ($m) use ($email) {
+        Mail::send('emails.invite-email', [ 'email' => $email, 'invite' => $invitation, 'league' => $league], function ($m) use ($email) {
                     $m->to($email)->subject('Invitation to join league on Fantasy Enduro');
                 });
         //Set invitation to unexpire in 2 days
         Invitation::unexpire($invitation->code,$invitation->email,"1 day");
         }
+        
+        \Session::flash('flash_message', $user->name . ' has been re-sent an invitation.');
+
         return redirect(route('invite', $league->id));
     }
 

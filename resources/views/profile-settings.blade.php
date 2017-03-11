@@ -50,7 +50,7 @@
                 <accordion :errors="{{ $errorCheckPic }}">
                     <span slot="title">Change profile picture</span>
                     <div slot="form" v-cloak>
-                        {!! Form::open(['url' => 'profile-settings', 'files' => true]) !!}
+                        {!! Form::open(['url' => 'change-picture', 'files' => true]) !!}
                             <div class="form-group">
                                 <!-- <input type="file" name="avatar"> -->
                                 {{ Form::file('image') }}
