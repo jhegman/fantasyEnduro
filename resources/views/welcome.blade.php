@@ -4,8 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noindex" />
-        <meta name="robots" content="nofollow" />
+        <meta name="description" content="A fantasy enduro game following the Enduro World Series. Compete against your friends!">
 
         <title>Fantasy Enduro</title>
         
