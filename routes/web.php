@@ -26,8 +26,11 @@ Route::get('/upload-athlete', 'UploadAthleteController@uploadAthlete');
 Route::post('/upload-athlete/complete', 'UploadAthleteController@storeAthlete')->name('upload-athlete-complete');
 
 //Change User Name Page
-Route::get('/profile-settings', 'UserSettingsController@profileSettings');
+Route::get('/profile-settings', 'UserSettingsController@profileSettings')->name('profile');
 Route::post('/change-username/complete', 'UserSettingsController@userNameChanged')->name('username-changed');
+
+//Profile picture submit route
+Route::post('/change-picture','UserSettingsController@changePicture');
 
 //Create Athletes Page that lists all athletes
 Route::get('/athletes','AthleteController@index');
@@ -67,6 +70,8 @@ Route::post('/invite/{id}','InviteController@addEmails')->middleware('league-adm
 //Route to resend email
 Route::get('/resend/{id}/{invite}','InviteController@resend')->name('resend')->middleware('league-admin','auth');
 
+Route::post('/live-search-user','InviteController@search');
+
 Route::get('/accept/{code}','InviteController@accept')->middleware('auth');
 
 //ajax route for joining a league
@@ -83,9 +88,6 @@ Route::post('/messageSeen','LeagueController@messageSeen');
 
 // Send a message by Javascript.
 Route::post('/message', 'HomeController@message');
-
-//Profile picture submit route
-Route::post('/profile-settings','UserSettingsController@profileSettings');
 
 //User profiles
 Route::get('/user/{name}','UserController@showUser');

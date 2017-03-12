@@ -19,9 +19,9 @@ class CheckLeagueAdmin
         $user = $request->user();
         //get league id
         $league_id = $request->route('id');
-        $league = League::find($league_id);
+        $league = League::findOrFail($league_id);
         if($league->admin_id != $user->id || !$league->private){
-            abort(401, 'Unauthorized access!');
+            abort(404);
         }
         return $next($request);
     }

@@ -45,4 +45,5 @@ class AthleteController extends Controller
 		
 		return view('athlete.showAthletes',compact('athlete','racesWon','stageWins','athleteData','result','points','photo'));
 	}
+
 }

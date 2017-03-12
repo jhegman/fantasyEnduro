@@ -16,7 +16,7 @@ class CheckSuperAdmin
     public function handle($request, Closure $next)
     {
         if($request->user()->super_admin == false){
-            abort(401, 'Unauthorized access!');
+            abort(404);
         }
         return $next($request);
     }

@@ -91,7 +91,7 @@
 </div><!-- /.container -->
 <modal v-if="showModal" @modal-closed="showModal = false" v-cloak>
     <div slot="body">
-        <img src="{{url('/uploads/avatar',$user->avatar)}}">
+        <img class="modal-img" src="{{url('/uploads/avatar',$user->avatar)}}">
     </div>
 </modal>
 @endsection

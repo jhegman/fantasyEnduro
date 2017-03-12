@@ -50,9 +50,11 @@
                 <accordion :errors="{{ $errorCheckPic }}">
                     <span slot="title">Change profile picture</span>
                     <div slot="form" v-cloak>
-                        {!! Form::open(['url' => 'profile-settings', 'files' => true]) !!}
-                            <!-- <input type="file" name="avatar"> -->
-                            {{ Form::file('image') }}
+                        {!! Form::open(['url' => 'change-picture', 'files' => true]) !!}
+                            <div class="form-group">
+                                <!-- <input type="file" name="avatar"> -->
+                                {{ Form::file('image') }}
+                            </div>
                             {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                             @if ($errors->first('image'))
                                     <span class="errors">{{ $errors->first('image') }}</span>

@@ -32,7 +32,7 @@ class LeagueController extends Controller
     {
     	$user = Auth::user();
         $myLeagues = $user->leagues;
-        $leagues = League::where('private',false)->paginate(2);
+        $leagues = League::where('private',false)->paginate(10);
    		return view('league.leagues',compact('leagues','user','myLeagues'));
     }
 
