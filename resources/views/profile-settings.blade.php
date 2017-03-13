@@ -35,7 +35,7 @@
                     <div slot="form" v-cloak>
                         {!! Form::open(['url' => 'change-username/complete']) !!}
                             <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
-                                {{ Form::label('name', 'Edit your Username:', ['class' => 'control-label']) }}
+                                {{ Form::label('name', 'Edit your Team Name:', ['class' => 'control-label']) }}
                                 {{ Form::text('name', null, ['class' => 'form-control']) }}
                                 @if ($errors->first('name'))
                                     <span class="errors">{{ $errors->first('name') }}</span>
