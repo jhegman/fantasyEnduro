@@ -18,7 +18,7 @@
                 </div>
     
                 <div class="panel-body">
-                    Username: {{$user->name}}
+                    Team Name: {{$user->name}}
                 </div>
                 <div class="panel-body">
                     My Leagues: 

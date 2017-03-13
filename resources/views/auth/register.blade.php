@@ -14,7 +14,7 @@
                             <div class="col-md-12">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus oninput="this.setAttribute('value', this.value);">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                <label for="name" class="control-label">UserName</label>
+                                <label for="name" class="control-label">Team Name</label>
                             </div><!-- /.col-md-12 -->
                                 @if ($errors->has('name'))
                                     <span class="help-block">

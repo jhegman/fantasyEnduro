@@ -31,7 +31,7 @@
         <div class=col-md-10>
             <div class="settings-table settings-first">
                 <accordion :errors="{{ $errorCheckName }}">
-                    <span slot="title">Edit Username</span>
+                    <span slot="title">Team Name</span>
                     <div slot="form" v-cloak>
                         {!! Form::open(['url' => 'change-username/complete']) !!}
                             <div class="form-group {{$errors->has('name') ? 'has-error' : ''}}">
