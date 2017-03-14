@@ -36,7 +36,7 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
 
-        Mail::to('phegman@icloud.com, jack.hegman@gmail.com')->send(new ContactForm($request));
+        Mail::to('phegman@icloud.com')->to('jack.hegman@gmail.com')->send(new ContactForm($request));
 
         return view('misc.contact-submitted');
     }
