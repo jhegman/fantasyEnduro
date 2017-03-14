@@ -64,12 +64,14 @@
                             <li><a href="{{ url('/leagues') }}">Leagues</a></li>
                             <li><a href="{{ url('/results') }}">Results</a></li>
                             <li><a href="{{ url('/rankings') }}">Rankings</a></li>
+                            <li><a href="{{ url('/how-to-play') }}">How To Play</a></li>
                         @endif
                     </ul>
                     <ul class="nav navbar-nav user-settings">
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/how-to-play') }}">How To Play</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

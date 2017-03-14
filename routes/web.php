@@ -126,6 +126,10 @@ Route::get('/scoring-tables', function() {
 	return view('misc.scoring-tables');
 });
 
+Route::get('/how-to-play', function(){
+	return view('misc.how-to-play');
+});
+
 //Contact Page
 Route::get('/contact', 'ContactController@contactForm')->name('contact');
 

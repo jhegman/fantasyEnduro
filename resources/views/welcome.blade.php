@@ -50,8 +50,10 @@
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{url('/how-to-play')}}">How to play</a>
                     @endif
                 </div>
+                
             </div>
             <footer class="site-footer">
                 <div class="content-wrap flex-container">
