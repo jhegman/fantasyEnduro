@@ -71,8 +71,6 @@ class HomeController extends Controller
         $user = Auth::user();
         $league_id = $request->league_id;
 
-        Log::debug($request);
-
         $message = ChatMessage::create([
             'user_id' => $user->id,
             'message' => $request->message,

@@ -125,3 +125,8 @@ Route::get('/terms-and-privacy', function() {
 Route::get('/scoring-tables', function() {
 	return view('misc.scoring-tables');
 });
+
+//Contact Page
+Route::get('/contact', 'ContactController@contactForm')->name('contact');
+
+Route::post('/contact/sent', 'ContactController@contactFormSubmitted')->name('contact-submitted');

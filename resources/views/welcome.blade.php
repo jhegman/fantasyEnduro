@@ -56,7 +56,9 @@
             <footer class="site-footer">
                 <div class="content-wrap flex-container">
                     <span class="copywrite">&copy; {{ date("Y") }} Fantasy Enduro</span><!-- /.copywrite -->
-                    <a class="terms-and-privacy" href="{{ url('/terms-and-privacy') }}">Terms of Service and Privacy Policy</a>
+                    <div class="terms-contact">
+                        <a href="{{ url('/terms-and-privacy') }}">Terms of Service and Privacy Policy</a> <span>|</span> <a href="{{ url('/contact') }}">Contact</a>
+                    </div><!-- /.terms-contact -->
                 </div><!-- /.content-wrap -->
             </footer>
         </div>

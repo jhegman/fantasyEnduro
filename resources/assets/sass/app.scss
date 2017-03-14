@@ -32,6 +32,8 @@ the file everytime it is saved
 # Misc Pages
 # Footer
 # 404 Page
+# Password Reset
+# Contact Page
 
 --------------------------------------------------------------*/
 
@@ -1848,10 +1850,21 @@ body.is-scrolled {
 	}
 
 	.copywrite,
-	.terms-and-privacy {
+	.terms-contact {
 		display: block;
 		text-align: center;
 		color: $color-white;
+
+		a,
+		span {
+			color: $color-white;
+		}
+
+		span {
+			margin-right: 5px;
+			margin-left: 5px;
+			font-weight: 700;
+		}
 	}
 }
 
@@ -1930,6 +1943,17 @@ body.page- {
 .page-passwordreset {
 	.main-content {
 		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+}
+
+/*--------------------------------------------------------------
+# Contact Page
+--------------------------------------------------------------*/
+
+.page-contact {
+	.main-content {
+		padding-top: 30px;
 		padding-bottom: 50px;
 	}
 }
