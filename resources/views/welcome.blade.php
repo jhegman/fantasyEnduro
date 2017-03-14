@@ -36,8 +36,11 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title">
                     Fantasy Enduro
+                </div>
+                <div class="game-description m-b-md">
+                 <p>A fantasy enduro game following the Enduro World Series. Select your team each race weekend and compete against your friends!</p>
                 </div>
 
                 <div class="links">
@@ -47,6 +50,7 @@
                         <a href="/leagues">Leagues</a>
                         <a href="/results">Results</a>
                         <a href="/rankings">Rankings</a>
+                        <a href="/how-to-play">How to play</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
