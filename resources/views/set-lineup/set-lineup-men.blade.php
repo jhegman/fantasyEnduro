@@ -10,6 +10,7 @@
                 <a href="{{url('set-lineup/women')}}"> Set Women's Lineup </a>
             </div>
             <h3 class="closes">Closes: {{ $closedEST }}</h3>
+            <h4> <b>{{$race}}</b> </h4>
 		</div><!-- /.col-md-6 -->
 		<div class="col-md-6 how-scoring-works">
 			<button class="btn-primary" @click="showModal = true">How Scoring Works?</button>

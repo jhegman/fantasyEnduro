@@ -51,6 +51,7 @@ class SetLineupController extends Controller
         //get current selection period
         $period = SelectionPeriod::where('week',$week)->first();
 
+        $race = $period->race_name;
         //Get Users location
         $location = geoip()->getLocation();
 
@@ -59,7 +60,7 @@ class SetLineupController extends Controller
         //Check if open
         $isOpen = SelectionPeriod::open($week);
 
-        return view('set-lineup.set-lineup-men',compact('isOpen', 'closedEST'));
+        return view('set-lineup.set-lineup-men',compact('isOpen', 'closedEST','race'));
     }
 
     /**
