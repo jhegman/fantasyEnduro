@@ -1821,11 +1821,15 @@ body.is-scrolled {
 
 .game-description{
 	color: white;
-	width: 400px;
+	max-width: 400px;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 	font-style: italic;
+
+	@media screen and (max-width: $screen-sm-max) {
+		padding: 0 20px;
+	}
 }
 /*--------------------------------------------------------------
 # Footer
