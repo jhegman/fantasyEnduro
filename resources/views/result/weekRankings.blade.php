@@ -36,25 +36,33 @@
 							Player
 						</div>
 					</div>
+					@php
+						$rank = 1;
+					@endphp
 					@foreach($weekRankings as $key => $ranking)
-						@if($key == 0)
-							<div class="rankings-first">
-						@else
-							<div class="rankings">
+						@if ($ranking->user->verified == 1)
+							@if($key == 0)
+								<div class="rankings-first">
+							@else
+								<div class="rankings">
+							@endif
+									<div class="rank">
+										{{$rank}}
+									</div>
+									<div class="rider">
+										<span>
+											<img src = "{{ url('/uploads/avatar',$ranking->user->avatar) }}" class="img-circle" height="20px" width="20px">
+										</span>
+										<a href="{{ url('/user',$ranking->user->name) }}">{{$ranking->user->name}}</a> 
+										<span class="score">
+											Score: {{$ranking->points}}
+										</span>
+									</div>
+								</div>
+							@php
+								$rank++;
+							@endphp
 						@endif
-								<div class="rank">
-									{{$key+1}}
-								</div>
-								<div class="rider">
-									<span>
-										<img src = "{{ url('/uploads/avatar',$ranking->user->avatar) }}" class="img-circle" height="20px" width="20px">
-									</span>
-									<a href="{{ url('/user',$ranking->user->name) }}">{{$ranking->user->name}}</a> 
-									<span class="score">
-										Score: {{$ranking->points}}
-									</span>
-								</div>
-							</div>
 					@endforeach
 				</div>
 		</div>

@@ -33,7 +33,7 @@ class RankingController extends Controller
 
 	public function ranking()
 	{
-		$overallRankings = User::orderBy('points','DESC')->get();
+		$overallRankings = User::orderBy('points','DESC')->where('verified', '=', 1)->get();
 		$topMen = Racer::topMen(100);
 		$topWomen = Racer::topWomen(100);
 
