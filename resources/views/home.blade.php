@@ -24,10 +24,11 @@
                     My Leagues: 
                     @foreach ($user->leagues as $key => $league)
                         <div>
-                        <a href="{{ url('/leagues')}}/{{$league->id}}">{{$league->name}}</a>
+                        <a href="{{ url('/leagues')}}/{{$league->id}}">{{$league->name}}
                         @if($leagueMessages[$key] > 0)
                             <span style="color:#db4437;">{{$leagueMessages[$key]}} new messages</span>
                         @endif
+                        </a>
                         </div>
                     @endforeach
                 </div>
