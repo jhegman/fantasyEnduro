@@ -9,7 +9,7 @@
         <title>Fantasy Enduro</title>
         
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
-        <link href="/css/app.css" rel="stylesheet">
+        <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

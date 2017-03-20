@@ -13,7 +13,7 @@
 
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     <link href="/css/emojionearea.min.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
@@ -40,11 +40,10 @@
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle offcanvas-toggle" data-toggle="offcanvas" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button type="button" class="hamburger">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
                     </button>
 
                     <!-- Branding Image -->
@@ -53,7 +52,7 @@
                     </a>
                 </div>
 
-                <div class="navbar-offcanvas navbar-offcanvas-touch clearfix" id="app-navbar-collapse">
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav menu-items">
@@ -125,6 +124,6 @@
         </footer>
     </div>
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="{{ elixir('js/app.js') }}"></script>
 </body>
 </html>
