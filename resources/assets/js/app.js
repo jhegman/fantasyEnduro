@@ -8,6 +8,7 @@
 require('./bootstrap');
 import Navigation from './components/Navigation.js';
 import { EventBus } from './components/EventBus.js';
+import {isMobile} from './components/isMobile.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,7 +30,7 @@ const app = new Vue({
 	data: {
 		showLeagueLeft: [],
 		result: true,
-		show: false,
+		show: true,
 		settings: [{show:true},{show:false},{show:false}],
 		showModal: false,
 		leagueSearch: '',
@@ -102,6 +103,10 @@ jQuery(document).ready(function($) {
     });
 
 });
+
+if (!this.isMobile) {
+	this.show = false;
+}
 
 //Check scroll position on scroll
 $(window).scroll(function() {

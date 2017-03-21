@@ -39,13 +39,17 @@ class LeagueController extends Controller
     //Display individual league pages
     public function showLeague($id)
     {
-    	$currentUser = Auth::user();
+        $currentUser = Auth::user();
         $league = League::findOrFail($id);
         $unread = MessageSeen::where('user_id',$currentUser->id)
         ->where('league_id',$league->id)
         ->first();
 
-    	$users = $league->users;
+        //update time seen
+        $unread->last_viewed = Carbon::now();
+        $unread->save();
+
+        $users = $league->users;
         $users = $users->sortByDesc('points');
         
         foreach ($users as $key => $user) {
