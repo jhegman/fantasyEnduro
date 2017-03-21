@@ -6,8 +6,7 @@
  */
 
 require('./bootstrap');
-require('offcanvas-bootstrap/dist/js/bootstrap.offcanvas.js');
-import {NavIsScrolled} from './components/NavIsScrolled.js';
+import Navigation from './components/Navigation.js';
 import { EventBus } from './components/EventBus.js';
 
 /**
@@ -85,9 +84,14 @@ const app = new Vue({
 		}
 	});
 
+let nav = new Navigation();
+
 jQuery(document).ready(function($) {
     //Update Nav Position 
-    NavIsScrolled();
+    nav.NavIsScrolled();
+
+    //Offcanvas Toggle
+    nav.OffCanvasToggle();
 
     //click outside of drop down
     $('.page-rankings, .page-rankingsid').click(function(event) { 
@@ -102,5 +106,5 @@ jQuery(document).ready(function($) {
 //Check scroll position on scroll
 $(window).scroll(function() {
 	//Update Nav Position 
-    NavIsScrolled();
+    nav.NavIsScrolled();
 });

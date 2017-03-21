@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="A fantasy enduro game following the Enduro World Series. Compete against your friends!">
+        <meta name="description" content="A mountain bike fantasy enduro game following the Enduro World Series (EWS). Select your team each race weekend and compete against your friends!">
 
         <title>Fantasy Enduro</title>
         
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
-        <link href="/css/app.css" rel="stylesheet">
+        <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
