@@ -30,7 +30,7 @@ const app = new Vue({
 	data: {
 		showLeagueLeft: [],
 		result: true,
-		show: true,
+		show: !isMobile(),
 		settings: [{show:true},{show:false},{show:false}],
 		showModal: false,
 		leagueSearch: '',
@@ -38,7 +38,7 @@ const app = new Vue({
 		athleteSearchWomen: '',
 		leagues: [],
 		users: [],
-		userSearch: ''
+		userSearch: '',
 	},
 	methods: {
 		leaveLeague: function(league){
@@ -88,6 +88,8 @@ const app = new Vue({
 let nav = new Navigation();
 
 jQuery(document).ready(function($) {
+
+
     //Update Nav Position 
     nav.NavIsScrolled();
 
@@ -104,9 +106,6 @@ jQuery(document).ready(function($) {
 
 });
 
-if (this.isMobile) {
-this.show = false;
-}
 
 //Check scroll position on scroll
 $(window).scroll(function() {
