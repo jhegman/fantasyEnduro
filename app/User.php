@@ -74,4 +74,14 @@ class User extends Authenticatable
         return (bool) $this->verified;
     }
 
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForSlack()
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
+
 }

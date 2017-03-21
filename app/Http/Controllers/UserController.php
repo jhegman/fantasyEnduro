@@ -20,6 +20,7 @@ use App\Lineup;
 use App\ChatMessage;
 use App\Events\ChatMessageWasReceived;
 use Jrean\UserVerification\Facades\UserVerification;
+use App\Notifications\userRegistered;
 
 class UserController extends Controller
 {
@@ -67,6 +68,13 @@ class UserController extends Controller
 
     public function userVerified(FormBuilder $formBuilder)
     {
+        $user = Auth::user();
+        
+        //Slack Noty
+        $super = User::where('super_admin',1)->first();
+
+        $super->notify(new userRegistered($user));
+
         return view('user.user-verified');
     }
 
