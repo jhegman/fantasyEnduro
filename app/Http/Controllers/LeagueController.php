@@ -46,8 +46,10 @@ class LeagueController extends Controller
         ->first();
 
         //update time seen
+        if($unread!=null){
         $unread->last_viewed = Carbon::now();
         $unread->save();
+        }
 
         $users = $league->users;
         $users = $users->sortByDesc('points');

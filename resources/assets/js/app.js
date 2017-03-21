@@ -104,8 +104,8 @@ jQuery(document).ready(function($) {
 
 });
 
-if (!this.isMobile) {
-	this.show = false;
+if (this.isMobile) {
+this.show = false;
 }
 
 //Check scroll position on scroll
